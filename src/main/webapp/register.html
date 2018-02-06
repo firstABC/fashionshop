@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>注册</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+	<div class="banner">
+		<header>
+			<div class="headerTop">
+	        	<div class="header_m lay1200 clearfix">
+	                <a href="index.html"><img src="image/logo.png" alt="潮品之家" title="潮品之家"></a>
+	            </div>
+	        </div>
+		</header>
+	</div>
+		
+	<div class="main">
+		<div class="login-panel">
+			<div class="form-sidebar">
+			    <div class="hand-logo"><i class="icon iconfont icon-hand"></i></div><img src="image/logo.png">
+			    <p>全球潮品优选</p>
+			  </div>
+			<div class="form-container">
+				<div class="switch-header">
+			      <div class="switch-container">
+			        <div class="form-header login">
+			          <label class="form-title"><span>注册</span><img src="image/logo.png" alt="潮品之家" title="潮品之家"></label>
+			          <a href="login.html" class="switch">登录<i class="icon iconfont icon-switch"></i></a>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="form-wrap">
+			      <form data-action="">
+			      	<ul>
+			          <li class="input-row">
+			          	<i class="icon iconfont icon-phone"></i>
+			            <input type="text" value="" placeholder="请输入登录邮箱 / 手机号" autocomplete="off" class="input-phone">
+			          </li>
+			          <li class="input-row">
+			          	<i class="icon iconfont icon-lock"></i>
+			            <input type="password" value="" placeholder="请输入密码" maxlength="20" autocomplete="off" class="input-password">
+			          </li>
+			          <li class="input-row captcha">
+			          	<i class="icon iconfont icon-captcha"></i>
+			            <input id="captchaInput" type="text" value="" placeholder="请输入验证码" autocomplete="off" maxlength="5"><a style="background-image: url(&quot;http://www.1626.com/services/service.php?m=index&amp;a=verify&amp;rand=0.4149953543399425&quot;);" class="captcha"></a>
+			          </li>
+			          <li id="code_input" style="display:none" class="input-row">
+			          	<i class="icon iconfont icon-captcha"></i>
+			            <input id="mobCodeInput" type="text" value="" placeholder="短信中的验证码" autocomplete="off" maxlength="5">
+			          </li>
+			        </ul>
+			        <div class="form-actions">
+			          <div class="form-options">
+			            <input type="checkbox" value="1" checked="checked" autocomplete="off" class="checkbox">
+			            <label for="agreed">我已阅读并同意遵守</label><a href="javascript:;" style="float:none" class="text show-terms">服务条款</a>
+			          </div>
+			          <button type="button" class="button btnLogin">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+			        </div>
+			      </form>
+			    </div>
+				<div class="social-login">
+			      <h5>社交账号登录</h5>
+			      <div class="social-links">
+			      	<a href="javascript:;" target="_blank" title="微信" class="wechat"><i class="icon iconfont icon-wechat"></i></a>
+			      	<a href="javascript:;" target="_blank" title="新浪微博" class="weibo"><i class="icon iconfont icon-weibo"></i></a>
+			      	<a href="javascript:;" target="_blank" title="QQ" class="qq"><i class="icon iconfont icon-qq"></i></a>
+			      	<a href="javascript:;" target="_blank" title="淘宝" class="taobao"><i class="icon iconfont icon-taobao"></i></a>
+			      </div>
+			    </div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- 地址栏 -->
+	<div class="foot_wrap">
+	    <div class="foot lay1200">
+	        <div class="footNav">
+	            <ul class="fl">
+	                <li class="fl"><a href="javascript:;" target="_blank">关于我们</a></li>	
+	                <li class="fl"><a href="javascript:;" target="_blank">联系我们</a></li>	
+	                <li class="fl"><a href="javascript:;" target="_blank">加入我们</a></li>		
+	                <li class="fl"><a href="javascript:;" target="_blank">友情链接</a></li>
+	                <li class="fl"><a href="javascript:;" target="_blank">意见反馈</a></li>		
+	            </ul>
+	            <span>Copyright © 2012 - 2018 版权所有 pinchao.cc</span><span>苏ICP备12028376号-2</span>
+	        </div>
+	    </div>
+	</div>
+
+	
+	<script type="text/javascript">
+		$(function(){
+			$('.input-row input').focus(function() {
+				$(this).parents('.input-row').addClass('focus');
+			});
+			$('.input-row input').blur(function() {
+				$(this).parents('.input-row').removeClass('focus');
+			});
+		})
+	</script>
+	
+</body>
+</html>
