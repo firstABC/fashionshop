@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chen.mingyu.dao.NewsDao">
+	<resultMap type="News" id="NewsResultMap">
+		<id property="n_id" column="n_id"/>
+		<result property="n_title" column="n_title"/>
+		<result property="n_detal" column="n_detal"/>
+		<result property="n_author" column="n_author"/>
+		<result property="n_number" column="n_number"/>
+		<result property="n_dateTime" column="n_dateTime"/>
+		<collection property="ltMage" ofType="chen.mingyu.domain.Images">
+			<id property="im_id" column="im_id"/>
+			<result property="pathName" column="pathName"/>
+			<result property="n_id" column="n_id"/>
+			<result property="go_id" column="go_id"/>
+		</collection>
+	</resultMap>
+	
 	<insert id="insertNews" parameterType="News">
 		<![CDATA[
 		insert into news(n_Id,n_title,n_detal,n_author,n_number,n_dateTime) 

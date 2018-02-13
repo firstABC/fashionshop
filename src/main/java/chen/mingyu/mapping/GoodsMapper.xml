@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chen.mingyu.dao.GoodsDao">
+	<resultMap type="Goods" id="goodsResultMap">
+		<id property="g_id" column="g_id"/>
+		<result property="g_title" column="g_title"/>
+		<result property="g_detail" column="g_detail"/>
+		<result property="g_price" column="g_price"/>
+		<result property="g_brand" column="g_brand"/>
+		<result property="g_number" column="g_number"/>
+		<result property="g_inventory" column="g_inventory"/>
+		<collection property="ltMage" ofType="chen.mingyu.domain.Images">
+			<id property="im_id" column="im_id"/>
+			<result property="pathName" column="pathName"/>
+			<result property="n_id" column="n_id"/>
+			<result property="go_id" column="go_id"/>
+		</collection>
+	</resultMap>
+	<insert id="insertGoods" parameterMap="Goods">
+		<![CDATA[
+			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_number,g_inventory) 
+				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_number},#{g_inventory})
+		]]>
+	</insert>
+	
+	<select id="selectGoodsAllByNumber" resultMap="goodsResultMap">
+		select * from goods order by g_number desc
+	</select>
+</mapper>

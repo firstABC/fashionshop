@@ -4,7 +4,7 @@
 <mapper namespace="chen.mingyu.dao.ImagesDao">
 	<insert id="insertImage" parameterType="Images">
 		<![CDATA[
-		insert into news(im_id,pathName,n_id,go_id) 
+		insert into images(im_id,pathName,n_id,go_id) 
 				values(#{im_id},#{pathName},#{n_id},#{go_id})
 		]]>
 	</insert>
