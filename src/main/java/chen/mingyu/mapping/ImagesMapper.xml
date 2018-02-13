@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chen.mingyu.dao.ImagesDao">
+	<insert id="insertImage" parameterType="Images">
+		<![CDATA[
+		insert into news(im_id,pathName,n_id,go_id) 
+				values(#{im_id},#{pathName},#{n_id},#{go_id})
+		]]>
+	</insert>
+</mapper>

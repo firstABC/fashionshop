@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chen.mingyu.dao.NewsDao">
+	<insert id="insertNews" parameterType="News">
+		<![CDATA[
+		insert into news(n_Id,n_title,n_detal,n_author,n_number,n_dateTime) 
+				values(#{n_Id},#{n_title},#{n_detal},#{n_author},#{n_number},to_date(#{n_dateTime},'yyyy-mm-dd'))
+		]]>
+	</insert>
+</mapper>
