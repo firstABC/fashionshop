@@ -9,6 +9,7 @@ public interface GoodsDao {
 	public int insertGoods(Goods goods);
 	
 	//根据浏览次数查询所有商品
+	
 	public List<Goods> selectGoodsAllByNumber();
 	
 	//修改商品的点赞数
