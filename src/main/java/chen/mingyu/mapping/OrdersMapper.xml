@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chen.mingyu.dao.OrderDao">
+	<resultMap id="OrderResultMap" type="Orders">
+		<id property="or_id" column="or_id"/>
+		<result property="g_id" column="g_id"/>
+		<result property="or_number" column="or_number"/>
+		<result property="or_date" column="or_date"/>
+		<result property="or_price" column="or_price"/>
+		<result property="or_status" column="or_status"/>
+	</resultMap>
+
+	<insert id="insertOrder" parameterType="Orders">
+		<![CDATA[
+			insert into orders(or_id,g_id,or_number,or_date,or_price,or_status)
+			values(#{or_id},#{g_id},#{or_number},to_date(#{n_dateTime},'yyyy-mm-dd'),#{or_price},#{or_status})
+		]]>
+	</insert>
+	
+	<update id="deleteOrderById" parameterType="String">
+		<![CDATA[
+			update orders set or_status ='D' where or_id =#{or_id}
+		]]>
+	</update>
+	
+	<select id="selectOrdersAll" resultMap="OrderResultMap" parameterType="Orders">
+		<![CDATA[
+			select * from orders where 1 = 1
+		]]>
+		<isNotNull property="or_id">
+			<![CDATA[
+				and or_id=#{or_id}
+			]]>
+		</isNotNull>
+		<isNotNull property="or_status">
+			<![CDATA[
+				and or_status =#{or_status}
+			]]>
+		</isNotNull>
+		<isNotNull property="or_date">
+			<![CDATA[
+				and or_date >= to_date(#{or_date},'yyyy-mm-dd')
+			]]>
+		</isNotNull>
+	</select>
+</mapper>

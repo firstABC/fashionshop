@@ -23,4 +23,8 @@
 				values(#{n_Id},#{n_title},#{n_detal},#{n_author},#{n_number},to_date(#{n_dateTime},'yyyy-mm-dd'))
 		]]>
 	</insert>
+	
+	<select id="selectNewsAll" resultMap="NewsResultMap">
+		select * from news order by n_dateTime desc
+	</select>
 </mapper>

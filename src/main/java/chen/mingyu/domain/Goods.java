@@ -17,11 +17,27 @@ public class Goods {
 	private int g_number;
 	//¿â´æ
 	private int g_inventory;
+	//Ï²»¶Êı
+	private int g_like;
+	//ÉÌÆ·×´Ì¬
+	private String g_status;
 	
 	private List<Images> ltMage;
 	
 	
 	
+	public String getG_status() {
+		return g_status;
+	}
+	public void setG_status(String g_status) {
+		this.g_status = g_status;
+	}
+	public int getG_like() {
+		return g_like;
+	}
+	public void setG_like(int g_like) {
+		this.g_like = g_like;
+	}
 	public String getG_id() {
 		return g_id;
 	}

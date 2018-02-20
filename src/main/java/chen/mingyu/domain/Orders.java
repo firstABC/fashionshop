@@ -11,7 +11,25 @@ public class Orders {
 	private int or_number;
 	//订单日期
 	private Date or_date;
+	//订单价格
+	private Double or_price;
+	//订单状态
+	private String or_status;
 	
+	
+	
+	public String getOr_status() {
+		return or_status;
+	}
+	public void setOr_status(String or_status) {
+		this.or_status = or_status;
+	}
+	public Double getOr_price() {
+		return or_price;
+	}
+	public void setOr_price(Double or_price) {
+		this.or_price = or_price;
+	}
 	public String getOr_id() {
 		return or_id;
 	}

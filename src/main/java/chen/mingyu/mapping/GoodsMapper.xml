@@ -10,6 +10,8 @@
 		<result property="g_brand" column="g_brand"/>
 		<result property="g_number" column="g_number"/>
 		<result property="g_inventory" column="g_inventory"/>
+		<result property="g_like" column="g_like"/>
+		<result property="g_status" column="g_status"/>
 		<collection property="ltMage" ofType="chen.mingyu.domain.Images">
 			<id property="im_id" column="im_id"/>
 			<result property="pathName" column="pathName"/>
@@ -19,12 +21,20 @@
 	</resultMap>
 	<insert id="insertGoods" parameterMap="Goods">
 		<![CDATA[
-			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_number,g_inventory) 
-				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_number},#{g_inventory})
+			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_number,g_inventory,g_like,g_status) 
+				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_number},#{g_inventory},#{g_like},#{g_status})
 		]]>
 	</insert>
 	
 	<select id="selectGoodsAllByNumber" resultMap="goodsResultMap">
 		select * from goods order by g_number desc
 	</select>
+	
+	<update id="alterLike" parameterType="Goods">
+		update goods set g_like = #{g_like} where g_id=#{g_id}
+	</update>
+	
+	<update id="deleteGoods" parameterType="String">
+		update goods set g_status ='D'  where g_id =#{g_id}
+	</update>
 </mapper>
