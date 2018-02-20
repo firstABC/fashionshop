@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace需要映射的接口类  -->
+<mapper namespace="chen.mingyu.dao.UserDao">
+	<resultMap id="UserMap" type="User" >
+		<id property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="userPwd" column="user_pwd"/>
+		<result property="userEmail" column="user_email"/>
+		<result property="userPhone" column="user_phone"/>
+		<result property="userDate" column="user_date"/>
+		<result property="isDelete" column="is_delete"/>
+	</resultMap>
+	<!-- 登录用户查询-->
+	<select id="getLoginUser" parameterType="User" resultMap="UserMap">
+		select user_id, user_name, user_pwd, user_email, user_phone, user_date, is_delete
+		from userinfo
+         where (user_name = #{userName} or user_phone = #{userName} or user_email = #{userName})
+         and user_pwd = #{userPwd}
+         and is_delete = #{isDelete}
+	</select>
+	<select id="countUserMaxId" resultType="int">
+		select max(user_id) from userinfo
+	</select>
+	<insert id="addUser"  parameterType="User">
+		insert into userinfo(user_id, user_name, user_pwd, user_email, user_phone, user_date, is_delete) values
+		(#{userId}, #{userName}, #{userPwd}, #{userEmail}, #{userPhone}, #{userDate}, #{isDelete})
+	</insert>
+	
+	<!-- 通过用户id查询用户信息 -->
+	<select id="getUserInfoById" resultMap="UserMap">
+		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo where user_id = #{userId}
+	</select>
+	
+	<!-- 修改用户信息 -->
+	<update id="updateUser" parameterType="User">
+		update userinfo set 
+		user_name = #{userName}, user_pwd = #{userPwd},
+		user_email = #{userEmail}, user_phone = #{userPhone},user_date = #{userDate}
+		where user_id = #{userId}
+	</update>
+</mapper>
