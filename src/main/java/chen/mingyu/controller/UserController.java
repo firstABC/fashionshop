@@ -37,6 +37,7 @@ public class UserController{
 		Model model) throws Exception { 
 			HttpSession session = request.getSession();
 			User user = new User(userName,userPwd);
+			user.setIsDelete("0");
 			User loginUser = userService.getLoginUser(user);
 			if(loginUser != null){
 				 model.addAttribute("loginUser", loginUser); 
