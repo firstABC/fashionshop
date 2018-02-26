@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import chen.mingyu.domain.User;
 
 
-@Repository("userDao")
 public interface UserDao {
 	//登录
 	public User getLoginUser(User user);

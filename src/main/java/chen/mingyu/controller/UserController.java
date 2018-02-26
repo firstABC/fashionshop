@@ -1,5 +1,8 @@
 package chen.mingyu.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import chen.mingyu.dao.UserDao;
 import chen.mingyu.domain.User;
-import chen.mingyu.service.UserService;
 
 
 
@@ -26,7 +29,7 @@ public class UserController{
 		private static Logger logger = Logger.getLogger(UserController.class);
 	
 		@Autowired
-		private UserService userService;
+		private UserDao userDao;
 		
 		private User user;
 		
@@ -38,7 +41,7 @@ public class UserController{
 			HttpSession session = request.getSession();
 			User user = new User(userName,userPwd);
 			user.setIsDelete("0");
-			User loginUser = userService.getLoginUser(user);
+			User loginUser = userDao.getLoginUser(user);
 			if(loginUser != null){
 				 model.addAttribute("loginUser", loginUser); 
 				 session.setAttribute("userId", loginUser.getUserId());
@@ -61,7 +64,15 @@ public class UserController{
 		public String register(HttpServletRequest request,HttpServletResponse response,User user,Model model){
 			HttpSession session = request.getSession();
 			if(user != null){
-				user = userService.addUser(user);
+				//设置id
+				user.setUserId(userDao.countUserMaxId()+1);
+				//默认未禁用
+				user.setIsDelete("0");
+				//设置当前注册时间
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				user.setUserDate(sdf.format(date));
+				userDao.addUser(user);
 				session.setAttribute("userName", user.getUserName());
 				session.setAttribute("userId", user.getUserId());
 				return "index";
@@ -75,7 +86,7 @@ public class UserController{
 		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")int userId,Model model){
 			HttpSession session = request.getSession();
 			if(userId != 0){
-				user = userService.getUserInfoById(userId);
+				user = userDao.getUserInfoById(userId);
 				session.setAttribute("user", user);
 				return "info";
 			}else{
@@ -87,7 +98,10 @@ public class UserController{
 		public String updateUser(HttpServletRequest request,HttpServletResponse response,User user,Model model){
 			HttpSession session = request.getSession();
 			if(user.getUserId() != 0){
-				userService.updateUser(user);
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				user.setUserDate(sdf.format(date));
+				userDao.updateUser(user);
 				session.setAttribute("user", user);
 				return "info";
 			}else{

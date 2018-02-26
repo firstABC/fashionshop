@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace需要映射的接口类  -->
+<mapper  namespace="com.dao.ConsultDao">
+	<resultMap id="ConsultMap" type="ConsultVO" >
+		<id property="consultId" column="consult_id"/>
+		<result property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="adminId" column="admin_id"/>
+		<result property="adminName" column="admin_name"/>
+		<result property="goodsId" column="goods_id"/>
+		<result property="goodsName" column="goods_name"/>
+		<result property="consultMsg" column="consult_msg"/>
+		<result property="replyMsg" column="reply_msg"/>
+		<result property="consultDate" column="consult_date"/>
+		<result property="replyDate" column="reply_date"/>
+		<result property="isDelete" column="is_delete"/>
+	</resultMap>
+	
+	<!-- 分页查询某Id商品的全部咨询 -->
+	<select id="getConsultList" parameterType="Consult" resultMap="ConsultMap">
+	select
+               c.consult_id,
+               u.user_id,
+               u.user_name,
+               a.admin_id,
+               a.admin_name,
+               g.goods_id,
+               g.goods_name,
+               c.consult_msg,
+               c.reply_msg,
+               c.consult_date,
+               c.creply_date,
+               c.is_delete
+          from consult c, 
+               userinfo u, 
+               admin a, 
+               goods g
+         where c.admin_id = a.admin_id(+)
+           and c.user_id = u.user_id
+           and c.goods_id = g.goods_id
+           and c.is_delete = '0'
+           and g.goods_id = #{goodsId}
+		   and u.user_id = #{userId}
+ order by c.consult_date desc
+	</select>
+	
+	<select id="getMaxConsultId" resultType="Integer">
+		select max(consult_id) from consult
+	</select>
+ 	<!-- 用户新增评论 -->
+	<insert id="addConsult" parameterType="ConsultVO">
+		insert into consult(consult_id,user_id,consult_question,consult_date,is_delete,goods_id) values(#{consultId},#{userId},#{consultMsg},#{consultDate},'0',#{goodsId})
+	</insert>
+	<!-- 管理员新增回复 -->
+	<insert id="addReply" parameterType="ConsultVO">
+		insert into consult(reply_msg,reply_date) values(#{replyMsg},#{ReplyDate})
+		where and goods_id = #{goodsId}
+		   and user_id = #{userId}
+	</insert>
+</mapper>

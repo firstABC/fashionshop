@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace需要映射的接口类  -->
+<mapper namespace="chen.mingyu.dao.AdminDao">
+	<resultMap id="AdminMap" type="Admin" >
+		<id property="adminId" column="admin_id"/>
+		<result property="adminName" column="admin_name"/>
+		<result property="adminPwd" column="admin_pwd"/>
+		<result property="isDelete" column="is_delete"/>
+	</resultMap>
+	<!-- 登录管理员查询-->
+	<select id="getLoginAdmin" parameterType="Admin" resultMap="AdminMap">
+		select admin_id, admin_name, admin_pwd, is_delete
+		from admin
+         where admin_name = #{adminName}
+         and admin_pwd = #{adminPwd}
+         and is_delete = #{isDelete}
+	</select>
+	<select id="countAdminMaxId" resultType="int">
+		select max(admin_id) from admin
+	</select>
+	<insert id="addAdmin"  parameterType="Admin">
+		insert into admin(admin_id, admin_name, admin_pwd, is_delete) values
+		(#{adminId}, #{adminName}, #{adminPwd},#{isDelete})
+	</insert>
+	
+	<!-- 通过管理员id查询管理员信息 -->
+	<select id="getAdminInfoById" resultMap="AdminMap">
+		select admin_id,admin_name,admin_pwd,admin_phone,admin_email,admin_date from admininfo where admin_id = #{adminId}
+	</select>
+	
+	<!-- 修改管理员信息 -->
+	<update id="updateAdmin" parameterType="Admin">
+		update admininfo set 
+		admin_name = #{adminName}, admin_pwd = #{adminPwd},
+		where admin_id = #{adminId}
+	</update>
+</mapper>
