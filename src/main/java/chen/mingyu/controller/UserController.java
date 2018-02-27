@@ -27,7 +27,7 @@ import chen.mingyu.domain.User;
 public class UserController{
 		
 		private static Logger logger = Logger.getLogger(UserController.class);
-	
+		
 		@Autowired
 		private UserDao userDao;
 		
@@ -103,6 +103,8 @@ public class UserController{
 				user.setUserDate(sdf.format(date));
 				userDao.updateUser(user);
 				session.setAttribute("user", user);
+				session.setAttribute("userName", user.getUserName());
+				session.setAttribute("userId", user.getUserId());
 				return "info";
 			}else{
 				model.addAttribute("msg", "登录超时!");

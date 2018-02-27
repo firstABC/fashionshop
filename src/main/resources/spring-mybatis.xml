@@ -9,7 +9,7 @@
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="jdbc:mysql://localhost:3306/movierecommend" />
         <property name="username" value="root" />
-        <property name="password" value="dry123456" />
+        <property name="password" value="123456qwe" />
     </bean>
 
     <!-- 注册SqlSessionFactoryBean -->
@@ -22,7 +22,7 @@
     
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="dou.renyu.dao" />
+        <property name="basePackage" value="chen.mingyu.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 </beans>

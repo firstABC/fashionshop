@@ -2,19 +2,21 @@ package chen.mingyu.dao;
 
 import java.util.List;
 
-import chen.mingyu.domain.Goods;
+import org.springframework.stereotype.Repository;
 
+import chen.mingyu.domain.Goods;
+@Repository("goodsDao")
 public interface GoodsDao {
 
 	public int insertGoods(Goods goods);
-	//¸ù¾Ýä¯ÀÀ´ÎÊý²éÑ¯ËùÓÐÉÌÆ·
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 	
 	public List<Goods> selectGoodsAllByNumber();
 	
-	//ÐÞ¸ÄÉÌÆ·µÄµãÔÞÊý
+	//ï¿½Þ¸ï¿½ï¿½ï¿½Æ·ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½
 	public int alterLike(Goods goods);
 	
-	//Âß¼­É¾³ýÉÌÆ·
+	//ï¿½ß¼ï¿½É¾ï¿½ï¿½ï¿½ï¿½Æ·
 	public int deleteGoods(String g_id);
 	
 }

@@ -2,12 +2,14 @@ package chen.mingyu.dao;
 
 import java.util.List;
 
-import chen.mingyu.domain.News;
+import org.springframework.stereotype.Repository;
 
+import chen.mingyu.domain.News;
+@Repository("newsDao")
 public interface NewsDao {
-	//·¢²¼×ÊÑ¶
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶
 	public int insertNews(News news);
 	
-	//¸ù¾Ý·¨·¢²¼Ê±¼äÀ´µ¹ÐòÅÅÁÐ
+	//ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<News> selectNewsAll();
 }

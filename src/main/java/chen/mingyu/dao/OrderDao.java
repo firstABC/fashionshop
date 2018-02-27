@@ -3,16 +3,17 @@ package chen.mingyu.dao;
 import java.util.List;
 
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Repository;
 
 import chen.mingyu.domain.Orders;
-
+@Repository("orderDao")
 public interface OrderDao {
 	
-	//ÐÂÔö¶©µ¥
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int insertOrder(Order order);
-	//¸ù¾Ý¶©µ¥idÀ´É¾³ý¶©µ¥
+	//ï¿½ï¿½ï¿½Ý¶ï¿½ï¿½ï¿½idï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int deleteOrderById(String or_id);
-	//¸ù¾Ý²éÑ¯Ìõ¼þÀ´²éÑ¯¶©µ¥
+	//ï¿½ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 	public List<Orders> selectOrdersAll(Orders orders);
 	
 }

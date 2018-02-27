@@ -28,7 +28,10 @@
 		<![CDATA[
 			select * from orders where 1 = 1
 		]]>
-		<isNotNull property="or_id">
+		<!-- <if test="or_id != null and or_id != '' ">
+					and or_id=#{or_id}
+		</if> -->
+		<!-- <isNotNull property="or_id">
 			<![CDATA[
 				and or_id=#{or_id}
 			]]>
@@ -42,6 +45,8 @@
 			<![CDATA[
 				and or_date >= to_date(#{or_date},'yyyy-mm-dd')
 			]]>
-		</isNotNull>
+		</isNotNull> -->
 	</select>
+  
+   
 </mapper>

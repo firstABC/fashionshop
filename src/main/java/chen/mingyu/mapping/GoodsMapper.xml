@@ -19,7 +19,7 @@
 			<result property="go_id" column="go_id"/>
 		</collection>
 	</resultMap>
-	<insert id="insertGoods" parameterMap="Goods">
+	<insert id="insertGoods" parameterType="Goods">
 		<![CDATA[
 			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_number,g_inventory,g_like,g_status) 
 				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_number},#{g_inventory},#{g_like},#{g_status})

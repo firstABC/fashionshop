@@ -10,13 +10,23 @@
 		<result property="adminPwd" column="admin_pwd"/>
 		<result property="isDelete" column="is_delete"/>
 	</resultMap>
-	<!-- 登录管理员查询-->
+	<!-- 查询管理员-->
 	<select id="getLoginAdmin" parameterType="Admin" resultMap="AdminMap">
 		select admin_id, admin_name, admin_pwd, is_delete
 		from admin
-         where admin_name = #{adminName}
-         and admin_pwd = #{adminPwd}
-         and is_delete = #{isDelete}
+         where 1=1
+         <if test="adminId != null and adminId != '' ">
+         	admin_id = #{adminId}
+         </if>
+         <if test="adminName != null and adminName != '' ">
+         	admin_name = #{adminName}
+         </if>
+         <if test="adminPwd != null and adminPwd != '' ">
+         	and admin_pwd = #{adminPwd}
+         </if>
+         <if test="isDelete != null and isDelete != '' ">
+         	and is_delete = #{isDelete})
+         </if>
 	</select>
 	<select id="countAdminMaxId" resultType="int">
 		select max(admin_id) from admin
@@ -25,16 +35,11 @@
 		insert into admin(admin_id, admin_name, admin_pwd, is_delete) values
 		(#{adminId}, #{adminName}, #{adminPwd},#{isDelete})
 	</insert>
-	
-	<!-- 通过管理员id查询管理员信息 -->
-	<select id="getAdminInfoById" resultMap="AdminMap">
-		select admin_id,admin_name,admin_pwd,admin_phone,admin_email,admin_date from admininfo where admin_id = #{adminId}
-	</select>
-	
+
 	<!-- 修改管理员信息 -->
 	<update id="updateAdmin" parameterType="Admin">
-		update admininfo set 
-		admin_name = #{adminName}, admin_pwd = #{adminPwd},
+		update admin set 
+		admin_name = #{adminName}, admin_pwd = #{adminPwd}
 		where admin_id = #{adminId}
 	</update>
 </mapper>

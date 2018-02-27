@@ -1,9 +1,11 @@
 package chen.mingyu.dao;
 
-import chen.mingyu.domain.Images;
+import org.springframework.stereotype.Repository;
 
+import chen.mingyu.domain.Images;
+@Repository("imagesDao")
 public interface ImagesDao {
 
-	//Ìí¼ÓÍ¼Æ¬
+	//ï¿½ï¿½ï¿½Í¼Æ¬
 	public int insertImage(Images iamges);
 }
