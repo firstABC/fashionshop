@@ -2,26 +2,24 @@ package chen.mingyu.domain;
 
 import java.util.List;
 
-//ÉÌÆ·
 public class Goods {
 	private String g_id;
-	//±êÌâ
+	//å•†å“æ ‡é¢˜
 	private String g_title;
-	//ÏêÇé
+	//å•†å“è¯¦æƒ…
 	private String g_detail;
-	//¼Û¸ñ
+	//å•†å“ä»·æ ¼
 	private String g_price;
-	//Æ·ÅÆÃû
+	//å•†å“å“ç‰Œ
 	private String g_brand;
-	//ä¯ÀÀ´ÎÊı
-	private int g_number;
-	//¿â´æ
+	//åº“å­˜æ•°é‡
 	private int g_inventory;
-	//Ï²»¶Êı
+	//å–œæ¬¢æ•°
 	private int g_like;
-	//ÉÌÆ·×´Ì¬
+	//çŠ¶æ€
 	private String g_status;
 	
+	//å…·æœ‰çš„å›¾ç‰‡
 	private List<Images> ltMage;
 	
 	
@@ -67,12 +65,6 @@ public class Goods {
 	}
 	public void setG_brand(String g_brand) {
 		this.g_brand = g_brand;
-	}
-	public int getG_number() {
-		return g_number;
-	}
-	public void setG_number(int g_number) {
-		this.g_number = g_number;
 	}
 	public int getG_inventory() {
 		return g_inventory;

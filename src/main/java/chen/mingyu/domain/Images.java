@@ -4,12 +4,12 @@ import java.sql.Blob;
 
 public class Images {
 	private String im_id;
-	//文件路径
+	//鍦板潃
 	private String pathName;
-	//新闻id
+	//鏂伴椈id
 	private String n_id;
-	//商品id
-	private String go_id;
+	//鍟嗗搧id
+	private String g_id;
 	public String getIm_id() {
 		return im_id;
 	}
@@ -28,11 +28,11 @@ public class Images {
 	public void setN_id(String n_id) {
 		this.n_id = n_id;
 	}
-	public String getGo_id() {
-		return go_id;
+	public String getG_id() {
+		return g_id;
 	}
-	public void setGo_id(String go_id) {
-		this.go_id = go_id;
+	public void setGo_id(String g_id) {
+		this.g_id = g_id;
 	}
 	
 	

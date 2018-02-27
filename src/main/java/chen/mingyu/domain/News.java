@@ -5,24 +5,24 @@ import java.util.List;
 
 public class News {
 
- private String n_Id;
- //ÎÄÕÂ±êÌâ
+ private String n_id;
+ //æ–°é—»æ ‡é¢˜
  private String n_title;
- //ÎÄÕÂÄÚÈİ
+ //æ–°é—»è¯¦æƒ…
  private String n_detal;
- //ÎÄÕÂ×÷Õß
+ //æ–°é—»ä½œè€…
  private String n_author;
- //ÎÄÕÂÔÄ¶Á´ÎÊı
+ //é˜…è¯»æ•°
  private int n_number;
- //ÎÄÕÂ·¢²¼Ê±¼ä
+ //å‘å¸ƒæ—¶é—´
  private Date n_dateTime;
- //ÎÄÕÂÖĞµÄÍ¼Æ¬
+ //å›¾ç‰‡
  private List<Images> ltMage;
-	public String getN_Id() {
-		return n_Id;
+	public String getN_id() {
+		return n_id;
 	}
-	public void setN_Id(String n_Id) {
-		this.n_Id = n_Id;
+	public void setN_id(String n_id) {
+		this.n_id = n_id;
 	}
 	public String getN_title() {
 		return n_title;

@@ -2,18 +2,18 @@ package chen.mingyu.domain;
 
 import java.util.Date;
 
-//¶©µ¥
+//ï¿½ï¿½ï¿½ï¿½
 public class Orders {
 	private String or_id;
-	//ÉÌÆ·id
+	//å•†å“id
 	private String g_id;
-	//¹ºÂòÊıÁ¿
+	//è®¢å•æ•°é‡
 	private int or_number;
-	//¶©µ¥ÈÕÆÚ
+	//è®¢å•æ—¥æœŸ
 	private Date or_date;
-	//¶©µ¥¼Û¸ñ
+	//ä»·æ ¼
 	private Double or_price;
-	//¶©µ¥×´Ì¬
+	//çŠ¶æ€×´Ì¬
 	private String or_status;
 	
 	
