@@ -1,12 +1,12 @@
 package chen.mingyu.domain;
 
 public class ConsultVO {
-	private Integer consultId;		//评论Id
-	private Integer userId;			//评论用户的Id
+	private String consultId;		//评论Id
+	private String userId;			//评论用户的Id
 	private String userName;		//用户名
-	private Integer adminId;		//回答问题的管理员Id
+	private String adminId;		//回答问题的管理员Id
 	private String adminName;		//管理员名
-	private Integer goodsId;		//所评论商品的Id
+	private String goodsId;		//所评论商品的Id
 	private String goodsName;		//商品名称
 	private String consultMsg;	//评论
 	private String replyMsg;	//回复
@@ -18,16 +18,16 @@ public class ConsultVO {
 		super();
 	}
 
-	public Integer getConsultId() {
+	public String getConsultId() {
 		return consultId;
 	}
-	public void setConsultId(Integer consultId) {
+	public void setConsultId(String consultId) {
 		this.consultId = consultId;
 	}
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -36,10 +36,10 @@ public class ConsultVO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Integer getAdminId() {
+	public String getAdminId() {
 		return adminId;
 	}
-	public void setAdminId(Integer adminId) {
+	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
 	public String getAdminName() {
@@ -48,10 +48,10 @@ public class ConsultVO {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	public Integer getGoodsId() {
+	public String getGoodsId() {
 		return goodsId;
 	}
-	public void setGoodsId(Integer goodsId) {
+	public void setGoodsId(String goodsId) {
 		this.goodsId = goodsId;
 	}
 	public String getGoodsName() {

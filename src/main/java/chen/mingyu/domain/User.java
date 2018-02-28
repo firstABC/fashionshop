@@ -2,7 +2,7 @@ package chen.mingyu.domain;
 
 
 public class User {
-	private Integer userId;		//用户ID
+	private String userId;		//用户ID
 	private String userName;	//账号
 	private String userPwd;		//用户密码
 	private String userEmail;	//用户邮箱
@@ -21,10 +21,10 @@ public class User {
 		this.userPwd = userPwd;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {

@@ -1,7 +1,7 @@
 package chen.mingyu.domain;
 
 public class Consult {
-	private Integer consultId;		//评论ID
+	private String consultId;		//评论ID
 	private User user;				//评论的用户			需要自己关联 
 	private Admin admin;			//回复的管理员	需要自己关联
 	private Goods goods;			//提问的商品ID
@@ -14,10 +14,10 @@ public class Consult {
 	public Consult() {
 		super();
 	}
-	public Integer getConsultId() {
+	public String getConsultId() {
 		return consultId;
 	}
-	public void setConsultId(Integer consultId) {
+	public void setConsultId(String consultId) {
 		this.consultId = consultId;
 	}
 	public User getUser() {

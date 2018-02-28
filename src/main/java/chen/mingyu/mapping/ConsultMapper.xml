@@ -3,15 +3,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--namespace需要映射的接口类  -->
-<mapper  namespace="com.dao.ConsultDao">
+<mapper  namespace="chen.mingyu.dao.ConsultDao">
 	<resultMap id="ConsultMap" type="ConsultVO" >
 		<id property="consultId" column="consult_id"/>
 		<result property="userId" column="user_id"/>
 		<result property="userName" column="user_name"/>
 		<result property="adminId" column="admin_id"/>
 		<result property="adminName" column="admin_name"/>
-		<result property="goodsId" column="goods_id"/>
-		<result property="goodsName" column="goods_name"/>
+		<result property="goodsId" column="g_id"/>
+		<result property="goodsName" column="g_name"/>
 		<result property="consultMsg" column="consult_msg"/>
 		<result property="replyMsg" column="reply_msg"/>
 		<result property="consultDate" column="consult_date"/>
@@ -19,45 +19,79 @@
 		<result property="isDelete" column="is_delete"/>
 	</resultMap>
 	
-	<!-- 分页查询某Id商品的全部咨询 -->
-	<select id="getConsultList" parameterType="Consult" resultMap="ConsultMap">
+	<!-- 查询评论 -->
+	<select id="getConsultList" parameterType="ConsultVO" resultMap="ConsultMap">
 	select
-               c.consult_id,
-               u.user_id,
-               u.user_name,
-               a.admin_id,
-               a.admin_name,
-               g.goods_id,
-               g.goods_name,
-               c.consult_msg,
-               c.reply_msg,
-               c.consult_date,
-               c.creply_date,
-               c.is_delete
-          from consult c, 
-               userinfo u, 
-               admin a, 
-               goods g
-         where c.admin_id = a.admin_id(+)
-           and c.user_id = u.user_id
-           and c.goods_id = g.goods_id
-           and c.is_delete = '0'
-           and g.goods_id = #{goodsId}
-		   and u.user_id = #{userId}
- order by c.consult_date desc
+			 c1.consult_id as consult_id,
+			 c1.user_id as user_id,
+			 u1.user_name as user_name,
+			 c1.admin_id as admin_id,
+			 null as admin_name,
+			 c1.goods_id as goods_id,
+			 g1.g_title as goods_name,
+			 c1.consult_msg as consult_msg,
+			 c1.reply_msg as reply_msg,
+			 c1.consult_date as consult_date,
+			 c1.reply_date as reply_date,
+			 c1.is_delete as is_delete
+			from consult c1, 
+					 userinfo u1, 
+					 goods g1
+		  where c1.admin_id is NULL and 
+			 c1.user_id = u1.user_id
+			 and c1.goods_id = g1.g_id
+			 and c1.is_delete = '0'
+		   <if test="goodsId != null and goodsId != '' ">
+           		and g1.g_id = #{goodsId}
+           </if>
+           <if test="userId != null and userId != '' ">
+           		and u1.user_id = #{userId}
+           </if>
+	union all
+	select
+	               c2.consult_id as consult_id,
+	               c2.user_id as user_id,
+	               u2.user_name as user_name,
+								 c2.admin_id as admin_id,
+								 a2.admin_name as admin_name,
+	               c2.goods_id as goods_id,
+	               g2.g_title as goods_name,
+	               c2.consult_msg as consult_msg,
+	               c2.reply_msg as reply_msg,
+	               c2.consult_date as consult_date,
+	               c2.reply_date as reply_date,
+	               c2.is_delete as is_delete
+	          from consult c2, 
+	               userinfo u2, 
+	               goods g2,
+								 admin a2
+	         where c2.admin_id is not NULL and c2.admin_id = a2.admin_id and
+	           c2.user_id = u2.user_id
+	           and c2.goods_id = g2.g_id
+	           and c2.is_delete = '0'
+			   <if test="goodsId != null and goodsId != '' ">
+	           		and g2.g_id = #{goodsId}
+	           </if>
+	           <if test="userId != null and userId != '' ">
+	           		and u2.user_id = #{userId}
+	           </if>
+	order by consult_date desc
 	</select>
 	
-	<select id="getMaxConsultId" resultType="Integer">
+	<select id="countConsultMaxId" resultType="Integer">
 		select max(consult_id) from consult
 	</select>
  	<!-- 用户新增评论 -->
 	<insert id="addConsult" parameterType="ConsultVO">
-		insert into consult(consult_id,user_id,consult_question,consult_date,is_delete,goods_id) values(#{consultId},#{userId},#{consultMsg},#{consultDate},'0',#{goodsId})
+		insert into consult(consult_id,user_id,consult_msg,consult_date,is_delete,goods_id) 
+		values(#{consultId},#{userId},#{consultMsg},#{consultDate},#{isDelete},#{goodsId})
 	</insert>
 	<!-- 管理员新增回复 -->
 	<insert id="addReply" parameterType="ConsultVO">
-		insert into consult(reply_msg,reply_date) values(#{replyMsg},#{ReplyDate})
-		where and goods_id = #{goodsId}
-		   and user_id = #{userId}
+		update consult
+		set admin_id = #{adminId},
+		reply_msg = #{replyMsg},
+		reply_date = #{replyDate}
+		where consult_id = #{consultId}
 	</insert>
 </mapper>

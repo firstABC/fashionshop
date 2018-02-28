@@ -11,10 +11,10 @@ import chen.mingyu.domain.ConsultVO;
 public interface ConsultDao {
 	
 	//查询用户评论
-	public List<ConsultVO> getConsultList(Consult consult);
+	public List<ConsultVO> getConsultList(ConsultVO consultVO);
 	
 	//获取最大consultId
-	public int getMaxConsultId();
+	public int countConsultMaxId();
 	
 	//用户新增评论
 	public void addConsult(ConsultVO consultVO);

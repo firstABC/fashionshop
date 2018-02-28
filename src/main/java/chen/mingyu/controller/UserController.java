@@ -31,11 +31,11 @@ public class UserController{
 		@Autowired
 		private UserDao userDao;
 		
-		private User user;
+		//private User user;
 		
 		@RequestMapping(value = "/login", method = RequestMethod.GET) 
 
-		public String myMethod(HttpServletRequest request,HttpServletResponse response,  
+		public String login(HttpServletRequest request,HttpServletResponse response,  
 		@RequestParam("userName")String userName, @RequestParam("userPwd")String userPwd, 
 		Model model) throws Exception { 
 			HttpSession session = request.getSession();
@@ -65,7 +65,9 @@ public class UserController{
 			HttpSession session = request.getSession();
 			if(user != null){
 				//设置id
-				user.setUserId(userDao.countUserMaxId()+1);
+				Integer userId = userDao.countUserMaxId()+1;
+				String userIdStr = userId.toString();
+				user.setUserId(userIdStr);
 				//默认未禁用
 				user.setIsDelete("0");
 				//设置当前注册时间
@@ -86,7 +88,7 @@ public class UserController{
 		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")int userId,Model model){
 			HttpSession session = request.getSession();
 			if(userId != 0){
-				user = userDao.getUserInfoById(userId);
+				User user = userDao.getUserInfoById(userId);
 				session.setAttribute("user", user);
 				return "info";
 			}else{
@@ -97,7 +99,7 @@ public class UserController{
 		@RequestMapping(value="/updateUser", method = RequestMethod.POST)
 		public String updateUser(HttpServletRequest request,HttpServletResponse response,User user,Model model){
 			HttpSession session = request.getSession();
-			if(user.getUserId() != 0){
+			if(user.getUserId() != null){
 				Date date = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				user.setUserDate(sdf.format(date));
