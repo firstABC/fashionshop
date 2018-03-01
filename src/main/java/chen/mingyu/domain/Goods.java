@@ -18,12 +18,20 @@ public class Goods {
 	private int g_like;
 	//状态
 	private String g_status;
+	//goods of sex
+	private int g_sex;
 	
 	//具有的图片
 	private List<Images> ltMage;
 	
 	
 	
+	public int getG_sex() {
+		return g_sex;
+	}
+	public void setG_sex(int g_sex) {
+		this.g_sex = g_sex;
+	}
 	public String getG_status() {
 		return g_status;
 	}

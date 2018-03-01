@@ -9,14 +9,17 @@ import chen.mingyu.domain.Goods;
 public interface GoodsDao {
 
 	public int insertGoods(Goods goods);
-	//�������������ѯ������Ʒ
+	
 	
 	public List<Goods> selectGoodsAllByNumber();
 	
-	//�޸���Ʒ�ĵ�����
+	//根据性别查询商品
+	public List<Goods> selectGoodsBySex(int g_sex);
+	
+	
 	public int alterLike(Goods goods);
 	
-	//�߼�ɾ����Ʒ
+	
 	public int deleteGoods(String g_id);
 	
 }

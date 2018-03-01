@@ -28,6 +28,7 @@ CREATE TABLE `goods` (
   `g_inventory` int(10) DEFAULT NULL,
   `g_like` int(10) DEFAULT NULL,
   `g_status` varchar(2) DEFAULT NULL
+  `g_sex` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

@@ -27,7 +27,11 @@
 	</insert>
 	
 	<select id="selectGoodsAllByNumber" resultMap="goodsResultMap">
-		select * from goods order by g_number desc
+		select * from goods order by g_number desc limit 6
+	</select>
+	
+	<select id="selectGoodsBySex" resultMap="goodsResultMap" parameterType="int">
+		select * from goods where g_sex = #{g_sex}
 	</select>
 	
 	<update id="alterLike" parameterType="Goods">
