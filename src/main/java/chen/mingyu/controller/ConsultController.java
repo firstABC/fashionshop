@@ -53,9 +53,9 @@ public class ConsultController{
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				consultVO.setConsultDate(sdf.format(date));
 				consultVODao.addConsult(consultVO);
-				return null;
+				return "true";
 			}else{
-				return null;
+				return "false";
 			}
 		}
 		@RequestMapping(value = "/addReply", method = RequestMethod.POST) 
@@ -66,9 +66,9 @@ public class ConsultController{
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				consultVO.setReplyDate(sdf.format(date));
 				consultVODao.addReply(consultVO);
-				return null;
+				return "true";
 			}else{
-				return null;
+				return "false";
 			}
 		}
 }
