@@ -1,6 +1,7 @@
 package chen.mingyu.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -49,12 +50,14 @@ public class OrderController {
 		Orders orders = new Orders();
 		orders.setUserId(userId);
 		List<Orders> ltOrders = orderDao.selectOrdersAll(orders);
+		List<Goods> ltgoods = new ArrayList<Goods>();
 		if(ltOrders!=null){
 			for(Orders order : ltOrders){
 				String g_id = order.getG_id();
 				Goods goods = goodsDao.selectByG_id(g_id);
+				ltgoods.add(goods);
 			}
 		}
-		return null;
+		return ltgoods;
 	}
 }
