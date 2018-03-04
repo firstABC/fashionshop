@@ -32,13 +32,6 @@ public class ConsultController{
 			List<ConsultVO> cList = consultVODao.getConsultList(consultVOVO);
 			return cList; 
 		}
-		@RequestMapping(value = "/getConsultByGoods/{goodsId}", method = RequestMethod.GET) 
-		public @ResponseBody List<ConsultVO> getConsultByGoods(@PathVariable(value = "goodsId") String goodsId){
-			ConsultVO consultVOVO = new ConsultVO();
-			consultVOVO.setGoodsId(goodsId);
-			List<ConsultVO> cList = consultVODao.getConsultList(consultVOVO);
-			return cList; 
-		}
 		@RequestMapping(value = "/addConsult", method = RequestMethod.POST) 
 		public @ResponseBody String addConsult(@RequestBody ConsultVO consultVO){
 			if(consultVO != null){

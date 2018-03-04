@@ -1,7 +1,7 @@
 package chen.mingyu.domain;
 
 public class Admin {
-	private String adminId;	//ID
+	private Integer adminId;	//ID
 	private String adminName;	//管理员账号
 	private String adminPwd;	//管理员密码
 	private String isDelete;	//是否删除
@@ -14,14 +14,14 @@ public class Admin {
 		this.adminName = adminName;
 		this.adminPwd = adminPwd;
 	}
-	public Admin(String adminId,String adminName, String adminPwd) {
+	public Admin(Integer adminId,String adminName, String adminPwd) {
 		super();
 		this.adminId = adminId;
 		this.adminName = adminName;
 		this.adminPwd = adminPwd;
 	}
 	//全部属性构造方法
-	public Admin(String adminId, String adminName, String adminPwd,
+	public Admin(Integer adminId, String adminName, String adminPwd,
 			String isDelete) {
 		super();
 		this.adminId = adminId;
@@ -30,10 +30,10 @@ public class Admin {
 		this.isDelete = isDelete;
 	}
 	
-	public String getAdminId() {
+	public Integer getAdminId() {
 		return adminId;
 	}
-	public void setAdminId(String adminId) {
+	public void setAdminId(Integer adminId) {
 		this.adminId = adminId;
 	}
 	public String getAdminName() {

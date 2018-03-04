@@ -29,21 +29,9 @@
 		(#{userId}, #{userName}, #{userPwd}, #{userEmail}, #{userPhone}, #{userDate}, #{isDelete})
 	</insert>
 	
-	<!-- 多条件查询用户信息 -->
-	<select id="getUserInfo" parameterType="User" resultMap="UserMap">
-		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo where 1=1 
-		<if test="userId != null and userId != '' ">
-			and user_id = #{userId}
-		</if>
-		<if test="userName != null and userName != '' ">
-			and userName = #{userName}
-		</if>
-		<if test="user_phone != null and user_phone != '' ">
-			and user_phone = #{userPhone}
-		</if>
-		<if test="user_email != null and user_email != '' ">
-			and user_email = #{userEmail}
-		</if>
+	<!-- 通过用户id查询用户信息 -->
+	<select id="getUserInfoById" resultMap="UserMap">
+		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo where user_id = #{userId}
 	</select>
 	
 	<!-- 修改用户信息 -->

@@ -85,13 +85,11 @@ public class UserController{
 		}
 		
 		@RequestMapping("/getUserInfoById")
-		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")String userId,Model model){
+		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")int userId,Model model){
 			HttpSession session = request.getSession();
-			if(userId != null){
-				User user = new User();
-				user.setUserId(userId);
-				User userResult = userDao.getUserInfo(user);
-				session.setAttribute("user", userResult);
+			if(userId != 0){
+				User user = userDao.getUserInfoById(userId);
+				session.setAttribute("user", user);
 				return "info";
 			}else{
 				model.addAttribute("msg", "登录超时!");
@@ -116,41 +114,5 @@ public class UserController{
 			}
 			
 		}
-		@RequestMapping("/getUserCheck")
-		public String getUserCheck(HttpServletRequest request,Model model,
-				@RequestParam("userName")String userName,
-				@RequestParam("userPhone")String userPhone,
-				@RequestParam("userEmail")String userEmail){
-			
-			User user = new User();
-			User userResult = new User();
-			if(userName != null){
-				user.setUserName(userName);
-				userResult = userDao.getUserInfo(user);
-				if(userResult != null){
-					return "用户名重复";
-				}else{
-					return "true";
-				}
-			}else if(userPhone != null){
-				user.setUserPhone(userPhone);
-				userResult = userDao.getUserInfo(user);
-				if(userResult != null){
-					return "手机号重复";
-				}else{
-					return "true";
-				}
-			}else if(userEmail != null){
-				user.setUserEmail(userEmail);
-				userResult = userDao.getUserInfo(user);
-				if(userResult != null){
-					return "邮箱重复";
-				}else{
-					return "true";
-				}
-			}else{
-				user = null;
-				return "true";
-			}
-		}
+		
 }

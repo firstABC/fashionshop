@@ -14,7 +14,7 @@ public interface UserDao {
 	public void addUser(User user);
 	
 	//通过用户id查询用户信息
-	public User getUserInfo(User user);
+	public User getUserInfoById(int userId);
 	
 	//修改用户信息
 	public void updateUser(User user);
