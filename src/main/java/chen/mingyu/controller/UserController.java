@@ -2,6 +2,7 @@ package chen.mingyu.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,12 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import chen.mingyu.dao.UserDao;
+import chen.mingyu.domain.ConsultVO;
 import chen.mingyu.domain.User;
 
 
@@ -49,10 +53,9 @@ public class UserController{
 			     return "index";
 			}
 			else{
-				model.addAttribute("msg", "登录用户错误");
+				request.setAttribute("msg", "登录失败");
 				return "login";
 			}
-
 		}
 		@RequestMapping("/out")
 		public String out(HttpServletRequest request) throws Exception{
@@ -79,7 +82,7 @@ public class UserController{
 				session.setAttribute("userId", user.getUserId());
 				return "index";
 			}else{
-				model.addAttribute("msg", "注册失败!");
+				request.setAttribute("msg", "注册失败!");
 				return "register";
 			}
 		}
@@ -94,7 +97,7 @@ public class UserController{
 				session.setAttribute("user", userResult);
 				return "info";
 			}else{
-				model.addAttribute("msg", "登录超时!");
+				request.setAttribute("msg", "登录超时!");
 				return "login";
 			}
 		}
@@ -111,7 +114,7 @@ public class UserController{
 				session.setAttribute("userId", user.getUserId());
 				return "info";
 			}else{
-				model.addAttribute("msg", "登录超时!");
+				request.setAttribute("msg", "登录超时!");
 				return "login";
 			}
 			
@@ -152,5 +155,12 @@ public class UserController{
 				user = null;
 				return "true";
 			}
+		}
+		@RequestMapping(value = "/getAllUser", method = RequestMethod.GET) 
+		public @ResponseBody List<User> getAllUser(){
+			User user = new User();
+			userDao.getAllUser();
+			List<User> uList =userDao.getAllUser();
+			return uList; 
 		}
 }
