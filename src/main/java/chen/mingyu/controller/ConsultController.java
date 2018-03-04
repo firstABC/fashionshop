@@ -68,7 +68,7 @@ public class ConsultController{
 				consultVODao.addReply(consultVO);
 				return "true";
 			}else{
-				return "false";
+				return "null";
 			}
 		}
 }
