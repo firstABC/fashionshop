@@ -58,6 +58,7 @@
 					<div class="d_price"><strong>￥8500.00</strong></div>
 					<div class="d_social clearfix mt20">
 	            	<div class="loveNum"><i class="icon iconfont icon-love"></i><span>4</span></div>
+	           		<div class="loveNum"><span>立即预定</span></div>
 	            </div>
 				</div>
 			</div>

@@ -36,19 +36,19 @@
 			      </div>
 			    </div>
 			    <div class="form-wrap">
-			      <form data-action="">
+			      <form id="form_login" name="form_login" method="get" action="loginAdmin">
 			        <ul>
 			          <li class="input-row"><i class="icon iconfont icon-user"></i>
-			            <input type="text" value="" placeholder="请输入登录用户名 / 邮箱 / 手机号" class="input-phone">
+			            <input type="text" name="adminName" value="" placeholder="请输入登录用户名" class="input-phone">
 			          </li>
 			          <li class="input-row"><i class="icon iconfont icon-lock"></i>
-			            <input type="password" value="" placeholder="请输入密码" class="inpset input-password">
+			            <input type="password"  name="adminPwd" value="" placeholder="请输入密码" class="inpset input-password">
 			          </li>
 			        </ul>
 			        <div class="form-actions">
 			          <div class="form-options">
 			          </div>
-			          <button type="button" class="button btnLogin">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+			          <input type="submit" class="button btnLogin" value="登录">
 			        </div>
 			      </form>
 			    </div>

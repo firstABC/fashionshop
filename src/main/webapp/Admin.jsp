@@ -40,115 +40,40 @@
                     <div class="people"> 
                     	<span><img alt="image" class="img-circle" src="image/profile_small.jpg" /></span>
                         <a class="dropdown-toggle" href="javascript:;">
-                            <span class="clear block name"><strong>柯志慧</strong></span>
+                            <span class="clear block name"><strong>${adminName}</strong></span>
                         </a>
-                        <a href="loginAdmin.jsp" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
+                        <a href="outAdmin" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:;"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
+                    <a href="AdminProduct.jsp"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
                 </li>
                 <li>
-                    <a href="javascript:;"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
+                    <a href="AdminUser.jsp"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
+                </li>
+                <li>
+                    <a href="AdminInfo.jsp"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
                 </li>
 
 			</ul>
 		</nav><!-- 左侧导航 -->
 
-		<div class="page-wrapper gray-bg">
-			<div class="row border-bottom white-bg dashboard-header">
-		        <div class="col-lg-12">
-		            <h2>潮品管理</h2>
-		            <ol class="breadcrumb">
-		                <li><a href="javascript:;">首页</a> </li>
-		                <li><a href="javascript:;">潮品之家</a> </li>
-		                <li class="active"><strong>潮品管理</strong> </li>
-		            </ol>
-		        </div>
-		    </div>
-		    <div class="row wrapper-content white-bg">
-		    	<div class="col-lg-12 white-bg">
-		    		<table class="table-bordered table-striped table-hover" id="table" width="100%" border="0" cellspacing="0" cellpadding="2">
-		    			<thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>产品名称</th>
-                                <th>价格</th>
-                                <th>上架时间</th>
-                                <th>购买数量</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        	<tr>
-                        		<td>id1</td>
-				                <td>产品Senior</td>
-				                <td>$433,060</td>
-				                <td>2012/03/29</td>
-				                <td>202</td>
-				                <td><a href="javascript:;">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id2</td>
-				                <td>ProductName</td>
-				                <td>$320,800</td>
-				                <td>2011/04/25</td>
-				                <td>601</td>
-				                <td><a href="javascript:;">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id3</td>
-				                <td>产品Edinburgh</td>
-				                <td>$280,500</td>
-				                <td>2009/01/12</td>
-				                <td>601</td>
-				                <td><a href="javascript:;">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id4</td>
-				                <td>产品Author</td>
-				                <td>$120,300</td>
-				                <td>2010/04/25</td>
-				                <td>459</td>
-				                <td><a href="javascript:;">编辑</a></td>
-                        	</tr>
-                        </tbody>
-		    		</table>
-		    	</div>
-		    </div>
-		</div><!-- 内容 -->
-
 	</div>
 
-
-	<script type="text/javascript">
-		$(document).ready(function () {
-	        var t = $('#table').DataTable({
-	            "processing": true,
-        		// "ajax": "dataTables/info.txt",
-
-        		//插件的汉化
-		        "oLanguage": {
-		            "sLengthMenu": "每页显示 _MENU_ 条记录",
-		            "sZeroRecords": "抱歉， 没有找到",
-		            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-		            "sInfoEmpty": "没有数据",
-		            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-		            "oPaginate": {
-		                "sFirst": false,
-		                "sPrevious": false,
-		                "sNext": false,
-		                "sLast": false
-		            },
-		            "sZeroRecords": "没有检索到数据",
-		            "sProcessing": "<img src='' />",
-		            "sSearch": "搜索"
-		        },
-	        });
-
-
-	    });
-	</script>
-
 </body>
+<script>
+var adminName = $('#clear block name').text();
+if(adminName != null&&adminName != ""){
+	
+}else{
+	$.ajax({
+			type:"GET",
+            url: "outAdmin" ,
+            success: function (result) {
+                console.log("success");
+                ;
+            },
+    });
+}
+</script> 
 </html>

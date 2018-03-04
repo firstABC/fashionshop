@@ -36,7 +36,7 @@
 					<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhone" value="${user.userPhone}" placeholder="手机号" disabled="disabled"></p>
 					<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmail" value="${user.userEmail}" placeholder="邮箱" disabled="disabled"></p>
 					<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwd" value="${user.userPwd}" placeholder="*******" disabled="disabled"></p>
-					<a href="infoUpdate.jsp" class="tj">编辑</a>
+					<a href="javascript:;" class="tj">编辑</a>
 				</div>
 			</div>
 
@@ -161,7 +161,25 @@
 	        </div>
 	    </div>
 	</div>
-
+		<div class="editBox">
+		<div class="info">
+				<h1>修改个人信息</h1>
+				<div class="infoText">
+					<form action="updateUser" method="post">
+							<input type="text" name="userId" value="${user.userId }" hidden="hidden" class="focus">
+							<p>用&nbsp;户&nbsp;名:<input type="text" name="userName" value="${user.userName}" placeholder="用户名" class="focus"></p>
+							<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhone" value="${user.userPhone}" placeholder="手机号" class="focus" ></p>
+							<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmail" value="${user.userEmail}" placeholder="邮箱" class="focus"></p>
+							<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwd" value="${user.userPwd}" placeholder="*******" class="focus"></p>		
+						
+						<div class="sure">
+							<a href="javascript:;" class="close">取消</a>
+							<a href="javascript:;"><input type="submit" name="" value="确认" placeholder=""></a>
+						</div>
+					</form>
+				</div>
+		</div>
+		</div>
 	<script type="text/javascript">
 		$(function(){
 			$('.myList li').click(function(){
@@ -175,12 +193,12 @@
 			})
 
 			// 信息编辑
-			$('.edit').click(function(){
-				$(this).siblings('input').removeAttr('disabled').focus().addClass('focus');
+			$('.tj').click(function(){
+				$('.editBox').show();
 			});
-			$('.infoText input').blur(function() {
-				$(this).removeClass('focus').attr("disabled",true);
-			});
+			$('.sure a').click(function(){
+				$('.editBox').hide();
+			})
 		})
 	</script>
 	

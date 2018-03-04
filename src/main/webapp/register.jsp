@@ -44,7 +44,7 @@
 			            <input type="text" name="userName" value="" placeholder="请输入用户名" autocomplete="off" class="input-phone">
 			          </li>
 			          <li class="input-row">
-			          	<i class="icon iconfont icon-weibo"></i>
+			          	<i class="icon iconfont icon-email"></i>
 			            <input type="email" name="userEmail" value="" placeholder="请输入邮箱 " autocomplete="off" class="input-phone">
 			          </li>
 			          <li class="input-row">
