@@ -103,6 +103,7 @@
 				             	<a href="javascript:;" class="btn btn-primary btnEdit">修改潮品</a> 
 				            </td>
 			            </tr>
+			          </table>
 		    	</div>
 		    </div>
 		</div><!-- 内容 -->
