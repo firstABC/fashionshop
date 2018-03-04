@@ -60,7 +60,7 @@ a:hover, a:focus {
 .nav > li > a i {
   margin-right: 6px;
 }
-.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus {
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus, .navbar-default .nav > li.active > a {
   background-color: #293846;
   color: #fff;
 }
@@ -108,6 +108,7 @@ a:hover, a:focus {
   color: inherit;
 }
 .wrapper-content {
+  min-height: 300px;
   margin: 20px 10px 50px;
   padding: 15px 20px;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -115,5 +116,115 @@ a:hover, a:focus {
 }
 table.dataTable thead th, table.dataTable thead td,
 table.dataTable tbody th, table.dataTable tbody td{
+  text-align: center;
+}
+.m-b-sm {
+    margin-bottom: 20px;
+}
+.tbEdit td{
+  padding-bottom: 10px;
+}
+.tbEdit td input, .tbEdit td textarea{
+  width: 240px;
+  padding: 5px;
+  border: 1px solid #D2D2D2;
+}
+.tbEdit td textarea{
+  min-height: 100px;
+}
+.tbEdit tr:last-child td{
+  padding-top: 20px;
+}
+
+/* 上传多张图片 */
+.upload_warp_img_div_del {
+  position: absolute;
+  top: 6px;
+  width: 16px;
+  right: 4px;
+}
+.upload_warp_img_div_top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.4);
+  line-height: 30px;
+  text-align: left;
+  color: #fff;
+  font-size: 12px;
+  text-indent: 4px;
+}
+.upload_warp_img_div_text {
+  white-space: nowrap;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.upload_warp_img_div img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+.upload_warp_img_div {
+  position: relative;
+  height: 100px;
+  width: 120px;
+  border: 1px solid #ccc;
+  margin: 0px 20px 20px 0;
+  float: left;
+  line-height: 100px;
+  display: table-cell;
+  text-align: center;
+  background-color: #eee;
+  cursor: pointer;
+}
+.upload_warp_img {
+  border-top: 1px solid #D2D2D2;
+  padding: 20px 0 0 20px;
+  overflow: hidden
+}
+.upload_warp_text {
+  text-align: left;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  text-indent: 20px;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+}
+.upload_warp_right {
+  float: left;
+  width: 57%;
+  margin-left: 2%;
+  height: 100%;
+  border: 1px dashed #999;
+  border-radius: 4px;
+  line-height: 130px;
+  color: #999;
+}
+.upload_warp_left img {
+  margin-top: 32px;
+}
+.upload_warp_left {
+  float: left;
+  width: 40%;
+  height: 100%;
+  border: 1px dashed #999;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.upload_warp {
+  margin: 14px;
+  height: 130px;
+}
+.upload {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  width: 590px;
+  box-shadow: 0px 1px 0px #ccc;
+  border-radius: 4px;
+}
+.hello {
+  width: 590px;
   text-align: center;
 }
