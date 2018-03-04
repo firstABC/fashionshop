@@ -44,7 +44,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/selectUserOrder")
-	@ResponseBody
+	@ResponseBody 
 	public List<Goods> selectOrdersByUserId(HttpServletRequest request,HttpSession session,@RequestParam("userId")String userId){
 		Orders orders = new Orders();
 		orders.setUserId(userId);

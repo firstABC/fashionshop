@@ -10,6 +10,7 @@ public class Images {
 	private String n_id;
 	//商品id
 	private String g_id;
+	
 	public String getIm_id() {
 		return im_id;
 	}

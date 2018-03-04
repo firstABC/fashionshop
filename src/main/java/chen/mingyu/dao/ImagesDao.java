@@ -6,6 +6,6 @@ import chen.mingyu.domain.Images;
 @Repository("imagesDao")
 public interface ImagesDao {
 
-	//���ͼƬ
+	//添加图片
 	public int insertImage(Images iamges);
 }

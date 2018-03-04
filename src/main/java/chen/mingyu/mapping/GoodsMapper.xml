@@ -30,6 +30,10 @@
 		select * from goods order by g_number desc limit 6
 	</select>
 	
+	<select id ="selectGoodsAll" resultMap="goodsResultMap">
+		select * from goods
+	</select>
+	
 	<select id="selectGoodsBySex" resultMap="goodsResultMap" parameterType="int">
 		select * from goods where g_sex = #{g_sex}
 	</select>
@@ -41,4 +45,12 @@
 	<update id="deleteGoods" parameterType="String">
 		update goods set g_status ='D'  where g_id =#{g_id}
 	</update>
+	
+	<update id ="editGoods" parameterType="Goods">
+		update goods set g_title =#{g_title},g_detail=#{g_detail},g_price=#{g_price},g_brand=#{g_brand},g_inventory=#{g_inventory},g_like=#{g_like},g_status=#{g_status}g_sex=#{g_sex}
+	</update>
+	
+	<select id="selectByG_id" resultMap="goodsResultMap" parameterType="String">
+		select * from goods where g_id =#{g_id}
+	</select>
 </mapper>

@@ -15,7 +15,7 @@ public class News {
  //阅读数
  private int n_number;
  //发布时间
- private Date n_dateTime;
+ private String n_dateTime;
  //图片
  private List<Images> ltMage;
 	public String getN_id() {
@@ -48,10 +48,10 @@ public class News {
 	public void setN_number(int n_number) {
 		this.n_number = n_number;
 	}
-	public Date getN_dateTime() {
+	public String getN_dateTime() {
 		return n_dateTime;
 	}
-	public void setN_dateTime(Date n_dateTime) {
+	public void setN_dateTime(String n_dateTime) {
 		this.n_dateTime = n_dateTime;
 	}
 	public List<Images> getLtMage() {
@@ -59,6 +59,15 @@ public class News {
 	}
 	public void setLtMage(List<Images> ltMage) {
 		this.ltMage = ltMage;
+	}
+	public News(String n_id, String n_title, String n_detal, String n_author, int n_number, String n_dateTime) {
+		super();
+		this.n_id = n_id;
+		this.n_title = n_title;
+		this.n_detal = n_detal;
+		this.n_author = n_author;
+		this.n_number = n_number;
+		this.n_dateTime = n_dateTime;
 	}
  
  

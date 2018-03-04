@@ -7,9 +7,15 @@ import org.springframework.stereotype.Repository;
 import chen.mingyu.domain.News;
 @Repository("newsDao")
 public interface NewsDao {
-	//������Ѷ
+	//发布消息
 	public int insertNews(News news);
 	
-	//���ݷ�����ʱ������������
-	public List<News> selectNewsAll();
+	//查询所有消息
+	public List<News> selectNewsAll(News news);
+	
+	//删除新闻
+	public int deleteNews(String n_id);
+	
+	//查询新闻详情
+	public News selectByN_id(String n_id);
 }

@@ -87,5 +87,22 @@ public class Goods {
 		this.ltMage = ltMage;
 	}
 	
+	public Goods(String g_id, String g_title, String g_detail, String g_price, String g_brand, int g_inventory,
+			int g_like, String g_status, int g_sex) {
+		super();
+		this.g_id = g_id;
+		this.g_title = g_title;
+		this.g_detail = g_detail;
+		this.g_price = g_price;
+		this.g_brand = g_brand;
+		this.g_inventory = g_inventory;
+		this.g_like = g_like;
+		this.g_status = g_status;
+		this.g_sex = g_sex;
+	}
+	public Goods() {
+		super();
+	}
+	
 	
 }
