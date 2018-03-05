@@ -83,8 +83,8 @@
 	            <span>Copyright © 2012 - 2018 版权所有 pinchao.cc</span><span>苏ICP备12028376号-2</span>
 	        </div>
 	    </div>
-	</div>
-	
+	</div>            		
+    <span id = "msg"style="display: none">${msg}</span>               		
 	<script type="text/javascript">
 		$(function(){
 			$('.input-row input').focus(function() {
@@ -94,6 +94,10 @@
 				$(this).parents('.input-row').removeClass('focus');
 			});
 		})
+		var msg = ("#msg").text();
+		if(msg != null&&msg != ""){
+			console.log(msg);
+		}
 	</script>
 </body>
 </html>

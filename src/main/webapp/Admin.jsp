@@ -34,46 +34,16 @@
 <body>
 
 	<div class="wrapper">
-		<nav class="navbar-default navbar-static-side">
-			<ul class="nav">
-				 <li class="nav-header">
-                    <div class="people"> 
-                    	<span><img alt="image" class="img-circle" src="image/profile_small.jpg" /></span>
-                        <a class="dropdown-toggle" href="javascript:;">
-                            <span class="clear block name"><strong>${adminName}</strong></span>
-                        </a>
-                        <a href="outAdmin" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <a href="AdminProduct.jsp"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
-                </li>
-                <li>
-                    <a href="AdminUser.jsp"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
-                </li>
-                <li>
-                    <a href="AdminInfo.jsp"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
-                </li>
-
-			</ul>
-		</nav><!-- 左侧导航 -->
-
+		<jsp:include page="navAdmin.jsp" flush="true"/>
 	</div>
 
 </body>
 <script>
-var adminName = $('#clear block name').text();
+var adminName = $('#admin').text();
 if(adminName != null&&adminName != ""){
 	
 }else{
-	$.ajax({
-			type:"GET",
-            url: "outAdmin" ,
-            success: function (result) {
-                console.log("success");
-                ;
-            },
-    });
+	window.location.href="../chen.mingyu/loginAdmin.jsp";//需要跳转的地址          
 }
 </script> 
 </html>

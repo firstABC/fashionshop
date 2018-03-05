@@ -14,32 +14,9 @@
 	<select id="getLoginAdmin" parameterType="Admin" resultMap="AdminMap">
 		select admin_id, admin_name, admin_pwd, is_delete
 		from admin
-         where 1=1
-         <if test="adminId != null and adminId != '' ">
-         	admin_id = #{adminId}
-         </if>
-         <if test="adminName != null and adminName != '' ">
-         	admin_name = #{adminName}
-         </if>
-         <if test="adminPwd != null and adminPwd != '' ">
+         where admin_name = #{adminName}
          	and admin_pwd = #{adminPwd}
-         </if>
-         <if test="isDelete != null and isDelete != '' ">
-         	and is_delete = #{isDelete})
-         </if>
+         	and is_delete = #{isDelete}
+         
 	</select>
-	<select id="countAdminMaxId" resultType="int">
-		select max(admin_id) from admin
-	</select>
-	<insert id="addAdmin"  parameterType="Admin">
-		insert into admin(admin_id, admin_name, admin_pwd, is_delete) values
-		(#{adminId}, #{adminName}, #{adminPwd},#{isDelete})
-	</insert>
-
-	<!-- 修改管理员信息 -->
-	<update id="updateAdmin" parameterType="Admin">
-		update admin set 
-		admin_name = #{adminName}, admin_pwd = #{adminPwd}
-		where admin_id = #{adminId}
-	</update>
 </mapper>

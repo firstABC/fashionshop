@@ -18,44 +18,17 @@
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/metisMenu/jquery.metisMenu.js"></script>
-    <script type="text/javascript" src="js/slimscroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="js/jeditable/jquery.jeditable.js"></script>
 	<!-- Data Tables -->
     <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/pace/pace.min.js"></script>
-    
+
 </head>
 <body>
 
 	<div class="wrapper">
-		<nav class="navbar-default navbar-static-side">
-			<ul class="nav">
-				 <li class="nav-header">
-                    <div class="people"> 
-                    	<span><img alt="image" class="img-circle" src="image/profile_small.jpg" /></span>
-                        <a class="dropdown-toggle" href="javascript:;">
-                            <span class="clear block name"><strong>柯志慧</strong></span>
-                        </a>
-                        <a href="loginAdmin.jsp" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <a href="AdminProduct.jsp"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
-                </li>
-                <li>
-                    <a href="AdminUser.jsp"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
-                </li>
-                <li class="active">
-                    <a href="AdminInfo.jsp"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
-                </li>
-			</ul>
-		</nav><!-- 左侧导航 -->
+		<jsp:include page="navAdmin.jsp" flush="true"/>
 
 		<div class="page-wrapper gray-bg">
 			<div class="row border-bottom white-bg dashboard-header">

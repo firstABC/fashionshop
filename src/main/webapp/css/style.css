@@ -898,7 +898,7 @@ input, textarea{
 :-ms-input-placeholder { 
     color: #444;
 }
-.info .tj, .info .sure a{
+.info .tj, .info .sure a, .info .sure2 a{
 	font-size: 16px;
 	display: inline-block;
 	text-align: center;
@@ -927,7 +927,7 @@ input, textarea{
     z-index: 999;
     display: none;
 }
-.editBox .info, .plBox .pl{
+.editBox .info, .plBox .info{
     background: #ffffff;
     padding: 40px;
     width: 420px;
@@ -940,7 +940,7 @@ input, textarea{
     border-radius: 5px;
     overflow: hidden;
 }
-.editBox .info h1{
+.editBox .info h1, .plBox .info h1{
     font-size: 20px;
     text-align: center;
     margin-bottom: 10px;
@@ -951,22 +951,22 @@ input, textarea{
 .editBox .infoText p{
     margin-bottom: 10px;
 }
-.editBox .info .sure{
+.editBox .info .sure, .plBox .info .sure2{
     text-align: center;
 }
-.editBox .info .sure a{
+.editBox .info .sure a, .plBox .info .sure2 a{
     display: inline-block;
     color: #fff;
     background: #0099cb;
 }
-.editBox .info .sure input{
+.editBox .info .sure input, .plBox .info .sure2 input{
     background: transparent;
     width: auto;
     margin: 0;
     padding: 0;
     color: #fff;
 }
-.editBox .info .sure .close{
+.editBox .info .sure .close, .plBox .info .sure2 .close{
     background: transparent;
     border: 1px solid #0099cb;
     color: #0099cb;
@@ -976,6 +976,12 @@ input, textarea{
 .plNow{
     float: right;
     color: #0099cb;
+}
+.plBox .info .plTextarea textarea{
+    width: 400px;
+    background: #f9f9f9;
+    padding: 10px;
+    min-height: 200px;
 }
 
 /* 潮流资讯 */

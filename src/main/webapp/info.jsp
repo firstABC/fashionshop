@@ -68,6 +68,7 @@
 				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">black head</a></div>
 				      			<div class="showpic_info clearfix">
 					                <div class="priceNum fl"><b>¥89.00</b><s>268.00</s><span>( 3.3 折 )</span></div>
+					                <a href=" " title="" class="plNow">立即评论</a>
 					            </div>
 				      		</div>
 
@@ -180,6 +181,16 @@
 				</div>
 		</div>
 		</div>
+		<!-- 评论 -->
+		<div class="plBox">
+			<div class="info">
+				<h1>立即评论</h1>
+				<div class="plTextarea">
+					<textarea name="" placeholder="请输入评论内容"></textarea>
+					<div class="sure2">< a href=" " class="close">取消</ a>< a href="javascript:;"><input type="submit" name="" value="确认" placeholder=""></ a></div>
+				</div>
+			</div>
+		</div>
 	<script type="text/javascript">
 		$(function(){
 			$('.myList li').click(function(){
@@ -199,7 +210,16 @@
 			$('.sure a').click(function(){
 				$('.editBox').hide();
 			})
+			
+			// 立即评论
+			$('.plNow').click(function(){
+				$('.plBox').show();
+			});
+			$('.sure2 a').click(function(){
+				$('.plBox').hide();
+			})
 		})
+		
 	</script>
 	
 </body>
