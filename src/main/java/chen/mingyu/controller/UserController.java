@@ -47,7 +47,6 @@ public class UserController{
 			user.setIsDelete("0");
 			User loginUser = userDao.getLoginUser(user);
 			if(loginUser != null){
-				 model.addAttribute("loginUser", loginUser); 
 				 session.setAttribute("userId", loginUser.getUserId());
 				 session.setAttribute("userName", userName);
 			     return "index";
@@ -77,10 +76,18 @@ public class UserController{
 				Date date = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				user.setUserDate(sdf.format(date));
-				userDao.addUser(user);
-				session.setAttribute("userName", user.getUserName());
-				session.setAttribute("userId", user.getUserId());
-				return "index";
+				User uCons = new User();
+				uCons.setUserName(user.getUserName());
+				if(userDao.getUserInfo(uCons) != null){
+					request.setAttribute("msg", "用户名重复!");
+					session.setAttribute("user", user);
+					return "register";
+				}else{
+					userDao.addUser(user);
+					session.setAttribute("userName", user.getUserName());
+					session.setAttribute("userId", user.getUserId());
+					return "index";
+				}
 			}else{
 				request.setAttribute("msg", "注册失败!");
 				return "register";
@@ -90,11 +97,18 @@ public class UserController{
 		@RequestMapping("/getUserInfoById")
 		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")String userId,Model model){
 			HttpSession session = request.getSession();
+			/*String msg = (String) request.getAttribute("msg");
+			if(msg == "用户名重复!"){
+				request.setAttribute("msg", msg);
+				userId = (String) request.getAttribute("userId");
+			}*/
 			if(userId != null){
 				User user = new User();
 				user.setUserId(userId);
 				User userResult = userDao.getUserInfo(user);
 				session.setAttribute("user", userResult);
+				session.setAttribute("userName", userResult.getUserName());
+				session.setAttribute("userId", userResult.getUserId());
 				return "info";
 			}else{
 				request.setAttribute("msg", "登录超时!");
@@ -105,13 +119,19 @@ public class UserController{
 		public String updateUser(HttpServletRequest request,HttpServletResponse response,User user,Model model){
 			HttpSession session = request.getSession();
 			if(user.getUserId() != null){
-				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				user.setUserDate(sdf.format(date));
-				userDao.updateUser(user);
-				session.setAttribute("user", user);
-				session.setAttribute("userName", user.getUserName());
-				session.setAttribute("userId", user.getUserId());
+				User uCons = new User();
+				uCons.setUserName(user.getUserName());
+				if(userDao.getUserInfo(uCons) != null){
+					request.setAttribute("msg", "用户名重复!");
+					session.setAttribute("user", user);
+				}else{
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					user.setUserDate(sdf.format(date));
+					userDao.updateUser(user);
+				}
+				/*request.setAttribute("userId", user.getUserId());
+				return "/getUserInfoById?userId="+user.getUserId();*/
 				return "info";
 			}else{
 				request.setAttribute("msg", "登录超时!");
@@ -158,7 +178,6 @@ public class UserController{
 		}
 		@RequestMapping(value = "/getAllUser", method = RequestMethod.GET) 
 		public @ResponseBody List<User> getAllUser(){
-			User user = new User();
 			userDao.getAllUser();
 			List<User> uList =userDao.getAllUser();
 			return uList; 

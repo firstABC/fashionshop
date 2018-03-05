@@ -17,7 +17,7 @@
 	<select id="getLoginUser" parameterType="User" resultMap="UserMap">
 		select user_id, user_name, user_pwd, user_email, user_phone, user_date, is_delete
 		from userinfo
-         where (user_name = #{userName} or user_phone = #{userName} or user_email = #{userName})
+         where user_name = #{userName}
          and user_pwd = #{userPwd}
          and is_delete = #{isDelete}
 	</select>
@@ -36,7 +36,7 @@
 			and user_id = #{userId}
 		</if>
 		<if test="userName != null and userName != '' ">
-			and userName = #{userName}
+			and user_name = #{userName}
 		</if>
 		<if test="userPhone != null and userPhone != '' ">
 			and user_phone = #{userPhone}
@@ -56,6 +56,6 @@
 	
 	<!-- 分页查询所有用户 -->
 	<select id="getAllUser" resultMap="UserMap">
-		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo
+		select user_id,user_name,user_pwd,user_phone,user_email,user_date,is_delete from userinfo
 	</select>
 </mapper>

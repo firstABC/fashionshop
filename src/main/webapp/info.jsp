@@ -26,16 +26,17 @@
 	        </div>
 		</header>
 	</div>
-	
+	<span id="msg" style="display:none">${msg}</span>
 	<div class="main">
 		<div class="lay1200 infoMy">
 			<div class="info clearfix">
 				<img src="image/people.png" alt="个人中心头像" class="peopleImg">
 				<div class="infoText">
-					<p>用&nbsp;户&nbsp;名:<input type="text" name="userName" value=" ${user.userName}" placeholder="用户名" disabled="disabled"></p>
-					<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhone" value="${user.userPhone}" placeholder="手机号" disabled="disabled"></p>
-					<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmail" value="${user.userEmail}" placeholder="邮箱" disabled="disabled"></p>
-					<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwd" value="${user.userPwd}" placeholder="*******" disabled="disabled"></p>
+					<input type="text" name="userIdN" value="${userId }" hidden="hidden" class="uId">
+					<p>用&nbsp;户&nbsp;名:<input type="text" name="userNameN" value="${user.userName}" placeholder="用户名" disabled="disabled" class="uName"></p>
+					<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhoneN" value="${user.userPhone}" placeholder="手机号" disabled="disabled" class="uPhone"></p>
+					<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmailN" value="${user.userEmail}" placeholder="邮箱" disabled="disabled" class="uEmail"></p>
+					<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwdN" value="${user.userPwd}" placeholder="*******" disabled="disabled" class="uPwd"></p>
 					<a href="javascript:;" class="tj">编辑</a>
 				</div>
 			</div>
@@ -166,16 +167,18 @@
 		<div class="info">
 				<h1>修改个人信息</h1>
 				<div class="infoText">
-					<form action="updateUser" method="post">
-							<input type="text" name="userId" value="${user.userId }" hidden="hidden" class="focus">
-							<p>用&nbsp;户&nbsp;名:<input type="text" name="userName" value="${user.userName}" placeholder="用户名" class="focus"></p>
-							<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhone" value="${user.userPhone}" placeholder="手机号" class="focus" ></p>
-							<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmail" value="${user.userEmail}" placeholder="邮箱" class="focus"></p>
-							<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwd" value="${user.userPwd}" placeholder="*******" class="focus"></p>		
+					<form action="updateUser" method="post" onSubmit="return checkForm()">
+							<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden" class="focus">
+							<p>用&nbsp;户&nbsp;名:<input type="text" name="userName" value="${sessionScope.user.userName}" placeholder="用户名" class="focus"></p>
+							<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhone" value="${sessionScope.user.userPhone}" placeholder="手机号" class="focus" ></p>
+							<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmail" value="${sessionScope.user.userEmail}" placeholder="邮箱" class="focus"></p>
+							<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwd" value="${sessionScope.user.userPwd}" placeholder="*******" class="focus" id="pwd"></p>
+							<p>确认密码:<input type="password" value="${sessionScope.user.userPwd}" placeholder="*******" class="focus" id="pwdR">		
 						
 						<div class="sure">
-							<a href="javascript:;" class="close">取消</a>
+							<a href="getUserInfoById?userId=${userId}" class="close">取消</a>
 							<a href="javascript:;"><input type="submit" name="" value="确认" placeholder=""></a>
+							<span id="errorMsg" style="display:none"></span>
 						</div>
 					</form>
 				</div>
@@ -193,6 +196,7 @@
 		</div>
 	<script type="text/javascript">
 		$(function(){
+			var userId = $(".uId").val();
 			$('.myList li').click(function(){
 				if(!$(this).hasClass("active")){
 	              $('.myList li').removeClass("active");
@@ -206,9 +210,11 @@
 			// 信息编辑
 			$('.tj').click(function(){
 				$('.editBox').show();
+				
 			});
 			$('.sure a').click(function(){
 				$('.editBox').hide();
+				//window.location.href="../fashionshop/getUserInfoById?userId="+userId
 			})
 			
 			// 立即评论
@@ -218,8 +224,32 @@
 			$('.sure2 a').click(function(){
 				$('.plBox').hide();
 			})
+			//错误信息
+			var cont=$("#msg").text();
+			if(cont != null&&cont != ""){
+				$('#errorMsg').text(cont);
+				$('.editBox').show();
+				$('#errorMsg').show();
+			}
+			
+			/* $.ajax({
+				url:"getUserInfoById",
+				type:"get",
+				data:{
+					userId:$('.uId').val()
+				},success:function(data){
+					console.log("data:"+data);
+				}
+			}) */
 		})
-		
+		function checkForm(){
+			if($('#pwdR').val() != $('#pwd').val()){
+				$('#errorMsg').text("密码两次输入不一致!");
+				$('.editBox').show();
+				$('#errorMsg').show();
+				return false;
+			}
+		}
 	</script>
 	
 </body>

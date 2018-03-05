@@ -43,7 +43,7 @@ var adminName = $('#admin').text();
 if(adminName != null&&adminName != ""){
 	
 }else{
-	window.location.href="../chen.mingyu/loginAdmin.jsp";//需要跳转的地址          
+	window.location.href="../fashionshop/loginAdmin.jsp";//需要跳转的地址          
 }
 </script> 
 </html>

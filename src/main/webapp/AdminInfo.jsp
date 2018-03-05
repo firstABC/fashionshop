@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台管理</title>
+title>后台管理</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 	<!-- datatable -->
@@ -23,6 +23,7 @@
     <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
+    
 
 </head>
 <body>
@@ -44,7 +45,7 @@
 		    <div class="row wrapper-content white-bg">
 		    	<div class="m-b-sm">
 	                <div class="m-b-sm-title">
-		       			<a href="AdminInfoEdit.jsp" class="btn btn-primary">发布资讯</a>
+		       			<a href="AdminInfoEdit.html" class="btn btn-primary">发布资讯</a>
 	                </div>
 		        </div>
 
@@ -61,30 +62,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                        	<tr>
-                        		<td>id1</td>
-				                <td>资讯标题1</td>
-				                <td>资讯内容0资讯内容0资讯内容0资讯内容0</td>
-				                <td>一只猫的独白</td>
-				                <td>2012/03/29</td>
-				                <td><a href="AdminInfoEdit.jsp">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id2</td>
-				                <td>咨询标题2</td>
-				                <td>资讯内容1资讯内容1资讯内容1</td>
-				                <td>一粒米</td>
-				                <td>2011/04/25</td>
-				                <td><a href="AdminInfoEdit.jsp">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id3</td>
-				                <td>咨询标题3</td>
-				                <td>资讯内容1资讯</td>
-				                <td>云上台</td>
-				                <td>2009/01/12</td>
-				                <td><a href="AdminInfoEdit.jsp">编辑</a></td>
-                        	</tr>
                         </tbody>
 		    		</table>
 		    	</div>
@@ -98,26 +75,50 @@
 		$(document).ready(function () {
 	        var t = $('#table').DataTable({
 	            "processing": true,
-        		// "ajax": "dataTables/info.txt",
+        		"ajax": "arrays.txt",
+        		
+        		"columns": [
+		            { "data": "name" },
+		            { "data": "position" },
+		            { "data": "office" },
+		            { "data": "extn" },
+		            { "data": "start_date" },
+		            { "data": null }
+		        ],
+		        "columnDefs":[{
+		            "targets": 5,
+		            "defaultContent": "<a href='AdminInfoEdit.html' id='editrow' class='btn btn-default' style='margin-right:5px;'>编辑</a><a href='#' id='delrow' class='btn btn-default'>删除</a>" 
+		        }],
 
         		//插件的汉化
-		        "oLanguage": {
-		            "sLengthMenu": "每页显示 _MENU_ 条记录",
-		            "sZeroRecords": "抱歉， 没有找到",
-		            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-		            "sInfoEmpty": "没有数据",
-		            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-		            "oPaginate": {
-		                "sFirst": false,
-		                "sPrevious": false,
-		                "sNext": false,
-		                "sLast": false
-		            },
-		            "sZeroRecords": "没有检索到数据",
-		            "sProcessing": "<img src='' />",
-		            "sSearch": "搜索"
-		        },
+		        "language": {
+                	url: 'dataTables/Chinese.txt'
+            	},
 	        });
+
+	        /*删除按钮*/
+		    $('#table tbody').on( 'click', 'a#delrow', function () {
+		        var data = t.row( $(this).parents('tr') ).data();
+		        if(confirm("是否确认删除这条信息")){
+		            $.ajax({
+		                url:'arrays.txt',
+		                type:'post',
+		                data: {"action":"del", "name": data.name}, 
+		                timeout:"3000",
+		                cache:"false",
+
+		                success:function(str){
+		                    if(str.data){
+		                        t.row().remove();//删除这行的数据
+		                    }
+		                },
+		                error:function(err){
+		                    // alert(url);
+		                    alert("获取数据失败");
+		                }
+		            });
+		        }
+		    });
 
 
 	    });

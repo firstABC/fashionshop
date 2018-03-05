@@ -40,7 +40,7 @@
 			      <form id="form_login" name="form_login" method="get" action="login">
 			        <ul>
 			          <li class="input-row"><i class="icon iconfont icon-user"></i>
-			            <input type="text" name="userName" id="userName" value="" placeholder="请输入登录用户名 / 邮箱 / 手机号" class="input-phone">
+			            <input type="text" name="userName" id="userName" value="" placeholder="请输入登录用户名" class="input-phone">
 			          </li>
 			          <li class="input-row"><i class="icon iconfont icon-lock"></i>
 			            <input type="password"  name="userPwd" id="userPwd" value="" placeholder="请输入密码" class="inpset input-password"><!-- <a data-id="pass-ind" title="显示/隐藏密码" class="icon iconfont icon-unseen"></a> -->
@@ -84,7 +84,7 @@
 	        </div>
 	    </div>
 	</div>            		
-    <span id = "msg"style="display: none">${msg}</span>               		
+    <span id ="msg" style="display:none">${msg}</span>               		
 	<script type="text/javascript">
 		$(function(){
 			$('.input-row input').focus(function() {
@@ -94,9 +94,10 @@
 				$(this).parents('.input-row').removeClass('focus');
 			});
 		})
-		var msg = ("#msg").text();
-		if(msg != null&&msg != ""){
-			console.log(msg);
+		var cont=$("#msg").text();
+		if(cont != null&&cont != ""){
+			console.log(cont);
+			alert(cont);
 		}
 	</script>
 </body>

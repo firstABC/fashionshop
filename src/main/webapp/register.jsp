@@ -37,7 +37,7 @@
 			      </div>
 			    </div>
 			    <div class="form-wrap">
-			      <form  method="post" action="register">
+			      <form  method="post" action="register" onSubmit="return checkForm()">
 			      	<ul>
 			          <li class="input-row">
 			          	<i class="icon iconfont icon-user"></i>
@@ -53,7 +53,11 @@
 			          </li>
 			          <li class="input-row">
 			          	<i class="icon iconfont icon-lock"></i>
-			            <input type="password" name="userPwd" value="" placeholder="请输入密码" maxlength="20" autocomplete="off" class="input-password">
+			            <input type="password" name="userPwd" value="" placeholder="请输入密码" maxlength="20" autocomplete="off" class="input-password" id="pwd">
+			          </li>
+			          <li class="input-row">
+			          	<i class="icon iconfont icon-lock"></i>
+			            <input type="password" value="" placeholder="请重复输入密码" maxlength="20" autocomplete="off" class="input-password" id="pwdR">
 			          </li>
 			        </ul>
 			        <div class="form-actions">
@@ -96,7 +100,7 @@
 	    </div>
 	</div>
 
-	
+	<span id="msg" style="display:none">${msg}</span>
 	<script type="text/javascript">
 		$(function(){
 			$('.input-row input').focus(function() {
@@ -106,6 +110,17 @@
 				$(this).parents('.input-row').removeClass('focus');
 			});
 		})
+		var cont=$("#msg").text();
+		if(cont != null&&cont != ""){
+			console.log(cont);
+			alert(cont);
+		}
+		function checkForm(){
+			if($('#pwdR').val() != $('#pwd').val()){
+				alert("密码两次输入不一致!");
+				return false;
+			}
+		}
 	</script>
 	
 </body>
