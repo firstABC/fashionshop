@@ -104,7 +104,7 @@ public class GoodsController {
 				images.setG_id(g_id);;
 				images.setIm_id(UUID.randomUUID().toString());
 				images.setN_id(null);
-				images.setPathName(path+"\\"+name);
+				images.setPathName(name);
 				inMages = imagesDao.insertImage(images);	
 			}		
 		}

@@ -9,13 +9,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>潮品之家</title>
-	<link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
-	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
 </head>
 <body>
 	<div class="banner">
@@ -34,9 +34,9 @@
 		<!-- 轮播图 -->
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide"><img src="image/banner1.jpg" alt=""></div>  
-				<div class="swiper-slide"><img src="image/banner2.jpg" alt=""></div>  
-				<div class="swiper-slide"><img src="image/banner3.jpg" alt=""></div>  
+				<div class="swiper-slide"><img src="${pageContext.request.contextPath}/image/banner1.jpg" alt=""></div>  
+				<div class="swiper-slide"><img src="${pageContext.request.contextPath}/image/banner2.jpg" alt=""></div>  
+				<div class="swiper-slide"><img src="${pageContext.request.contextPath}/image/banner3.jpg" alt=""></div>  
 			</div>
 			<!-- Add Pagination -->
 			<div class="swiper-pagination"></div> 
@@ -47,10 +47,10 @@
 			<div class="information clearfix">
 				<div class="smadd-pic">
 					<p class="oha-chan"><span>潮流资讯</span></p>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="image/information1.jpg"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="image/information2.jpg"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="image/information3.jpg"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="image/information4.jpg"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information1.jpg"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information2.jpg"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information3.jpg"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information4.jpg"></a>
 				</div>
 				<div class="smadd-hiddiv">
 					<div class="ind-hotzx-bt">
@@ -110,7 +110,7 @@
 			      	<div class="goods goodsN clearfix">
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="goods.jsp" title=""><img src="image/goods1.jpg" alt=""></a>
+			      				<a href="goods.jsp" title=""><img src="${pageContext.request.contextPath}/<%=images.getPathName() %>" alt=""></a>
 			      				<a href="goods.jsp" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -119,12 +119,12 @@
 				        		</div>
 			      			</div>
 			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701</a>
+			      				<a href="javascript:;" target="_blank" title=""><%=good.getG_detail() %></a>
 			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Adidas originals</a></div>
+			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=good.getG_brand()%></a></div>
 			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥8500.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
+				                <div class="priceNum fl"><b><%=good.getG_price() %></b></div>
+				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span><%=good.getG_like() %></span></div>
 				            </div>
 			      		</div>
 			      	<%
@@ -136,7 +136,7 @@
 			      	<div class="goods goodsN none clearfix">
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods11.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods11.jpg" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -156,7 +156,7 @@
 
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods21.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods21.jpg" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -180,7 +180,7 @@
 					<div class="goods clearfix">
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods12.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods12.jpg" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -200,7 +200,7 @@
 
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods22.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods22.jpg" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -220,7 +220,7 @@
 
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods32.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods32.jpg" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -260,7 +260,7 @@
 	        </div>
 	    </div>
 		<!-- 回到顶部 -->
-		<div class="back-top" style="display: none;"><img src="image/back-top.png"></div>
+		<div class="back-top" style="display: none;"><img src="${pageContext.request.contextPath}/image/back-top.png"></div>
 	</div>
 
 
@@ -334,7 +334,7 @@
 	</script>
 
 	<!-- 输入框模糊提醒 -->
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
 	<script type="text/javascript">
         $(function() {
 		    var searchList = [

@@ -27,7 +27,7 @@
 	</insert>
 	
 	<select id="selectGoodsAllByNumber" resultMap="goodsResultMap">
-		select * from goods order by g_like desc limit 6
+		select * from goods g,images i where g.g_id = i.g_id order by g.g_like desc limit 6
 	</select>
 	
 	<select id ="selectGoodsAll" resultMap="goodsResultMap">
