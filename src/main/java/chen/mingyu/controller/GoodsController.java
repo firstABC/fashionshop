@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,6 +74,7 @@ public class GoodsController {
 	}
 	
 	//发布商品
+	@Transactional
 	@RequestMapping("/toPublish")
 	@ResponseBody
 	public Map<String,String> publishGoods(MultipartFile[] file,HttpServletRequest request,HttpSession session) throws IllegalStateException, IOException{
@@ -87,8 +89,7 @@ public class GoodsController {
 		String g_id = UUID.randomUUID().toString();
 		Goods goods = new Goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status,g_sex);
 		
-		//int ispubGo = goodsDao.insertGoods(goods);
-		int ispubGo = 0;
+		int ispubGo = goodsDao.insertGoods(goods);
 		int inMages = 0;
 		
 		String path = request.getServletContext().getRealPath("/upload");
