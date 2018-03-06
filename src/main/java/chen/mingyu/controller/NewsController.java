@@ -58,7 +58,7 @@ public class NewsController {
 					file1.transferTo(new File(path,name));
 					
 					Images images = new Images();
-					images.setGo_id(null);
+					images.setG_id(null);;
 					images.setIm_id(UUID.randomUUID().toString());
 					images.setN_id(n_id);
 					images.setPathName(path+"\\"+name);

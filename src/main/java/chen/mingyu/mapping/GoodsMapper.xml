@@ -21,8 +21,8 @@
 	</resultMap>
 	<insert id="insertGoods" parameterType="Goods">
 		<![CDATA[
-			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status) 
-				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_inventory},#{g_like},#{g_status})
+			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status,g_sex) 
+				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_inventory},#{g_like},#{g_status},#{g_sex})
 		]]>
 	</insert>
 	
