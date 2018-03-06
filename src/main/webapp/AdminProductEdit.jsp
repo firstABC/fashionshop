@@ -19,7 +19,28 @@
 <body>
 
 	<div class="wrapper">
-		<jsp:include page="navAdmin.jsp" flush="true"/>
+		<nav class="navbar-default navbar-static-side">
+			<ul class="nav">
+				 <li class="nav-header">
+                    <div class="people"> 
+                    	<span><img alt="image" class="img-circle" src="image/profile_small.jpg" /></span>
+                        <a class="dropdown-toggle" href="javascript:;">
+                            <span class="clear block name"><strong>柯志慧</strong></span>
+                        </a>
+                        <a href="loginAdmin.html" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
+                    </div>
+                </li>
+                <li class="active">
+                    <a href="AdminProduct.html"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
+                </li>
+                <li>
+                    <a href="AdminUser.html"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
+                </li>
+                <li>
+                    <a href="AdminInfo.html"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
+                </li>
+			</ul>
+		</nav><!-- 左侧导航 -->
 
 		<div class="page-wrapper gray-bg">
 			<div class="row border-bottom white-bg dashboard-header">
@@ -54,7 +75,7 @@
 		    			<tr>
 		    				<td width="100">潮品数量</td>
 		    				<td>
-		    					<div class="numEdit"><span class="numReduce">-</span><input class="numDetail" name="" type="text" value="3" disabled="disabled"><span class="numAadd">+</span></div>
+		    					<div class="numEdit"><span class="numReduce">-</span><input class="numDetail" name="" type="text" value="3" disabled="disabled"><span class="numAdd">+</span></div>
 		    				</td>
 		    			</tr>
 		    			<tr>
@@ -117,6 +138,7 @@
 				             	<a href="javascript:;" class="btn btn-primary btnEdit">修改潮品</a> 
 				            </td>
 			            </tr>
+			        </table>
 		    	</div>
 		    </div>
 		</div><!-- 内容 -->
@@ -204,7 +226,6 @@
 		      }
 		  })
 	</script>
-
 
 </body>
 </html>

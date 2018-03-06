@@ -124,7 +124,7 @@ table.dataTable tbody th, table.dataTable tbody td{
 .tbEdit td{
   padding-bottom: 10px;
 }
-.tbEdit td input, .tbEdit td textarea{
+.tbEdit td input, .tbEdit td textarea, .tbEdit td select{
   width: 240px;
   padding: 5px;
   border: 1px solid #D2D2D2;
@@ -134,6 +134,45 @@ table.dataTable tbody th, table.dataTable tbody td{
 }
 .tbEdit tr:last-child td{
   padding-top: 20px;
+}
+
+/* 数量加减 */
+.numEdit {
+    width: 240px;
+    height: 30px;
+    line-height: 30px;
+}
+.numEdit span {
+    height: 28px;
+    width: 28px;
+    display: inline-block;
+    text-align: center;
+    line-height: 28px;
+    border: 1px solid #E1E1E1;
+    cursor: pointer;
+}
+.numEdit .numDetail {
+    width: 60px;
+    border-left: 0;
+    border-right: 0;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+    cursor: pointer;
+    padding-bottom: 0;
+    position: relative;
+    top: 1px;
+}
+.numEdit span {
+    height: 28px;
+    width: 28px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #E1E1E1;
+    line-height: 28px;
+    cursor: pointer;
 }
 
 /* 上传多张图片 */
