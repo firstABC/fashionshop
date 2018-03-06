@@ -267,3 +267,72 @@ table.dataTable tbody th, table.dataTable tbody td{
   width: 590px;
   text-align: center;
 }
+.tbEdit td input#upload_file{
+  border: none;
+}
+
+.uploadTs{
+  color: red;
+  margin: 15px 0 5px;
+  font-size: 12px;
+}
+/* 上传图片 */
+.tbEdit .images .img {
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: inset 0px 1px 20px 5px #ddd;
+    text-align: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 180px;
+    height: 120px;
+    border: 1px solid #ddd;
+}
+.tbEdit .addhao {
+    width: 180px;
+    height: 120px;
+    background: url('../image/addPhoto.png') no-repeat center;
+    background-size: 50% auto;
+}
+.tbEdit .img input {
+    width: 178px;
+    height: 118px;
+    opacity: 0;
+}
+.tbEdit .img .on {
+    display: inline-block;
+    text-align: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 180px;
+    height: 120px;
+    display: none;
+    position: relative;
+    overflow: hidden;
+    line-height: 120px;
+}
+.tbEdit .img .on img {
+    width: 158px;
+    height: auto;
+    margin: 0 10px;
+    line-height: 120px;
+}
+.tbEdit .img .xian {
+    width: 180px;
+    height: 120px;
+    position: absolute;
+    background: rgba(0, 0, 0, .6);
+    display: none;
+    z-index: 2;
+}
+.tbEdit .img .chahao {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: url('../image/del.png') no-repeat center;
+    background-size: 60% auto;
+    top: 5px;
+    right: 5px;
+    display: none;
+    z-index: 2;
+}

@@ -26,6 +26,7 @@ import chen.mingyu.domain.Images;
 import chen.mingyu.domain.MyLike;
 
 @Controller
+@RequestMapping("goods")             
 public class GoodsController {
 
 	@Resource
@@ -34,7 +35,7 @@ public class GoodsController {
 	private MyLikeDao myLikeDao;
 	@Resource
 	private ImagesDao imagesDao;
-	//给商品点赞
+	
 	@RequestMapping("/addLike")
 	public String toAddLike(HttpServletRequest request,HttpSession session,@RequestParam("g_id")String g_id){
 		Boolean isLogin = session.getAttribute("userId")==null?false:true;
@@ -52,7 +53,6 @@ public class GoodsController {
 		return null;
 	}
 	
-	//热门推荐前六
 	@RequestMapping("/selGoHo")
 	public String selectGoodsOfHot(HttpServletRequest request,HttpSession session){
 		
@@ -63,7 +63,6 @@ public class GoodsController {
 		return "/index";
 	}
 	
-	//根据性别分类查询商品
 	@RequestMapping("/selGoSex")
 	public String selectGoodsBySex(HttpServletRequest request,HttpSession session,@RequestParam("g_sex")int g_sex){
 		List<Goods> ltGoods = goodsDao.selectGoodsBySex(g_sex);
@@ -73,24 +72,30 @@ public class GoodsController {
 		return "/index";
 	}
 	
+	//发布商品
+	@RequestMapping("/toPublish")
+	@ResponseBody
 	public Map<String,String> publishGoods(MultipartFile[] file,HttpServletRequest request,HttpSession session) throws IllegalStateException, IOException{
 		String g_title = request.getParameter("g_title");
 		String g_detail = request.getParameter("g_detail");
 		String g_price = request.getParameter("g_price");
 		String g_brand = request.getParameter("g_brand");
 		int g_inventory = Integer.parseInt(request.getParameter("g_inventory"));
+		int g_like = Integer.parseInt(request.getParameter("g_like"));
 		int g_sex = Integer.parseInt(request.getParameter("g_sex"));
 		String g_status = request.getParameter("g_status");
 		String g_id = UUID.randomUUID().toString();
-		Goods goods = new Goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,1,g_status,g_sex);
+		Goods goods = new Goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status,g_sex);
 		
-		int ispubGo = goodsDao.insertGoods(goods);
+		//int ispubGo = goodsDao.insertGoods(goods);
+		int ispubGo = 0;
 		int inMages = 0;
 		
 		String path = request.getServletContext().getRealPath("/upload");
 		if(file!=null&&file.length>0){
 			for(int i =0;i<file.length;i++){
 				MultipartFile file1 = file[i];
+				boolean b = file1.isEmpty();
 				String name = System.currentTimeMillis()+file1.getOriginalFilename();
 				file1.transferTo(new File(path,name));
 				
