@@ -26,6 +26,7 @@ import chen.mingyu.domain.Images;
 import chen.mingyu.domain.News;
 
 @Controller
+@RequestMapping("/news")
 public class NewsController {
 
 	@Resource
@@ -37,35 +38,36 @@ public class NewsController {
 	@RequestMapping("/pnews")
 	@ResponseBody
 	public Map<String,String> publicNews(MultipartFile[] file,HttpServletRequest request,HttpSession session) throws IllegalStateException, IOException{
-		String userId = (String) session.getAttribute("userId");
+		//String userId = (String) session.getAttribute("userId");
 		int publicnews = 0;
 		int inMages =0;
-		if(userId!=null){
 			String n_title = (String)request.getParameter("n_title");
 			String n_detal = (String)request.getParameter("n_detal");
+			int n_number =Integer.parseInt(request.getParameter("n_number"));
 			String n_author= request.getParameter("n_author");
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String n_dateTime = sdf.format(new Date());
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String n_dateTime = request.getParameter("n_dateTime");
 			String n_id = UUID.randomUUID().toString();
-			News news = new News(n_id,n_title,n_detal,n_author,1,n_dateTime);
+			News news = new News(n_id,n_title,n_detal,n_author,n_number,n_dateTime);
 			publicnews = newsDao.insertNews(news);
 			
 			String path = request.getServletContext().getRealPath("/upload");
 			if(file!=null&&file.length>0){
 				for(int i =0;i<file.length;i++){
 					MultipartFile file1 = file[i];
-					String name = System.currentTimeMillis()+file1.getOriginalFilename();
-					file1.transferTo(new File(path,name));
-					
-					Images images = new Images();
-					images.setG_id(null);;
-					images.setIm_id(UUID.randomUUID().toString());
-					images.setN_id(n_id);
-					images.setPathName(path+"\\"+name);
-					inMages = imagesDao.insertImage(images);	
+					if(!file1.isEmpty()){//文件存在
+						String name = System.currentTimeMillis()+file1.getOriginalFilename();
+						file1.transferTo(new File(path,name));
+						Images images = new Images();
+						images.setG_id(null);;
+						images.setIm_id(UUID.randomUUID().toString());
+						images.setN_id(n_id);
+						images.setPathName(path+"\\"+name);
+						inMages = imagesDao.insertImage(images);
+					}
 				}		
 			}
-		}
+		
 		Map<String,String> map = new ConcurrentHashMap<String,String>();
 		if(publicnews!=0||inMages!=0){
 			map.put("message", "success");

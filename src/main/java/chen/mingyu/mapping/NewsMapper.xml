@@ -20,7 +20,7 @@
 	<insert id="insertNews" parameterType="News">
 		<![CDATA[
 		insert into news(n_id,n_title,n_detal,n_author,n_number,n_dateTime) 
-				values(#{n_id},#{n_title},#{n_detal},#{n_author},#{n_number},to_date(#{n_dateTime},'yyyy-mm-dd'))
+				values(#{n_id},#{n_title},#{n_detal},#{n_author},#{n_number},#{n_dateTime})
 		]]>
 	</insert>
 	
