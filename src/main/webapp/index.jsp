@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="chen.mingyu.domain.Goods"%>
+<%@page import="chen.mingyu.domain.Images"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -95,6 +99,14 @@
 				      	<a href="javascript:;">女士</a>
 			      	</div>
 			      	<!-- 男士 -->
+			      <%
+			      	List<Goods> listGd = (List<Goods>)request.getSession().getAttribute("ltgoods");
+			      	if(listGd.size()>0){
+			      		for(Goods good:listGd){
+			      			List<Images> ltM = good.getLtMage();
+			      			Images images = ltM.get(0);
+			      %>
+			      	
 			      	<div class="goods goodsN clearfix">
 			      		<div class="box showpic">
 			      			<div class="picbox">
@@ -115,146 +127,11 @@
 				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
 				            </div>
 			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods2.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">YOHO有货 潮牌MACROPUS 绝对机能系列单肩挎包</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">MACROPUS</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥48.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>10</span></div>
-				            </div>
-			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods1.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Adidas originals</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥8500.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
-				            </div>
-			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods2.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">YOHO有货 潮牌MACROPUS 绝对机能系列单肩挎包</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">MACROPUS</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥48.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>10</span></div>
-				            </div>
-			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods1.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Adidas originals</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥8500.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
-				            </div>
-			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods2.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">YOHO有货 潮牌MACROPUS 绝对机能系列单肩挎包</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">MACROPUS</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥48.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>10</span></div>
-				            </div>
-			      		</div>
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods1.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Adidas originals</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥8500.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
-				            </div>
-			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="image/goods2.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">YOHO有货 潮牌MACROPUS 绝对机能系列单肩挎包</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">MACROPUS</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥48.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>10</span></div>
-				            </div>
-			      		</div>
-			      	</div>
+			      	<%
+			      		}
+			      	}
+			      	%>
+			      		
 			      	<!-- 女士 -->
 			      	<div class="goods goodsN none clearfix">
 			      		<div class="box showpic">
