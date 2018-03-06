@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import chen.mingyu.domain.Page;
 import chen.mingyu.domain.User;
 
 @Repository("userDao")
@@ -21,6 +22,9 @@ public interface UserDao {
 	//修改用户信息
 	public void updateUser(User user);
 	
+	//查询总数
+	public int getUserCount();
+	
 	//查询所有用户
-	public List<User> getAllUser();
+	public List<User> getAllUser(Page page);
 }

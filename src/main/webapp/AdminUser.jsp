@@ -17,13 +17,13 @@
     <link rel="stylesheet" type="text/css" href="css/admin.css">
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
 	<!-- Data Tables -->
-    <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
+    <!-- <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script> -->
 	
 </head>
 
@@ -112,20 +112,17 @@
        　  		$('#table').DataTable().fnAddData(packagingdatatabledata(data),true);   
 		}
 	}) */
-	$(document).ready(function() {
-	    loadUserData();
-	});
-	function loadUserData() {
 		$(document).ready(function () {
 			console.log( $('#table'));
 			var t = $('#table').DataTable({
+			   serverSide: true,//打开后台分页 
 	           processing: true,
 	           ajax: {
 	               //指定数据源
 	        	   url:"getAllUser",
-	        	   type:"GET"
+	        	   type:"GET",
+	        	   dataSrc: "rows",
 	           },
-	          
 			    columns: [
 			    	{"data": "userId"},
 	            	{"data": "userName"},
@@ -137,26 +134,13 @@
 	            	
 	            	/* {"data": <a href="AdminUserEdit.jsp">编辑</a>} */
 	            ],  
-	         //插件的汉化
-		        oLanguage: {
-		            "sLengthMenu": "每页显示 _MENU_ 条记录",
-		            "sZeroRecords": "抱歉， 没有找到",
-		            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-		            "sInfoEmpty": "没有数据",
-		            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-		            "oPaginate": {
-		                "sFirst": false,
-		                "sPrevious": false,
-		                "sNext": false,
-		                "sLast": false
-		            },
-		            "sZeroRecords": "没有检索到数据",
-		            "sProcessing": "<img src='' />",
-		            "sSearch": "搜索"
-		        },
+	            aLengthMenu:[3,10],
+	          //插件的汉化
+		        "language": {
+                	url: 'dataTables/Chinese.txt'
+            	},
 			});
 	    });
-	}
 	</script>
 
 

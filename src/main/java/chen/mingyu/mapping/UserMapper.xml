@@ -54,8 +54,13 @@
 		where user_id = #{userId}
 	</update>
 	
+	<!-- 查询总数 -->
+	<select id="getUserCount" resultType="int">
+		select count(1) from userinfo
+	</select>
 	<!-- 分页查询所有用户 -->
-	<select id="getAllUser" resultMap="UserMap">
-		select user_id,user_name,user_pwd,user_phone,user_email,user_date,is_delete from userinfo
+	<select id="getAllUser" parameterType="Page" resultMap="UserMap">
+		select user_id,user_name,user_pwd,user_phone,user_email,user_date,is_delete from userinfo 
+		limit #{startIndex},#{length}
 	</select>
 </mapper>

@@ -2,7 +2,9 @@ package chen.mingyu.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import chen.mingyu.dao.UserDao;
 import chen.mingyu.domain.ConsultVO;
+import chen.mingyu.domain.Page;
 import chen.mingyu.domain.User;
 
 
@@ -177,9 +181,44 @@ public class UserController{
 			}
 		}
 		@RequestMapping(value = "/getAllUser", method = RequestMethod.GET) 
-		public @ResponseBody List<User> getAllUser(){
-			userDao.getAllUser();
-			List<User> uList =userDao.getAllUser();
-			return uList; 
+		public @ResponseBody Page getAllUser(HttpServletRequest request){
+			// 获取前端过来的参数,dataTable默认的，不要随便更改 
+			String strStart = request.getParameter("start");
+			String strLength = request.getParameter("length");
+			String strDraw = request.getParameter("draw");
+			Integer start = 0;
+			Integer length = 10;
+			Integer draw = 1;
+			if(strStart != null&&strStart!=""
+					&&strLength != null&&strLength != ""
+					&&strDraw != null&&strDraw != ""){
+			start = Integer.valueOf(strStart);// 起始  
+			length = Integer.valueOf(strLength);// 每页显示的size 
+			draw = Integer.valueOf(strDraw);//总页数
+			}
+		    Page page = new Page();
+		    page.setStartIndex(start);
+		    page.setLength(length);
+			List<User> uList = userDao.getAllUser(page);
+			
+			int count = userDao.getUserCount();
+			
+			int iTotalRecords = count;	//总记录数
+			int iTotalDisplayRecords = 0;	//展示的总记录数
+			if(count%length > 0){
+		    	iTotalDisplayRecords = length;
+		    }else{
+		    	iTotalDisplayRecords = count;
+		    }
+			if(count%length > 0){
+				 draw = count/length + 1;
+		    }else{
+		    	draw = count/length;
+		    } 
+			page.setDraw(draw);
+			page.setiTotalRecords(iTotalRecords);;
+	    	page.setiTotalDisplayRecords(iTotalDisplayRecords);
+		    page.setRows(uList);
+		    return page;
 		}
 }
