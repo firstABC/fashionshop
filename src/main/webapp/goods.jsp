@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>商品详情</title>
-	<link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}js/jquery.1.4.2-min.js"></script>
 </head>
 <body>
 	<div class="banner">
 		<header>
-			<jsp:include page="header.jsp" flush="true"/>
+			<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
 	                 <a href="index.jsp">首页</a>
@@ -31,7 +31,7 @@
 			<div class="goodsIntr clearfix">
 				<div class="preview">
 					<div class="bigImg">
-						<img src="image/goods1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701" class="midimg" />
+						<img src="${pageContext.request.contextPath}/image/goods1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701" class="midimg" />
 						<div style="display:none;" class="winSelector"></div>
 					</div><!--bigImg end-->	
 
@@ -39,9 +39,9 @@
 						<!-- <div class="scrollbutton smallImgUp disabled"></div> -->
 						<div class="imageMenu">
 							<ul>
-								<li class="onlickImg"><img src="image/goods1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
-								<li><img src="image/goods1-1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
-								<li><img src="image/goods1-2.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
+								<li class="onlickImg"><img src="${pageContext.request.contextPath}/image/goods1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
+								<li><img src="${pageContext.request.contextPath}/image/goods1-1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
+								<li><img src="${pageContext.request.contextPath}/image/goods1-2.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
 							</ul>
 						</div>
 
@@ -89,8 +89,8 @@
 							<div class="plText">
 								<p>很好很好，还送了实用的小赠品，客服态度非常好。满意！</p>
 								<div class="imgs">
-									<img src="image/goods1-1.jpg" alt="">
-									<img src="image/goods1-2.jpg" alt="">
+									<img src="${pageContext.request.contextPath}/image/goods1-1.jpg" alt="">
+									<img src="${pageContext.request.contextPath}/image/goods1-2.jpg" alt="">
 								</div>
 								<div class="time"><span>2017.12.19</span></div>
 							</div>
@@ -108,7 +108,7 @@
 				<div class="goods clearfix">
 		      		<div class="box showpic">
 		      			<div class="picbox">
-		      				<a href="javascript:;" title=""><img src="image/goods1.jpg" alt=""></a>
+		      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods1.jpg" alt=""></a>
 		      				<a href="javascript:;" class="deShadow" title=""></a>
 		      				<div class="actions">
 			            		<div class="lefter">
@@ -127,7 +127,7 @@
 
 		      		<div class="box showpic">
 		      			<div class="picbox">
-		      				<a href="javascript:;" title=""><img src="image/goods2.jpg" alt=""></a>
+		      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods2.jpg" alt=""></a>
 		      				<a href="javascript:;" class="deShadow" title=""></a>
 		      				<div class="actions">
 			            		<div class="lefter">
@@ -146,7 +146,7 @@
 
 		      		<div class="box showpic">
 		      			<div class="picbox">
-		      				<a href="javascript:;" title=""><img src="image/goods1.jpg" alt=""></a>
+		      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods1.jpg" alt=""></a>
 		      				<a href="javascript:;" class="deShadow" title=""></a>
 		      				<div class="actions">
 			            		<div class="lefter">
@@ -165,7 +165,7 @@
 
 		      		<div class="box showpic">
 		      			<div class="picbox">
-		      				<a href="javascript:;" title=""><img src="image/goods2.jpg" alt=""></a>
+		      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods2.jpg" alt=""></a>
 		      				<a href="javascript:;" class="deShadow" title=""></a>
 		      				<div class="actions">
 			            		<div class="lefter">
@@ -202,7 +202,7 @@
 	        </div>
 	    </div>
 		<!-- 回到顶部 -->
-		<div class="back-top" style="display: none;"><img src="image/back-top.png"></div>
+		<div class="back-top" style="display: none;"><img src="${pageContext.request.contextPath}/image/back-top.png"></div>
 	</div>
 
 	<script>	

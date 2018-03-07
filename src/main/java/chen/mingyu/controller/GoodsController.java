@@ -154,7 +154,7 @@ public class GoodsController {
 		if(goods!=null){
 			session.setAttribute("goods", goods);
 		}
-		return "goodsInfo";
+		return "/goods";
 	}
 	
 }

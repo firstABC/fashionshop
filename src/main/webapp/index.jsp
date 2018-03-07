@@ -110,7 +110,7 @@
 			      	<div class="goods goodsN clearfix">
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="goods.jsp" title=""><img src="${pageContext.request.contextPath}/<%=images.getPathName() %>" alt=""></a>
+			      				<a href="goods.jsp" title=""><img src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt=""></a>
 			      				<a href="goods.jsp" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -119,7 +119,7 @@
 				        		</div>
 			      			</div>
 			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title=""><%=good.getG_detail() %></a>
+			      				<a href="${pageContext.request.contextPath}/goods/goodsInfo?g_id=<%=good.getG_id() %>;" target="_blank" title=""><%=good.getG_detail() %></a>
 			      			</div>
 			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=good.getG_brand()%></a></div>
 			      			<div class="showpic_info clearfix">
