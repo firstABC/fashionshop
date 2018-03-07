@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="chen.mingyu.domain.Goods"%>
+<%@page import="chen.mingyu.domain.Images"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>商品详情</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/font/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/reset.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/style.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}js/jquery.1.4.2-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.1.4.2-min.js"></script>
 </head>
 <body>
 	<div class="banner">
 		<header>
-			<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
+			<jsp:include page="header.jsp" flush="true"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
 	                 <a href="index.jsp">首页</a>
@@ -25,39 +28,48 @@
 	        </div>
 		</header>
 	</div>
-	
+	<%
+		Goods goods = (Goods)request.getSession().getAttribute("goods");
+	%>
 	<div class="main">
 		<div class="lay1200 goodContent">
 			<div class="goodsIntr clearfix">
 				<div class="preview">
 					<div class="bigImg">
-						<img src="${pageContext.request.contextPath}/image/goods1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701" class="midimg" />
+						<img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName()%>" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701" class="midimg" />
 						<div style="display:none;" class="winSelector"></div>
 					</div><!--bigImg end-->	
-
 					<div class="smallImg">
 						<!-- <div class="scrollbutton smallImgUp disabled"></div> -->
 						<div class="imageMenu">
 							<ul>
-								<li class="onlickImg"><img src="${pageContext.request.contextPath}/image/goods1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
-								<li><img src="${pageContext.request.contextPath}/image/goods1-1.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
-								<li><img src="${pageContext.request.contextPath}/image/goods1-2.jpg" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
+								<li class="onlickImg"><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt="三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701"/></li>
+					<%
+						if(goods!=null){
+							List<Images> ltM = goods.getLtMage();
+							if(ltM.size()>0){
+								for(Images image : ltM){
+					%>
+								<li><img src="${pageContext.request.contextPath}/upload/<%=image.getPathName() %>" alt="${goods.g_title}"/></li>
+					<%
+								}
+							}
+						}
+					%>
 							</ul>
-						</div>
-
+						 </div>
 						<div class="scrollbutton smallImgDown"></div>
 					</div><!--smallImg end-->	
-
 					<!-- <div class="bigView" style="display:none;"><img width="800" alt="" src="" /></div> -->
 				</div>
 
 				<div class="goodSubst">
-					<h1>三叶草/Adidas Tubular X 小椰子 迷彩 陈奕迅上脚 B25700/B25701</h1>
-					<p>adidas Tubular X 基于 Tubular鞋型，采用高帮设计，简化鞋身设计，以厚实的轮胎鞋底托衬。而眼前这双 adidas Tubular X 则以全迷彩贯穿，点亮了我们的 视觉感受。</p>
-					<div class="pinpai">品牌：<a href="javascript:;" target="_blank">Adidas originals</a></div>
-					<div class="d_price"><strong>￥8500.00</strong></div>
+					<h1>${goods.g_title}</h1>
+					<p>${goods.g_detail}</p>
+					<div class="pinpai">品牌：<a href="javascript:;" target="_blank">${goods.g_brand }</a></div>
+					<div class="d_price"><strong>￥${goods.g_price }</strong></div>
 					<div class="d_social clearfix mt20">
-	            	<div class="loveNum"><i class="icon iconfont icon-love"></i><span>4</span></div>
+	            	<div class="loveNum"><i class="icon iconfont icon-love"></i><span>${goods.g_like}</span></div>
 	           		<div class="loveNum"><span>立即预定</span></div>
 	            </div>
 				</div>

@@ -51,6 +51,6 @@
 	</update>
 	
 	<select id="selectByG_id" resultMap="goodsResultMap" parameterType="String">
-		select * from goods where g_id =#{g_id}
+		select * from goods g,images i where g.g_id = i.g_id and g.g_id =#{g_id}
 	</select>
 </mapper>
