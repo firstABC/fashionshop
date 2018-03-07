@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-02-27 22:14:20
+Date: 2018-03-07 19:15:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,9 +25,5 @@ CREATE TABLE `news` (
   `n_detal` varchar(255) DEFAULT NULL,
   `n_author` varchar(255) DEFAULT NULL,
   `n_number` int(10) DEFAULT NULL,
-  `n_dateTime` datetime DEFAULT NULL
+  `n_dateTime` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of news
--- ----------------------------

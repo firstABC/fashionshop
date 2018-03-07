@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-03-02 10:20:45
+Date: 2018-03-07 19:15:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,3 @@ CREATE TABLE `mylike` (
   `userId` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`ml_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of mylike
--- ----------------------------

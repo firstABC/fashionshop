@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-02-27 22:14:28
+Date: 2018-03-07 19:15:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,3 @@ CREATE TABLE `orders` (
   `or_price` double(10,0) DEFAULT NULL,
   `or_status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of orders
--- ----------------------------
