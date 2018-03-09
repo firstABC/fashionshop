@@ -18,6 +18,9 @@ public interface GoodsDao {
 	
 	//根据性别查询商品
 	public List<Goods> selectGoodsBySex(int g_sex);
+
+	//根据状态查询商品详情
+	public List<Goods> selectGoodsByStatus(String g_status);
 	
 	public int alterLike(Goods goods);
 	

@@ -27,7 +27,7 @@
 	</insert>
 	
 	<select id="selectGoodsAllByNumber" resultMap="goodsResultMap">
-		select * from goods g,images i where g.g_id = i.g_id order by g.g_like desc limit 6
+		select * from goods g,images i where g.g_id = i.g_id order by g.g_like desc limit 8
 	</select>
 	
 	<select id ="selectGoodsAll" resultMap="goodsResultMap">
@@ -35,7 +35,11 @@
 	</select>
 	
 	<select id="selectGoodsBySex" resultMap="goodsResultMap" parameterType="int">
-		select * from goods where g_sex = #{g_sex}
+		select * from goods g,images i where g.g_id = i.g_id and g.g_sex = #{g_sex} order by g.g_like desc limit 8
+	</select>
+	
+	<select id="selectGoodsByStatus" resultMap="goodsResultMap" parameterType="String">
+		select * from goods g,images i where g.g_id = i.g_id  and g.g_status =#{g_status} order by g.g_like desc limit 8
 	</select>
 	
 	<update id="alterLike" parameterType="Goods">

@@ -18,4 +18,8 @@ public interface NewsDao {
 	
 	//查询新闻详情
 	public News selectByN_id(String n_id);
+	
+	
+	//根据阅读数量展示首页信息
+	public List<News> selectFiveByNum();
 }

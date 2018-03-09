@@ -62,7 +62,7 @@ public class NewsController {
 						images.setG_id(null);;
 						images.setIm_id(UUID.randomUUID().toString());
 						images.setN_id(n_id);
-						images.setPathName(path+"\\"+name);
+						images.setPathName(name);
 						inMages = imagesDao.insertImage(images);
 					}
 				}		
@@ -105,7 +105,7 @@ public class NewsController {
 		if(news!=null){
 			session.setAttribute("news", news);
 		}
-		return "newsInfo";
+		return "infoDemo";
 	}
 	
 }

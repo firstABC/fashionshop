@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import chen.mingyu.dao.GoodsDao;
+import chen.mingyu.dao.NewsDao;
 import chen.mingyu.domain.Goods;
+import chen.mingyu.domain.News;
 
 @Controller
 @RequestMapping("/switch")
@@ -18,13 +20,28 @@ public class SwitchController {
 	
 	@Resource
 	private GoodsDao goodsDao;
+	@Resource
+	private NewsDao newsDao;
 	
 	@RequestMapping("/toIdex")
 	public String toIndex(HttpServletRequest request,HttpSession session){
 		
-		List<Goods> ltgoods = goodsDao.selectGoodsAllByNumber();
-		if(ltgoods!=null){
-			session.setAttribute("ltgoods", ltgoods);
+		List<Goods> ltgoodsM = goodsDao.selectGoodsBySex(0);//0 男  1 女
+		List<Goods> ltgoodsW = goodsDao.selectGoodsBySex(1);//0 男  1 女
+		List<Goods> ltgoodsN = goodsDao.selectGoodsByStatus("C");// C 新品预定
+		List<News>  ltNews = newsDao.selectFiveByNum(); //新闻
+	//	newsDao
+		if(ltgoodsM!=null){
+			session.setAttribute("ltgoodsM", ltgoodsM);
+		}
+		if(ltgoodsW!=null){
+			session.setAttribute("ltgoodsW", ltgoodsW);
+		}
+		if(ltgoodsN!=null){
+			session.setAttribute("ltgoodsN", ltgoodsN);
+		}
+		if(ltNews!=null){
+			session.setAttribute("ltNews", ltNews);
 		}
 		return "index";
 	}

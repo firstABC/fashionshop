@@ -113,8 +113,8 @@
 		    				<td>
 		    					<select name="g_status">
 		    						<option value="A">已上架</option>
-		    						<option value="B">未上架</option>
-		    						<option value="C">已下架</option>
+		    						<option value="B">已下架</option>
+		    						<option value="C">新品预定</option>
 		    					</select>
 		    				</td>
 		    			</tr>

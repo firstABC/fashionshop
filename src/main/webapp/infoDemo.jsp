@@ -5,10 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>潮品之家</title>
-	<link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 </head>
 <body>
 	<div class="banner">
@@ -29,15 +29,15 @@
 	<div class="main">
 		<div class="lay1200">
 			<div class="zxWz">
-				<h2>怎么搭｜ 冬天最值得买的3件大衣  </h2>
+				<h2>${news.n_title }</h2>
 				<div class="ti_user">
 					<span>
 						<a href="javascript:;" title="潮品之家独家频道">潮品之家独家频道</a>
 					</span>
-					<p>发布者：<span>黝黑小姐</span>时间：昨天 09:53</p>
+					<p>发布者：<span>${news.n_author}</span>时间：${news.n_dateTime }</p>
 			    </div>
 			    <div class="zxWz-content">
-			    	<p>嗯，我是报了这个选题：<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。<br/>给你们推荐冬天最值得买的3件大衣。<br/>然而，身处广东的亮亮，<br/>完全不觉得这个冬天我用得上大衣。</p>
+			    	<p>${news.n_detal }</p>
 			    </div>
 			</div>
 		</div>

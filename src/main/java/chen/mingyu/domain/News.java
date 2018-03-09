@@ -69,6 +69,9 @@ public class News {
 		this.n_number = n_number;
 		this.n_dateTime = n_dateTime;
 	}
+	public News() {
+		super();
+	}
  
  
  

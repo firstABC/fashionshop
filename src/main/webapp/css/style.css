@@ -62,7 +62,7 @@ input, textarea{
 .form-options a:hover{
     border-bottom: 2px solid #0099cb;
 }
-/* 首页 */
+/* 棣栭〉 */
 .banner{
     background: #fff;
 	width: 100%;
@@ -154,7 +154,7 @@ input, textarea{
     margin-right: 25px;
 }
 
-/* 资讯推荐 */
+/* 璧勮鎺ㄨ崘 */
 .information{
     width: 100%;
     margin: 25px auto;
@@ -243,7 +243,7 @@ input, textarea{
     color: #0099cb;
 }
 
-/* 热门推荐 */
+/* 鐑棬鎺ㄨ崘 */
 .tjTitle {
     height: 50px;
     padding-bottom: 5px;
@@ -397,7 +397,7 @@ input, textarea{
 }
 
 
-/* 地址栏 */
+/* 鍦板潃鏍� */
 .foot_wrap {
     margin-top: 30px;
     background: #444444;
@@ -426,7 +426,7 @@ input, textarea{
     color: #fff;
     margin: 0 5px 0 2px;
 }
-/* 回到顶部 */
+/* 鍥炲埌椤堕儴 */
 .back-top {
     position: fixed;
     bottom: 80px;
@@ -439,7 +439,7 @@ input, textarea{
 	margin-top: 90px;
 }
 
-/* 登录注册 */
+/* 鐧诲綍娉ㄥ唽 */
 .login-panel {
     width: 720px;
     margin: 40px auto;
@@ -598,7 +598,7 @@ input, textarea{
     color: #000;
 }
 
-/* 商品详情 */
+/* 鍟嗗搧璇︽儏 */
 .goodContent{
 	padding-top: 15px;
     min-height: 800px;
@@ -656,7 +656,7 @@ input, textarea{
 .preview {
 	float: left;
     width: 650px;
-    height: 500px;
+   /*  height: 500px; */
     margin-right: 50px;
 }
 /* bigImg */
@@ -736,7 +736,7 @@ input, textarea{
 	position:absolute;
 } */
 
-/* 评论 */
+/* 璇勮 */
 .d_nav_tab .d_menu{
 	margin: 20px auto;
 	text-align: center;
@@ -801,7 +801,7 @@ input, textarea{
 	color: #ccc;
 	font-size: 12px;
 }
-/* 猜你喜欢 */
+/* 鐚滀綘鍠滄 */
 .guessLike>p{
 	border-bottom: 2px solid #F0F1F2;
 	font-size: 18px;
@@ -812,7 +812,7 @@ input, textarea{
 	border: none;
 }
 
-/* 个人信息 */
+/* 涓汉淇℃伅 */
 .infoMy{
 	padding-top: 10px;
 }
@@ -917,7 +917,7 @@ input, textarea{
 	color: #fff;
 	background: #0099cb;
 }
-/* 编辑个人信息 */
+/* 缂栬緫涓汉淇℃伅 */
 .editBox, .plBox{
     position: fixed;
     top: 0;
@@ -972,7 +972,7 @@ input, textarea{
     color: #0099cb;
     margin-right: 10px;
 }
-/* 立即评论 */
+/* 绔嬪嵆璇勮 */
 .plNow{
     float: right;
     color: #0099cb;
@@ -984,7 +984,7 @@ input, textarea{
     min-height: 200px;
 }
 
-/* 潮流资讯 */
+/* 娼祦璧勮 */
 .zx{
     padding-top: 25px;
 }
@@ -1024,7 +1024,7 @@ input, textarea{
     color: #999;
 }
 
-/* 潮流资讯详情 */
+/* 娼祦璧勮璇︽儏 */
 .zxWz{
     padding-top: 25px;
 }

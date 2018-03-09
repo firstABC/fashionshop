@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="chen.mingyu.domain.Goods"%>
 <%@page import="chen.mingyu.domain.Images"%>
+<%@page import="chen.mingyu.domain.News"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,41 +42,43 @@
 			<!-- Add Pagination -->
 			<div class="swiper-pagination"></div> 
 		</div>
-
+		<%
+			List<News> ltNews = (List<News>)request.getSession().getAttribute("ltNews");
+		%>
 		<div class="lay1200">
 			<!-- 资讯推荐 -->
 			<div class="information clearfix">
 				<div class="smadd-pic">
 					<p class="oha-chan"><span>潮流资讯</span></p>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information1.jpg"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information2.jpg"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information3.jpg"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/image/information4.jpg"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(0).getLtMage().get(0).getPathName() %>"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(1).getLtMage().get(0).getPathName() %>"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(2).getLtMage().get(0).getPathName() %>"></a>
+					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(3).getLtMage().get(0).getPathName() %>"></a>
 				</div>
 				<div class="smadd-hiddiv">
 					<div class="ind-hotzx-bt">
-		        		<a class="bt-on" href="javascript:;">最新热贴</a>
+		        		<a class="bt-on" href="javascript:;">最新咨询</a>
 		        	</div>
 		        	<ul class="ind-hotul">
 		        		<li>
 		        			<span class="hot-i">1</span>
-		        			<a href="javascript:;">热门消息热门消息热门消息热门消息热门消息</a>
+		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(0).getN_id()%>"><%=ltNews.get(0).getN_title() %></a>
 		        		</li>
 		        		<li>
 		        			<span class="hot-i">2</span>
-		        			<a href="javascript:;">2热门消息热门消息热门消息热门消息</a>
+		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(1).getN_id()%>"><%=ltNews.get(1).getN_title() %></a>
 		        		</li>
 		        		<li>
 		        			<span class="hot-i">3</span>
-		        			<a href="javascript:;">3热门消息热门消息热门消息热门消息</a>
+		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(2).getN_id()%>"><%=ltNews.get(2).getN_title() %></a>
 		        		</li>
 		        		<li>
 		        			<span>4</span>
-		        			<a href="javascript:;">4热门消息热门消息热门消息热门消息</a>
+		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(3).getN_id()%>"><%=ltNews.get(3).getN_title() %></a>
 		        		</li>
 		        		<li>
 		        			<span>5</span>
-		        			<a href="javascript:;">5热门消息热门消息热门消息热门消息</a>
+		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(4).getN_id()%>"><%=ltNews.get(4).getN_title() %></a>
 		        		</li>
 		        	</ul>
 				</div>
@@ -101,9 +104,9 @@
 			      	<!-- 男士 -->
 			     <div class="goods goodsN clearfix">
 			      <%
-			      	List<Goods> listGd = (List<Goods>)request.getSession().getAttribute("ltgoods");
-			      	if(listGd.size()>0){
-			      		for(Goods good:listGd){
+			      	List<Goods> ltgoodsM = (List<Goods>)request.getSession().getAttribute("ltgoodsM");
+			      	if(ltgoodsM!=null&&ltgoodsM.size()>0){
+			      		for(Goods good:ltgoodsM){
 			      			List<Images> ltM = good.getLtMage();
 			      			Images images = ltM.get(0);
 			      %>
@@ -118,7 +121,7 @@
 				        		</div>
 			      			</div>
 			      			<div class="showpic_title">
-			      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=good.getG_id() %>;" target="_blank" title=""><%=good.getG_detail() %></a>
+			      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=good.getG_id() %>" target="_blank" title=""><%=good.getG_title() %></a>
 			      			</div>
 			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=good.getG_brand()%></a></div>
 			      			<div class="showpic_info clearfix">
@@ -131,11 +134,20 @@
 			      	}
 			      	%>
 			      		
+			      	</div>
 			      	<!-- 女士 -->
 			      	<div class="goods goodsN none clearfix">
+			      	 <%
+			      	List<Goods> ltgoodsW = (List<Goods>)request.getSession().getAttribute("ltgoodsW");
+			      	if(ltgoodsW!=null&&ltgoodsM.size()>0){
+			      		for(Goods good:ltgoodsW){
+			      			List<Images> ltM = good.getLtMage();
+			      			Images images = ltM.get(0);
+			      %>
+			      	
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods11.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -144,62 +156,37 @@
 				        		</div>
 			      			</div>
 			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">BLACK HEAD黑头 骷髅头铆钉双肩包、旅行包</a>
+			      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=good.getG_id() %>" target="_blank" title=""><%=good.getG_title() %></a>
 			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">black head</a></div>
+			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=good.getG_brand()%></a></div>
 			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥89.00</b><s>268.00</s><span>( 3.3 折 )</span></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
+				                <div class="priceNum fl"><b><%=good.getG_price() %></b></div>
+				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span><%=good.getG_like() %></span></div>
 				            </div>
 			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods21.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">Ze by sankuanz羊呢落肩大衣(两色入)</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">sankuanz</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥1190.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>0</span></div>
-				            </div>
-			      		</div>
-			      	</div>
+			      			<%
+			      		}
+			      	}
+			      	%>
 				</div>
+				
+			      	</div>
+			      	
 				<!-- 新品预定 -->
 				<div class="tjGoods none">
 					<div class="goods clearfix">
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods12.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">BEAUTY & YOUTH BY x Steven Alan 美国时尚品牌纯羊绒围巾</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Steven Alan</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥380.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>2</span></div>
-				            </div>
-			      		</div>
 
+			      		 <%
+			      	List<Goods> ltgoodsN = (List<Goods>)request.getSession().getAttribute("ltgoodsN");
+			      	if(ltgoodsN!=null&&ltgoodsM.size()>0){
+			      		for(Goods good:ltgoodsN){
+			      			List<Images> ltM = good.getLtMage();
+			      			Images images = ltM.get(0);
+			      %>
+			      	
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods22.jpg" alt=""></a>
+			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt=""></a>
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
@@ -208,35 +195,18 @@
 				        		</div>
 			      			</div>
 			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">Mean Streets x YZ Tattoo 联名设计棒球帽 - 纯黑限定版</a>
+			      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=good.getG_id() %>" target="_blank" title=""><%=good.getG_title() %></a>
 			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Mean Streets</a></div>
+			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=good.getG_brand()%></a></div>
 			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥318.00</b><s class="ml5">398.00</s> <span>( 8.0 折 )</span></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>0</span></div>
+				                <div class="priceNum fl"><b><%=good.getG_price() %></b></div>
+				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span><%=good.getG_like() %></span></div>
 				            </div>
 			      		</div>
-
-			      		<div class="box showpic">
-			      			<div class="picbox">
-			      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/image/goods32.jpg" alt=""></a>
-			      				<a href="javascript:;" class="deShadow" title=""></a>
-			      				<div class="actions">
-				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
-				                    </div>
-				        		</div>
-			      			</div>
-			      			<div class="showpic_title">
-			      				<a href="javascript:;" target="_blank" title="">左岸潇同款RXP 2015高端定制欧美印花荷叶边半身裙小鱼尾裙短裙夏</a>
-			      			</div>
-			      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">其他</a></div>
-			      			<div class="showpic_info clearfix">
-				                <div class="priceNum fl"><b>¥980.00</b></div>
-				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span>0</span></div>
-				            </div>
-			      		</div>
-			      	</div>
+			      			<%
+			      		}
+			      	}
+			      	%>
 				</div>
 			</div> 
 
