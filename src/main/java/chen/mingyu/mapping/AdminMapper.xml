@@ -17,6 +17,5 @@
          where admin_name = #{adminName}
          	and admin_pwd = #{adminPwd}
          	and is_delete = #{isDelete}
-         
 	</select>
 </mapper>

@@ -11,9 +11,10 @@ public class Page {
 	//查询条件
 	private Map<String, Object> params;		
 	//总条数
-	private int draw;
+	private int total;
 	//行数据
 	private List rows;
+	private int maxPage;
 	
 	//datatables数据名
 	private int iTotalDisplayRecords;   
@@ -31,11 +32,11 @@ public class Page {
 	public void setLength(int length) {
 		this.length = length;
 	}
-	public int getDraw() {
-		return draw;
+	public int getTotal() {
+		return total;
 	}
-	public void setDraw(int draw) {
-		this.draw = draw;
+	public void setTotal(int total) {
+		this.total = total;
 	}
 	public List getRows() {
 		return rows;
@@ -48,6 +49,12 @@ public class Page {
 	}
 	public void setParams(Map<String, Object> params) {
 		this.params = params;
+	}
+	public int getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
 	}
 	public int getiTotalDisplayRecords() {
 		return iTotalDisplayRecords;

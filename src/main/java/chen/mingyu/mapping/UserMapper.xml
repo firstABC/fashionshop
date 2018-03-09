@@ -21,9 +21,6 @@
          and user_pwd = #{userPwd}
          and is_delete = #{isDelete}
 	</select>
-	<select id="countUserMaxId" resultType="int">
-		select max(user_id) from userinfo
-	</select>
 	<insert id="addUser"  parameterType="User">
 		insert into userinfo(user_id, user_name, user_pwd, user_email, user_phone, user_date, is_delete) values
 		(#{userId}, #{userName}, #{userPwd}, #{userEmail}, #{userPhone}, #{userDate}, #{isDelete})
@@ -56,11 +53,12 @@
 	
 	<!-- 查询总数 -->
 	<select id="getUserCount" resultType="int">
-		select count(1) from userinfo
+		select count(1) from userinfo where is_delete ='0'
 	</select>
 	<!-- 分页查询所有用户 -->
 	<select id="getAllUser" parameterType="Page" resultMap="UserMap">
 		select user_id,user_name,user_pwd,user_phone,user_email,user_date,is_delete from userinfo 
+		where is_delete = '0'
 		limit #{startIndex},#{length}
 	</select>
 </mapper>

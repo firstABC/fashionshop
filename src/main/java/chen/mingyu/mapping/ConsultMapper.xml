@@ -10,8 +10,8 @@
 		<result property="userName" column="user_name"/>
 		<result property="adminId" column="admin_id"/>
 		<result property="adminName" column="admin_name"/>
-		<result property="goodsId" column="g_id"/>
-		<result property="goodsName" column="g_name"/>
+		<result property="goodsId" column="goods_id"/>
+		<result property="goodsName" column="goods_name"/>
 		<result property="consultMsg" column="consult_msg"/>
 		<result property="replyMsg" column="reply_msg"/>
 		<result property="consultDate" column="consult_date"/>
@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<!-- 查询评论 -->
-	<select id="getConsultList" parameterType="ConsultVO" resultMap="ConsultMap">
+	<select id="getConsultList" parameterType="Page" resultMap="ConsultMap">
 	select
 			 c1.consult_id as consult_id,
 			 c1.user_id as user_id,
@@ -41,11 +41,11 @@
 			 c1.user_id = u1.user_id
 			 and c1.goods_id = g1.g_id
 			 and c1.is_delete = '0'
-		   <if test="goodsId != null and goodsId != '' ">
-           		and g1.g_id = #{goodsId}
+		   <if test="params.goodsId != null and params.goodsId != '' ">
+           		and g1.g_id = #{params.goodsId}
            </if>
-           <if test="userId != null and userId != '' ">
-           		and u1.user_id = #{userId}
+           <if test="params.userId != null and params.userId != '' ">
+           		and u1.user_id = #{params.userId}
            </if>
 	union all
 	select
@@ -69,17 +69,73 @@
 	           c2.user_id = u2.user_id
 	           and c2.goods_id = g2.g_id
 	           and c2.is_delete = '0'
-			   <if test="goodsId != null and goodsId != '' ">
-	           		and g2.g_id = #{goodsId}
+			   <if test="params.goodsId != null and params.goodsId != '' ">
+	           		and g2.g_id = #{params.goodsId}
 	           </if>
-	           <if test="userId != null and userId != '' ">
-	           		and u2.user_id = #{userId}
+	           <if test="params.userId != null and params.userId != '' ">
+	           		and u2.user_id = #{params.userId}
 	           </if>
-	order by consult_date desc
+	order by consult_date desc limit #{startIndex},#{length}
 	</select>
 	
-	<select id="countConsultMaxId" resultType="Integer">
-		select max(consult_id) from consult
+	<select id="getConsultCount" parameterType="Page" resultType="int">
+	select ifnull(count(1),0) from
+	(
+		select
+			 c1.consult_id as consult_id,
+			 c1.user_id as user_id,
+			 u1.user_name as user_name,
+			 c1.admin_id as admin_id,
+			 null as admin_name,
+			 c1.goods_id as goods_id,
+			 g1.g_title as goods_name,
+			 c1.consult_msg as consult_msg,
+			 c1.reply_msg as reply_msg,
+			 c1.consult_date as consult_date,
+			 c1.reply_date as reply_date,
+			 c1.is_delete as is_delete
+			from consult c1, 
+					 userinfo u1, 
+					 goods g1
+		  where c1.admin_id is NULL and 
+			 c1.user_id = u1.user_id
+			 and c1.goods_id = g1.g_id
+			 and c1.is_delete = '0'
+		   <if test="params.goodsId != null and params.goodsId != '' ">
+           		and g1.g_id = #{params.goodsId}
+           </if>
+           <if test="params.userId != null and params.userId != '' ">
+           		and u1.user_id = #{params.userId}
+           </if>
+	union all
+	select
+	               c2.consult_id as consult_id,
+	               c2.user_id as user_id,
+	               u2.user_name as user_name,
+								 c2.admin_id as admin_id,
+								 a2.admin_name as admin_name,
+	               c2.goods_id as goods_id,
+	               g2.g_title as goods_name,
+	               c2.consult_msg as consult_msg,
+	               c2.reply_msg as reply_msg,
+	               c2.consult_date as consult_date,
+	               c2.reply_date as reply_date,
+	               c2.is_delete as is_delete
+	          from consult c2, 
+	               userinfo u2, 
+	               goods g2,
+								 admin a2
+	         where c2.admin_id is not NULL and c2.admin_id = a2.admin_id and
+	           c2.user_id = u2.user_id
+	           and c2.goods_id = g2.g_id
+	           and c2.is_delete = '0'
+			   <if test="params.goodsId != null and params.goodsId != '' ">
+	           		and g2.g_id = #{params.goodsId}
+	           </if>
+	           <if test="params.userId != null and params.userId != '' ">
+	           		and u2.user_id = #{params.userId}
+	           </if>
+	) as t
 	</select>
  	<!-- 用户新增评论 -->
 	<insert id="addConsult" parameterType="ConsultVO">

@@ -17,7 +17,24 @@ public class ConsultVO {
 	public ConsultVO() {
 		super();
 	}
-
+	//评论
+	public ConsultVO(String consultId, String userId, String goodsId,
+			String consultMsg, String consultDate, String isDelete) {
+		super();
+		this.consultId = consultId;
+		this.userId = userId;
+		this.goodsId = goodsId;
+		this.consultMsg = consultMsg;
+		this.consultDate = consultDate;
+		this.isDelete = isDelete;
+	}
+	//回复
+	public ConsultVO(String adminId, String replyMsg, String replyDate) {
+		super();
+		this.adminId = adminId;
+		this.replyMsg = replyMsg;
+		this.replyDate = replyDate;
+	}
 	public String getConsultId() {
 		return consultId;
 	}

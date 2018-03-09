@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 
 
 import chen.mingyu.dao.UserDao;
@@ -44,8 +46,7 @@ public class UserController{
 		@RequestMapping(value = "/login", method = RequestMethod.GET) 
 
 		public String login(HttpServletRequest request,HttpServletResponse response,  
-		@RequestParam("userName")String userName, @RequestParam("userPwd")String userPwd, 
-		Model model) throws Exception { 
+		@RequestParam("userName")String userName, @RequestParam("userPwd")String userPwd) throws Exception { 
 			HttpSession session = request.getSession();
 			User user = new User(userName,userPwd);
 			user.setIsDelete("0");
@@ -67,12 +68,11 @@ public class UserController{
 			return "index";
 		}
 		@RequestMapping("/register")
-		public String register(HttpServletRequest request,HttpServletResponse response,User user,Model model){
+		public String register(HttpServletRequest request,HttpServletResponse response,User user){
 			HttpSession session = request.getSession();
 			if(user != null){
 				//设置id
-				Integer userId = userDao.countUserMaxId()+1;
-				String userIdStr = userId.toString();
+				String userIdStr = UUID.randomUUID().toString();
 				user.setUserId(userIdStr);
 				//默认未禁用
 				user.setIsDelete("0");
@@ -98,14 +98,9 @@ public class UserController{
 			}
 		}
 		
-		@RequestMapping("/getUserInfoById")
-		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")String userId,Model model){
+		@RequestMapping(value="/getUserInfoById", method = RequestMethod.GET)
+		public String getUserInfoById(HttpServletRequest request,@RequestParam("userId")String userId){
 			HttpSession session = request.getSession();
-			/*String msg = (String) request.getAttribute("msg");
-			if(msg == "用户名重复!"){
-				request.setAttribute("msg", msg);
-				userId = (String) request.getAttribute("userId");
-			}*/
 			if(userId != null){
 				User user = new User();
 				user.setUserId(userId);
@@ -120,12 +115,13 @@ public class UserController{
 			}
 		}
 		@RequestMapping(value="/updateUser", method = RequestMethod.POST)
-		public String updateUser(HttpServletRequest request,HttpServletResponse response,User user,Model model){
+		public String updateUser(HttpServletRequest request,HttpServletResponse response,User user){
 			HttpSession session = request.getSession();
 			if(user.getUserId() != null){
 				User uCons = new User();
 				uCons.setUserName(user.getUserName());
-				if(userDao.getUserInfo(uCons) != null){
+				User uRes = userDao.getUserInfo(uCons);
+				if(uRes != null&&uRes.getUserId() != user.getUserId()){
 					request.setAttribute("msg", "用户名重复!");
 					session.setAttribute("user", user);
 				}else{
@@ -134,8 +130,6 @@ public class UserController{
 					user.setUserDate(sdf.format(date));
 					userDao.updateUser(user);
 				}
-				/*request.setAttribute("userId", user.getUserId());
-				return "/getUserInfoById?userId="+user.getUserId();*/
 				return "info";
 			}else{
 				request.setAttribute("msg", "登录超时!");
@@ -144,7 +138,7 @@ public class UserController{
 			
 		}
 		@RequestMapping("/getUserCheck")
-		public String getUserCheck(HttpServletRequest request,Model model,
+		public String getUserCheck(HttpServletRequest request,
 				@RequestParam("userName")String userName,
 				@RequestParam("userPhone")String userPhone,
 				@RequestParam("userEmail")String userEmail){
@@ -215,7 +209,7 @@ public class UserController{
 		    }else{
 		    	draw = count/length;
 		    } 
-			page.setDraw(draw);
+			//page.setDraw(draw);
 			page.setiTotalRecords(iTotalRecords);;
 	    	page.setiTotalDisplayRecords(iTotalDisplayRecords);
 		    page.setRows(uList);

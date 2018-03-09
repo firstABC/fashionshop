@@ -11,8 +11,7 @@ import chen.mingyu.domain.User;
 public interface UserDao {
 	//登录
 	public User getLoginUser(User user);
-	//查询最大Id
-	public int countUserMaxId();
+	
 	//注册
 	public void addUser(User user);
 	
