@@ -29,8 +29,10 @@ public class ConsultVO {
 		this.isDelete = isDelete;
 	}
 	//回复
-	public ConsultVO(String adminId, String replyMsg, String replyDate) {
+	public ConsultVO(String consultId, String adminId, String replyMsg,
+			String replyDate) {
 		super();
+		this.consultId = consultId;
 		this.adminId = adminId;
 		this.replyMsg = replyMsg;
 		this.replyDate = replyDate;

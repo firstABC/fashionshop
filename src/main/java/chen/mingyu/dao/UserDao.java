@@ -25,5 +25,11 @@ public interface UserDao {
 	public int getUserCount();
 	
 	//查询所有用户
-	public List<User> getAllUser(Page page);
+	public List<User> getAllUser();
+	
+	//逻辑删除用户信息
+	public void deleteUser(User user);
+	
+	//查询用户去重
+	public int getUserCheck(User user);
 }

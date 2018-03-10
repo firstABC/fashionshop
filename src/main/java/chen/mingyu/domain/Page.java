@@ -13,7 +13,7 @@ public class Page {
 	//总条数
 	private int total;
 	//行数据
-	private List rows;
+	private List data;
 	private int maxPage;
 	
 	//datatables数据名
@@ -38,11 +38,11 @@ public class Page {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public List getRows() {
-		return rows;
+	public List getData() {
+		return data;
 	}
-	public void setRows(List rows) {
-		this.rows = rows;
+	public void setData(List data) {
+		this.data = data;
 	}
 	public Map<String, Object> getParams() {
 		return params;

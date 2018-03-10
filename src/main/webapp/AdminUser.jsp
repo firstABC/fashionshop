@@ -62,30 +62,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                        	<!-- <tr>
-                        		<td>id1</td>
-				                <td>张晓红</td>
-				                <td>17602150396</td>
-				                <td>admin</td>
-				                <td>2018/01/06</td>
-				                <td><a href="AdminUserEdit.jsp">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id2</td>
-				                <td>李云</td>
-				                <td>13564566920</td>
-				                <td>admin</td>
-				                <td>2017/8/19</td>
-				                <td><a href="AdminUserEdit.jsp">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id3</td>
-				                <td>卢晓</td>
-				                <td>17703126930</td>
-				                <td>admin</td>
-				                <td>2009/01/12</td>
-				                <td><a href="AdminUserEdit.jsp">编辑</a></td>
-                        	</tr> -->
                         </tbody>
 		    		</table>
 		    	</div>
@@ -103,25 +79,15 @@
     <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
     <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
 	<script type="text/javascript">
-	/* $.ajax({
-		url:"getAllUser",
-		type:"get",
-		success:function(data){
-			 
-			$('#table').DataTable().fnClearTable();   //将数据清除
-       　  		$('#table').DataTable().fnAddData(packagingdatatabledata(data),true);   
-		}
-	}) */
 		$(document).ready(function () {
 			console.log( $('#table'));
 			var t = $('#table').DataTable({
-			   serverSide: true,//打开后台分页 
 	           processing: true,
-	           ajax: {
+	          	ajax: {
 	               //指定数据源
-	        	   url:"getAllUser",
-	        	   type:"GET",
-	        	   dataSrc: "rows",
+	        	   url:'${pageContext.request.getContextPath()}/getAllUser',
+	        	   type:'GET',
+	        	   dataType:'json',
 	           },
 			    columns: [
 			    	{"data": "userId"},
@@ -131,15 +97,65 @@
 	            	{"data": "userPhone"},
 	            	{"data": "userDate"},
 	            	{"data": null}
-	            	
-	            	/* {"data": <a href="AdminUserEdit.jsp">编辑</a>} */
-	            ],  
+	            ], 
 	            aLengthMenu:[3,10],
-	          //插件的汉化
+	            "columnDefs":[{
+		            "targets": 6,
+		            "defaultContent": "<a href='#' id='editrow' class='btn btn-default' style='margin-right:5px;'>编辑</a><a href='#' id='delrow' class='btn btn-default'>删除</a>" 
+		        }],
+
+        		//插件的汉化
 		        "language": {
                 	url: 'dataTables/Chinese.txt'
             	},
-			});
+	        });
+			/*编辑按钮*/
+		    $('#table tbody').on( 'click', 'a#editrow', function () {
+		        var data = t.row( $(this).parents('tr') ).data();
+		            $.ajax({
+		                url:'${pageContext.request.getContextPath()}/getUserInfoByIdAdmin',
+		                type:'get',
+		                data: {"userId": data.userId}, 
+		                timeout:"3000",
+		                cache:"false",
+		                success:function(str){
+		                	window.location.href="${pageContext.request.getContextPath()}/AdminUserEdit.jsp";
+		                },
+		                error:function(err){
+		                    // alert(url);
+		                    alert("获取数据失败");
+		                }
+		            });
+		        
+		    });
+	        /*删除按钮*/
+		    $('#table tbody').on( 'click', 'a#delrow', function () {
+		        var data = t.row( $(this).parents('tr') ).data();
+		        if(confirm("是否确认删除这条信息")){
+		            $.ajax({
+		                url:'${pageContext.request.getContextPath()}/deleteUser',
+		                type:'post',
+		                data: {"userId": data.userId}, 
+		                timeout:"3000",
+		                cache:"false",
+
+		                success:function(str){
+		                    if(str == 'success'){
+		                        t.row().remove();//删除这行的数据
+		                        window.location.href="${pageContext.request.getContextPath()}/AdminUser.jsp";
+		                    }else{
+		                    	alert("删除失败!");
+		                    }
+		                },
+		                error:function(err){
+		                    // alert(url);
+		                    alert("获取数据失败");
+		                }
+		            });
+		        }
+		    });
+
+
 	    });
 	</script>
 

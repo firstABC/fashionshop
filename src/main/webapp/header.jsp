@@ -16,7 +16,7 @@
 <body>
 	<div class="headerTop">
        	<div class="header_m lay1200 clearfix">
-               <a href="../switch/toIdex"><img src="${pageContext.request.contextPath}/image/logo.png" alt="潮品之家" title="潮品之家"></a>
+               <a href="${pageContext.request.contextPath}/switch/toIdex"><img src="${pageContext.request.contextPath}/image/logo.png" alt="潮品之家" title="潮品之家"></a>
                <div class="topSearch clearfix fl">
                    <form method="post" action="">
                    	<input class="fl inputSearch" id="searchList" type="text" name="keyword" autocomplete="off" placeholder="请输入你喜欢的品牌或商品" value="">
@@ -25,12 +25,12 @@
                </div>
                <div class="login">
                 <li id="index">
-              		<a href="../register.jsp">注册</a>                
-                   <a href="../login.jsp">登录</a></li>
+              		<a href="${pageContext.request.contextPath}/register.jsp">注册</a>                
+                   <a href="${pageContext.request.contextPath}/login.jsp">登录</a></li>
     	
     			 <li id="success">
-    			 	     <a href="out" target="_parent">退出登录</a></li>
-    			 		 <a href="getUserInfoById?userId=${userId}" class="user"><i class="icon iconfont icon-user"></i> <span id="user">${userName}</span></a>
+    			 	     <a href="${pageContext.request.contextPath}/out" target="_parent">退出登录</a></li>
+    			 		 <a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" class="user"><i class="icon iconfont icon-user"></i> <span id="user">${userName}</span></a>
           		</div>
            </div>
        </div>

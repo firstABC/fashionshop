@@ -28,7 +28,7 @@
 	
 	<!-- 多条件查询用户信息 -->
 	<select id="getUserInfo" parameterType="User" resultMap="UserMap">
-		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo where 1=1 
+		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo where is_delete='0' 
 		<if test="userId != null and userId != '' ">
 			and user_id = #{userId}
 		</if>
@@ -50,15 +50,28 @@
 		user_email = #{userEmail}, user_phone = #{userPhone},user_date = #{userDate}
 		where user_id = #{userId}
 	</update>
-	
+	<!-- 修改信息查重 -->
+	<select id="getUserCheck" parameterType="User" resultType="int">
+		select ifnull(count(1),0) from userinfo where is_delete = '0'
+			and user_name = #{userName}
+			<if test="userId != null and userId != '' ">
+			and user_id != #{userId}
+			</if>
+	</select>
 	<!-- 查询总数 -->
 	<select id="getUserCount" resultType="int">
-		select count(1) from userinfo where is_delete ='0'
+		select ifnull(count(1),0) from userinfo where is_delete ='0'
 	</select>
 	<!-- 分页查询所有用户 -->
 	<select id="getAllUser" parameterType="Page" resultMap="UserMap">
 		select user_id,user_name,user_pwd,user_phone,user_email,user_date,is_delete from userinfo 
-		where is_delete = '0'
-		limit #{startIndex},#{length}
+		where is_delete = '0' order by user_date desc
+		<!-- limit #{startIndex},#{length} -->
 	</select>
+	<!-- 删除用户 -->
+	<update id="deleteUser" parameterType="User">
+		update userinfo set 
+		is_delete = '1'
+		where user_id = #{userId}
+	</update>
 </mapper>

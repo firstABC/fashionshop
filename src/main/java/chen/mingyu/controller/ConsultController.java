@@ -62,7 +62,7 @@ public class ConsultController{
 			page.setStartIndex((currentPage-1)*pageSize);
 			page.setLength(pageSize);
 			
-			page.setRows(consultDao.getConsultList(page));
+			page.setData(consultDao.getConsultList(page));
 			return page; 
 		}
 		@RequestMapping(value = "/getConsultByGoods", method = RequestMethod.GET) 
@@ -86,14 +86,13 @@ public class ConsultController{
 			}
 			page.setStartIndex((currentPage-1)*pageSize);
 			page.setLength(pageSize);
-			page.setRows(consultDao.getConsultList(page));
+			page.setData(consultDao.getConsultList(page));
 			return page; 
 		}
 		@RequestMapping(value = "/addConsult", method = RequestMethod.POST) 
-		public Map<String,String> addConsult(@RequestParam("userId")String userId, 
+		public  @ResponseBody String addConsult(@RequestParam("userId")String userId, 
 				@RequestParam("goodsId")String goodsId,
 				@RequestParam("consultMsg")String consultMsg){
-			Map<String,String> map = new HashMap<String,String>();
 			if(userId != null && userId != ""
 					&&goodsId != null && goodsId != ""
 					&&consultMsg != null && consultMsg != ""){
@@ -104,27 +103,26 @@ public class ConsultController{
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				ConsultVO consultVO = new ConsultVO(consultVOIdStr,userId,goodsId,consultMsg,sdf.format(date),"0");
 				consultDao.addConsult(consultVO);
-				map.put("message", "success");
+				return "success";
 			}else{
-				map.put("message", "error");
+				return "error";
 			}
-			return map;
 		}
 		@RequestMapping(value = "/addReply", method = RequestMethod.POST) 
-		public Map<String,String> addReply(@RequestParam("adminId")String adminId, 
+		public @ResponseBody String addReply(@RequestParam("consultId")String consultId,
+				@RequestParam("adminId")String adminId, 
 				@RequestParam("replyMsg")String replyMsg){
-			Map<String,String> map = new HashMap<String,String>();
-			if(adminId != null && adminId != ""
+			if(consultId != null && consultId != ""
+					&&adminId != null && adminId != ""
 					&&replyMsg != null && replyMsg != ""){
 				//设置回复时间
 				Date date = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				ConsultVO consultVO = new ConsultVO(adminId,replyMsg,sdf.format(date));
+				ConsultVO consultVO = new ConsultVO(consultId,adminId,replyMsg,sdf.format(date));
 				consultDao.addReply(consultVO);
-				map.put("message", "success");
+				return "success";
 			}else{
-				map.put("message", "error");
+				return "error";
 			}
-			return map;
 		}
 }

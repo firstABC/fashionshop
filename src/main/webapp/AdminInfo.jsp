@@ -15,14 +15,7 @@ title>后台管理</title>
 
     <link rel="stylesheet" type="text/css" href="css/admin.css">
 
-    <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<!-- Data Tables -->
-    <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
+    
     
 
 </head>
@@ -70,7 +63,14 @@ title>后台管理</title>
 
 	</div>
 
-
+	<!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- Data Tables -->
+    <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
+    <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
 	        var t = $('#table').DataTable({

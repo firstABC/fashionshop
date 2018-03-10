@@ -32,31 +32,57 @@
 		    </div>
 		    <div class="row wrapper-content white-bg">
 		    	<div class="col-lg-12 white-bg">
+		    	<form action="" method="post" id="updateUserForm2">
 		    		<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
+		    		<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden">
 		    			<tr>
 		    				<td width="100">潮人名称</td>
-		    				<td><input type="text" name="" value=""></td>
+		    				<td><input type="text" name="userName" value="${sessionScope.user.userName}"></td>
 		    			</tr>
 		    			<tr>
 		    				<td width="100">潮人手机号</td>
-		    				<td><input type="number" name="" value=""></td>
+		    				<td><input type="tel"  name="userPhone" value="${sessionScope.user.userPhone}"></td>
+		    			</tr>
+		    			<tr>
+		    				<td width="100">潮人邮箱</td>
+		    				<td><input type="email" name="userEmail" value="${sessionScope.user.userEmail}"></td>
 		    			</tr>
 		    			<tr>
 		    				<td width="100">潮人密码</td>
-		    				<td><input type="text" name="" value=""></td>
+		    				<td><input type="text" name="userPwd" value="${sessionScope.user.userPwd}"></td>
 		    			</tr>
 		    			<tr>
 		    				<td></td>
 				            <td>
-				             	<a href="javascript:;" class="btn btn-primary btnEdit">修改潮人</a> 
+				             	<a href="javascript:updateUser()" class="btn btn-primary btnEdit">修改潮人</a> 
 				            </td>
 			            </tr>
 		    		</table>
+		    	</form>
 		    	</div>
 		    </div>
 		</div><!-- 内容 -->
 
 	</div>
-
+	<script type="text/javascript">
+	function updateUser(){
+		var params = $('#updateUserForm2').serialize();;
+		var a = $.ajax({
+			url:'${pageContext.request.getContextPath()}/updateUser',
+    		type :'post',
+    		data:params, 
+    		success:function(data){
+    			if(data == 'success'){
+    				alert("修改成功！");
+    				window.location.href="${pageContext.request.getContextPath()}/AdminUser.jsp";
+    			}else if(data =='warn'){
+    				alert("用户名重复！");
+    			}else{
+    				window.location.href="${pageContext.request.getContextPath()}/loginAdmin.jsp";
+    			}
+    		}
+		});
+	}
+	</script>
 </body>
 </html>

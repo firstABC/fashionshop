@@ -77,9 +77,10 @@
 
 			<!-- 评论 -->
 			<div class="d_nav_tab">
+			<input type="text" name="goodsId" id="gId" value="test"  hidden="hidden"  class="focus">
 				<div class="d_menu">评论<span>（3）</span></div>
 				<div class="plList">
-					<ul>
+					<%-- <ul>
 						<li>
 							<div class="plText">
 								<p>老板很给力，周五晚下的单，今天周日中午就收到宝贝了，物流给力，赞。客服的态度也很好，最重要的是，东西很实用。外观好看方便，看着不错，高大尚。总之，非常非常完美的购物体验！</p>
@@ -109,9 +110,9 @@
 							<div class="goodsType">颜色分类：黑色 44码</div>
 							<div class="nm">周***驰<span>（匿名）</span></div>
 						</li>
-					</ul>
+					</ul> --%>
 				</div>
-				<a href="javascript:;" class="morePj">查看更多</a>
+				<a href="javascript:nextPage()" class="morePj">查看更多</a>
 			</div>
 
 			<!-- 猜你喜欢 -->
@@ -218,7 +219,12 @@
 	</div>
 
 	<script>	
+	var goodsId = $("#gId").val();
+  	
 	    $(document).ready(function () {
+	    	//加载商品评论列表
+	    	showConsultList();
+
 	    	// 回到顶部
 	        $(window).scroll(function () {
 	            if ($(window).scrollTop() >= 500) {
@@ -384,6 +390,62 @@
 		        }
 			})
 	    });
+	    var goodsId = $("#gId").val();
+	  	//获取用户评价列表  
+		function showConsultList(){
+			$('.plList').empty();
+			var currentPage=$('#currentPage').val();
+			$.ajax({
+				url:'${pageContext.request.getContextPath()}/con/getConsultByGoods',
+				async: false,
+				type:'get',
+				data:{
+					goodsId:goodsId,
+					currentPage:currentPage
+				},
+				dataType:'json',
+				success:function(data){
+					/* var dataArr=JSON.parse(data); */
+					$('#maxPage').val(data.maxPage);	
+					var consultVOArr = data.data;
+					console.log(consultVOArr);
+					$('#plList').append("<ul>");
+					for(var i=0;i<consultVOArr.length;i++){
+						var consultVO=consultVOArr[i];
+						$('#plList').append("<li><div class='plText'><p>"+consultVO.consultMsg+"</p><div class='time'><span>"+consultVO.consultDate+"</span></div></div><div class='goodsType'>"+consultVO.goodsName+"</div></div></li>");
+						if(consultVO.adminName!=null){
+							$('#plList').append("<div class='answer'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='adminName'>"+consultVO.adminName+"</font>: "+consultVO.replyMsg+"<div class='time'>"+consultVO.replyDate+"</div></div>");
+						}
+					}
+					$('.plList').append("</ul>");
+					/* //循环完之后再加上分页 
+					if(consultVOArr!=null && consultVOArr!=''){
+						$('#plList').append("<div class='pagination'>"+
+								"<a href='javascript:void(0)' onclick='firstPage()'>首页</a>" 
+								+"&nbsp;<a href='javascript:void(0)' onclick='lastPage()'>上一页</a>"
+								+"&nbsp;<a href='javascript:void(0)' onclick='nextPage()'>下一页</a>"
+								+"&nbsp;<a href='javascript:void(0)' onclick='endPage()'>尾页</a>&nbsp;" 
+								+$('#currentPage').val()+"/共"+$('#maxPage').val()+"页"  
+								+"</div>");
+					}else{
+						$('#plList').append("<p class='consultAdvice'>暂无评价~</P>");
+					} */
+				}
+			});
+		}
+			
+			//评论分页功能 
+			//下一页
+			function nextPage(){
+				var current=$('#currentPage').val();
+				var maxPage=$('#maxPage').val();
+				if(current==maxPage){
+					showConsultList();
+				}else if(current<maxPage){
+					$('#currentPage').val(parseInt(current)+parseInt(1));
+					showConsultList();
+				}
+			}
 	</script>
 
 </body>
