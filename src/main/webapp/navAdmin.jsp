@@ -40,6 +40,7 @@
 </body>
 <script type="text/javascript">
 var adminName = $('#admin').text();
+adminName="123";
 if(adminName != null&&adminName != ""){
 	
 }else{

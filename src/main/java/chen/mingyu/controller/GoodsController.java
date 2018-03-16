@@ -38,20 +38,35 @@ public class GoodsController {
 	private ImagesDao imagesDao;
 	
 	@RequestMapping("/addLike")
-	public String toAddLike(HttpServletRequest request,HttpSession session,@RequestParam("g_id")String g_id){
+	@ResponseBody
+	@Transactional
+	public Map toAddLike(HttpServletRequest request,HttpSession session,@RequestParam("g_id")String g_id){
 		Boolean isLogin = session.getAttribute("userId")==null?false:true;
+		Map<String,String> map = new HashMap<>();
 		if(isLogin){
-			Goods goods = new Goods();
-			goods.setG_id(g_id);
-			int isOk = goodsDao.alterLike(goods);
 			
+			String userId =(String) session.getAttribute("userId");
 			MyLike myLike = new MyLike();
 			myLike.setG_id(g_id);
-			myLike.setUserId((String) session.getAttribute("userId"));
+			myLike.setUserId(userId);
+			MyLike isNUll = myLikeDao.selectByUserIdAndGid(myLike);
+			if(isNUll!=null){
+				map.put("message", "repetition");
+				return map;
+			}
+			Goods goods = goodsDao.selectByG_id(g_id);
+			int g_like = goods.getG_like();
+			goods.setG_like(g_like+1);
+			//改物品的喜欢数
+			int isOk = goodsDao.alterLike(goods);
+			
+			//写入喜欢表
 			myLike.setMl_id(UUID.randomUUID().toString());
 			int isOk2 = myLikeDao.insertMyLike(myLike);
+			map.put("message", "success");
+			return map;
 		}
-		return null;
+		return map;
 	}
 	
 	@RequestMapping("/selGoHo")
@@ -86,8 +101,10 @@ public class GoodsController {
 		int g_like = Integer.parseInt(request.getParameter("g_like"));
 		int g_sex = Integer.parseInt(request.getParameter("g_sex"));
 		String g_status = request.getParameter("g_status");
+		String g_type = request.getParameter("g_type");
 		String g_id = UUID.randomUUID().toString();
 		Goods goods = new Goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status,g_sex);
+		goods.setG_type(g_type);
 		
 		int ispubGo = goodsDao.insertGoods(goods);
 		int inMages = 0;
@@ -143,9 +160,9 @@ public class GoodsController {
 	public String selectGoodsAll(HttpServletRequest request,HttpSession session){
 		List<Goods> ltGoods= goodsDao.selectGoodsAll();
 		if(ltGoods!=null){
-			//session.setAttribute("ltGoods", ltGoods);
+			session.setAttribute("ltGoodsMange", ltGoods);
 		}
-		return "goodsMange";
+		return "/AdminProduct";
 	}
 	
 	@RequestMapping("/toGInfo")
@@ -155,6 +172,20 @@ public class GoodsController {
 			session.setAttribute("goods", goods);
 		}
 		return "/goods";
+	}
+	
+	@RequestMapping("/toNewProduct")
+	public String selectGoodsByType(HttpServletRequest request,HttpSession session){
+		List<Goods> ltGoods = goodsDao.selectGoodsByType("C");
+		session.setAttribute("ltGoodsNew", ltGoods);
+		return "/newProduct";
+	}
+	
+	//首页条件查询
+	public String selectGoodsByCondition(HttpServletRequest request,HttpSession session){
+		String condition = request.getParameter("condition");
+		goodsDao.selectGoodsByCondition(condition);
+		return "";
 	}
 	
 }

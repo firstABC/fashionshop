@@ -1,34 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="chen.mingyu.domain.Goods"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台管理</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.css" rel="stylesheet">
 	<!-- datatable -->
 	<!-- <link rel="stylesheet" type="text/css" href="dataTables/css/dataTables.bootstrap.css"> -->
-	<link rel="stylesheet" type="text/css" href="dataTables/css/dataTables.responsive.css">
-	<link rel="stylesheet" type="text/css" href="dataTables/css/dataTables.tableTools.min.css">
-	<link rel="stylesheet" type="text/css" href="dataTables/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dataTables/css/dataTables.responsive.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dataTables/css/dataTables.tableTools.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dataTables/css/jquery.dataTables.min.css">
 
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css">
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/metisMenu/jquery.metisMenu.js"></script>
-    <script type="text/javascript" src="js/slimscroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="js/jeditable/jquery.jeditable.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/metisMenu/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jeditable/jquery.jeditable.js"></script>
 	<!-- Data Tables -->
-    <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/dataTables.responsive.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/dataTables.tableTools.min.js"></script>
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/pace/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/inspinia.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pace/pace.min.js"></script>
 
     
 </head>
@@ -62,44 +64,29 @@
                                 <th>Id</th>
                                 <th>产品名称</th>
                                 <th>价格</th>
-                                <th>上架时间</th>
-                                <th>购买数量</th>
+                                <th>喜欢数</th>
+                                <th>预购数量</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <%
+                        List<Goods> ltgoodsM = (List<Goods>)request.getSession().getAttribute("ltGoodsMange");
+                        if(ltgoodsM!=null&&ltgoodsM.size()>0){
+                        	for(Goods goods : ltgoodsM){
+                        %>
                         	<tr>
-                        		<td>id1</td>
-				                <td>产品Senior</td>
-				                <td>$433,060</td>
-				                <td>2012/03/29</td>
-				                <td>202</td>
+                        		<td><%=goods.getG_id() %></td>
+				                <td><%=goods.getG_title() %></td>
+				                <td><%=goods.getG_price() %></td>
+				                <td><%=goods.getG_like() %></td>
+				                <td>预购数量</td>
 				                <td><a href="AdminProduct.jsp">编辑</a></td>
                         	</tr>
-                        	<tr>
-                        		<td>id2</td>
-				                <td>ProductName</td>
-				                <td>$320,800</td>
-				                <td>2011/04/25</td>
-				                <td>601</td>
-				                <td><a href="AdminProduct.jsp">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id3</td>
-				                <td>产品Edinburgh</td>
-				                <td>$280,500</td>
-				                <td>2009/01/12</td>
-				                <td>601</td>
-				                <td><a href="AdminProduct.jsp">编辑</a></td>
-                        	</tr>
-                        	<tr>
-                        		<td>id4</td>
-				                <td>产品Author</td>
-				                <td>$120,300</td>
-				                <td>2010/04/25</td>
-				                <td>459</td>
-				                <td><a href="AdminProduct.jsp">编辑</a></td>
-                        	</tr>
+                        <%
+                        	}
+                        }
+                        %>
                         </tbody>
 		    		</table>
 		    	</div>

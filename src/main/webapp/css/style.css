@@ -633,7 +633,7 @@ input, textarea{
 	color: #0099cb;	
 	margin-top: 15px;
 }
-.goodSubst .loveNum{
+.goodSubst .loveNum, .goodSubst .loveNum2{
 	margin-top: 15px;
     margin-right: 15px;
 	color: #444;
@@ -643,7 +643,7 @@ input, textarea{
     padding: 0 25px;
     display: inline-block;
 }
-.goodSubst .loveNum.active, .goodSubst .loveNum:hover, .d_nav_tab .morePj:hover {
+.goodSubst .loveNum.active, .goodSubst .loveNum:hover, .d_nav_tab .morePj:hover, .goodSubst .loveNum2:hover, .goodSubst .loveNum2.active {
     background-color: #444;
     color: #fff;
 }
@@ -951,6 +951,11 @@ input, textarea{
 .editBox .infoText p{
     margin-bottom: 10px;
 }
+.editBox .infoText p>span{
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+}
 .editBox .info .sure, .plBox .info .sure2{
     text-align: center;
 }
@@ -1055,4 +1060,16 @@ input, textarea{
     text-align: center;
     line-height: 200%;
     margin-top: 30px;
+}
+.zxWz-content .zxWzImgs{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    display: inline-block;
+    margin-top: 20px;
+}
+.zxWz-content .zxWzImgs li{
+    float: left;
+    width: 20%;
+    margin: 0 2.5%;
 }

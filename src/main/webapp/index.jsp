@@ -17,8 +17,29 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
+	<script type="text/javascript">
+		function addLike(g_id){
+			var userId = document.getElementById("hiddenuser").value;
+			if(userId!=null&&userId!=""){
+				$.ajax({
+					type:"post",
+					url:'${pageContext.request.contextPath}/goods/addLike?g_id='+g_id,
+					success:function(result){
+						if(result.message == 'repetition'){
+							//alert("您已收藏");
+							
+						}else{
+							alert("收藏成功！");
+						}				
+					}
+					
+				})
+			}
+		}
+	</script>
 </head>
 <body>
+	<div class="userId" style="display: none;"><input type="text" id="hiddenuser" name="" value="${userId}" placeholder=""></div>
 	<div class="banner">
 		<jsp:include page="header.jsp" flush="true"/>
 		<div class="list">
@@ -55,6 +76,7 @@
 					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(2).getLtMage().get(0).getPathName() %>"></a>
 					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(3).getLtMage().get(0).getPathName() %>"></a>
 				</div>
+				<form action="" id="publish_form" name="publish_form"></form>
 				<div class="smadd-hiddiv">
 					<div class="ind-hotzx-bt">
 		        		<a class="bt-on" href="javascript:;">最新咨询</a>
@@ -116,7 +138,7 @@
 			      				<a href="goods.jsp" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
+										<a class="p_ilike" href="javascript:addLike('<%=good.getG_id() %>');"></a>
 				                    </div>
 				        		</div>
 			      			</div>
@@ -256,14 +278,18 @@
 	            $('html,body').animate({scrollTop: '0px'}, 800);
 	        });
 
-	        // 喜欢
+	     	// 喜欢
 	        $('.actions').click(function(){
-				if(!$(this).find('.p_ilike').hasClass("p_iliked")){
-		            $(this).find('.p_ilike').addClass("p_iliked");
-		        }else{
-		        	$(this).find('.p_ilike').removeClass("p_iliked");
-		        }
-			})
+	        	if (!$('.userId').children('input').val()) {
+	        		alert('请先登录~');
+	        	} else{
+					var loveNum =  parseInt($(this).parents('.showpic').find('.loveNum').children('span').text());
+					if(!$(this).find('.p_ilike').hasClass("p_iliked")){
+			            $(this).find('.p_ilike').addClass("p_iliked");
+			            $(this).parents('.picbox').parents('.showpic').find('.loveNum').children('span').text(loveNum+1)
+			        }
+			    }
+			}) 
 
 			// 热门推荐、新品预定
 			$('.tjTitle li').click(function(){

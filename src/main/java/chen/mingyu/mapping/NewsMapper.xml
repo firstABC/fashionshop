@@ -25,11 +25,11 @@
 	</insert>
 	
 	<select id="selectNewsAll" resultMap="NewsResultMap">
-		select * from news order by n_dateTime desc
+		select * from news n,images i where n.n_id=i.n_id order by n.n_dateTime desc
 	</select>
 	
 	<select id="selectByN_id" resultMap="NewsResultMap" parameterType="String">
-		select * from news where n_id =#{n_id}
+		select * from news n,images i where n.n_id =#{n_id} and n.n_id=i.n_id
 	</select>
 	
 	<select id="selectFiveByNum" resultMap="NewsResultMap">
@@ -39,4 +39,7 @@
 	<delete id="deleteNews" parameterType="String">
 		delete from news where n_id =#{n_id}
 	</delete>
+	<update id="alterNumber" parameterType="News">
+		update news set n_number =#{n_number} where n_id = #{n_id}
+	</update>
 </mapper>

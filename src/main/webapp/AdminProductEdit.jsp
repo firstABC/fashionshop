@@ -119,11 +119,20 @@
 		    				</td>
 		    			</tr>
 		    			<tr>
-		    				<td width="100">所属分类</td>
+		    				<td width="100">性别</td>
 		    				<td>
 		    					<select  name="g_sex">
 		    						<option value="0">男士</option>
 		    						<option value="1">女士</option>
+		    					</select>
+		    				</td>
+		    			</tr>
+		    			<tr>
+		    				<td width="100">所属分类</td>
+		    				<td>
+		    					<select  name="g_type">
+		    						<option value="A">服装</option>
+		    						<option value="B">鞋类</option>
 		    					</select>
 		    				</td>
 		    			</tr>

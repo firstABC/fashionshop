@@ -34,10 +34,18 @@
 					<span>
 						<a href="javascript:;" title="潮品之家独家频道">潮品之家独家频道</a>
 					</span>
-					<p>发布者：<span>${news.n_author}</span>时间：${news.n_dateTime }</p>
+					<p>发布者：<span>${news.n_author}</span><span>时间：${news.n_dateTime }</span>阅读量:${news.n_number}</p>
 			    </div>
 			    <div class="zxWz-content">
 			    	<p>${news.n_detal }</p>
+			    	<div class="zxWzImgs">
+			    		<ul>
+			    			<li><img src="${pageContext.request.contextPath}/upload/${news.ltMage.get(0).pathName}" alt=""></li>
+			    			<li><img src="${pageContext.request.contextPath}/upload/${news.ltMage.get(1).pathName}" alt=""></li>
+			    			<li><img src="${pageContext.request.contextPath}/upload/${news.ltMage.get(2).pathName}" alt=""></li>
+			    			<li><img src="${pageContext.request.contextPath}/upload/${news.ltMage.get(3).pathName}" alt=""></li>
+				    	</ul>
+			    	</div>
 			    </div>
 			</div>
 		</div>

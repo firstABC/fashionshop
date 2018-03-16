@@ -22,6 +22,12 @@ public interface GoodsDao {
 	//根据状态查询商品详情
 	public List<Goods> selectGoodsByStatus(String g_status);
 	
+	//根据类别查询商品 鞋类还是服装
+	public List<Goods> selectGoodsByType(String g_type);
+	
+	//根据品牌或者商品名
+	public List<Goods> selectGoodsByCondition(String condition);
+	
 	public int alterLike(Goods goods);
 	
 	public int deleteGoods(String g_id);

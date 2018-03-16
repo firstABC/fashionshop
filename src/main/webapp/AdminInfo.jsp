@@ -1,28 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.util.List"%>
+<%@page import="chen.mingyu.domain.News"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-title>后台管理</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>后台管理</title>
+	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.css" rel="stylesheet">
 	<!-- datatable -->
 	<!-- <link rel="stylesheet" type="text/css" href="dataTables/css/dataTables.bootstrap.css"> -->
-	<link rel="stylesheet" type="text/css" href="dataTables/css/dataTables.responsive.css">
-	<link rel="stylesheet" type="text/css" href="dataTables/css/dataTables.tableTools.min.css">
-	<link rel="stylesheet" type="text/css" href="dataTables/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dataTables/css/dataTables.responsive.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dataTables/css/dataTables.tableTools.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dataTables/css/jquery.dataTables.min.css">
 
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css">
 
+    <!-- Mainly scripts -->
+    <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     
-    
-
 </head>
 <body>
 
 	<div class="wrapper">
-		<jsp:include page="navAdmin.jsp" flush="true"/>
+		<nav class="navbar-default navbar-static-side">
+			<ul class="nav">
+				 <li class="nav-header">
+                    <div class="people"> 
+                    	<span><img alt="image" class="img-circle" src="image/profile_small.jpg" /></span>
+                        <a class="dropdown-toggle" href="javascript:;">
+                            <span class="clear block name"><strong>柯志慧</strong></span>
+                        </a>
+                        <a href="loginAdmin.html" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <a href="AdminProduct.html"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
+                </li>
+                <li>
+                    <a href="AdminUser.html"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
+                </li>
+                <li class="active">
+                    <a href="AdminInfo.html"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
+                </li>
+			</ul>
+		</nav><!-- 左侧导航 -->
 
 		<div class="page-wrapper gray-bg">
 			<div class="row border-bottom white-bg dashboard-header">
@@ -46,15 +71,34 @@ title>后台管理</title>
 		    		<table class="table-bordered table-striped table-hover" id="table" width="100%" border="0" cellspacing="0" cellpadding="2">
 		    			<thead>
                             <tr>
+                               <tr>
                                 <th>Id</th>
                                 <th>资讯标题</th>
-                                <th>资讯内容</th>
                                 <th>发布者</th>
                                 <th>发布时间</th>
+                                <th>阅读数</th>
                                 <th>操作</th>
+                            </tr>
                             </tr>
                         </thead>
                         <tbody>
+                            <%
+                            List<News> ltNews =  (List<News>)request.getSession().getAttribute("ltNews");
+                            if(ltNews!=null&&ltNews.size()>0){
+                            	for(News news : ltNews){
+                           	%>	
+                             <tr>
+                                <th><%=news.getN_id() %></th>
+                                <th><%=news.getN_title() %></th>
+                                <th><%=news.getN_author() %></th>
+                                <th><%=news.getN_dateTime() %></th>
+                                <th><%=news.getN_number() %></th>
+                                <th>操作</th>
+                            </tr>
+                            <%
+                            	}
+                            }
+                            %>	
                         </tbody>
 		    		</table>
 		    	</div>
@@ -63,63 +107,37 @@ title>后台管理</title>
 
 	</div>
 
-	<!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 	<!-- Data Tables -->
-    <script type="text/javascript" src="dataTables/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/dataTables.responsive.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/dataTables/js/dataTables.tableTools.min.js"></script>
+    
 	<script type="text/javascript">
 		$(document).ready(function () {
 	        var t = $('#table').DataTable({
 	            "processing": true,
-        		"ajax": "arrays.txt",
-        		
-        		"columns": [
-		            { "data": "name" },
-		            { "data": "position" },
-		            { "data": "office" },
-		            { "data": "extn" },
-		            { "data": "start_date" },
-		            { "data": null }
-		        ],
-		        "columnDefs":[{
-		            "targets": 5,
-		            "defaultContent": "<a href='AdminInfoEdit.html' id='editrow' class='btn btn-default' style='margin-right:5px;'>编辑</a><a href='#' id='delrow' class='btn btn-default'>删除</a>" 
-		        }],
+        		// "ajax": "dataTables/info.txt",
 
         		//插件的汉化
-		        "language": {
-                	url: 'dataTables/Chinese.txt'
-            	},
+		        "oLanguage": {
+		            "sLengthMenu": "每页显示 _MENU_ 条记录",
+		            "sZeroRecords": "抱歉， 没有找到",
+		            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+		            "sInfoEmpty": "没有数据",
+		            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+		            "oPaginate": {
+		                "sFirst": false,
+		                "sPrevious": false,
+		                "sNext": false,
+		                "sLast": false
+		            },
+		            "sZeroRecords": "没有检索到数据",
+		            "sProcessing": "<img src='' />",
+		            "sSearch": "搜索"
+		        },
 	        });
-
-	        /*删除按钮*/
-		    $('#table tbody').on( 'click', 'a#delrow', function () {
-		        var data = t.row( $(this).parents('tr') ).data();
-		        if(confirm("是否确认删除这条信息")){
-		            $.ajax({
-		                url:'arrays.txt',
-		                type:'post',
-		                data: {"action":"del", "name": data.name}, 
-		                timeout:"3000",
-		                cache:"false",
-
-		                success:function(str){
-		                    if(str.data){
-		                        t.row().remove();//删除这行的数据
-		                    }
-		                },
-		                error:function(err){
-		                    // alert(url);
-		                    alert("获取数据失败");
-		                }
-		            });
-		        }
-		    });
-
 
 	    });
 	</script>

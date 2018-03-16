@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -77,14 +78,25 @@ public class NewsController {
 		return map;
 	}
 	
+	//查询所有消息，并跳转到管理页面
 	@RequestMapping("/toNewsMange")
 	public String selectAllNews(HttpServletRequest request,HttpSession session){
 		List<News> ltNews = newsDao.selectNewsAll(null);
 		if(ltNews!=null){
 			session.setAttribute("ltNews", ltNews);
 		}
-		return "newsMange";
+		return "/AdminInfo";
 	}
+	
+	//查询所有消息，并跳转到门户页面
+		@RequestMapping("/toNewsMangeIndex")
+		public String selectAllNewsIndex(HttpServletRequest request,HttpSession session){
+			List<News> ltNews = newsDao.selectNewsAll(null);
+			if(ltNews!=null){
+				session.setAttribute("ltNews", ltNews);
+			}
+			return "/information";
+		}
 	
 	@RequestMapping("/deleteNews")
 	@ResponseBody
@@ -100,9 +112,14 @@ public class NewsController {
 	}
 	
 	@RequestMapping("/newsInfo")
+	@Transactional
 	public String selectNewsInfo(HttpServletRequest request,HttpSession session,@RequestParam("n_id")String n_id){
 		News news = newsDao.selectByN_id(n_id);
 		if(news!=null){
+			int number = news.getN_number();
+			number++;
+			news.setN_number(number);
+			newsDao.alterNumber(news);
 			session.setAttribute("news", news);
 		}
 		return "infoDemo";

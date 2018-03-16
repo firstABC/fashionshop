@@ -12,6 +12,7 @@
 		<result property="g_inventory" column="g_inventory"/>
 		<result property="g_like" column="g_like"/>
 		<result property="g_status" column="g_status"/>
+		<result property="g_type" column="g_type"/>
 		<collection property="ltMage" ofType="chen.mingyu.domain.Images">
 			<id property="im_id" column="im_id"/>
 			<result property="pathName" column="pathName"/>
@@ -21,8 +22,8 @@
 	</resultMap>
 	<insert id="insertGoods" parameterType="Goods">
 		<![CDATA[
-			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status,g_sex) 
-				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_inventory},#{g_like},#{g_status},#{g_sex})
+			insert into goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,g_like,g_status,g_sex,g_type) 
+				values(#{g_id},#{g_title},#{g_detail},#{g_price},#{g_brand},#{g_inventory},#{g_like},#{g_status},#{g_sex},#{g_type})
 		]]>
 	</insert>
 	
@@ -56,5 +57,13 @@
 	
 	<select id="selectByG_id" resultMap="goodsResultMap" parameterType="String">
 		select * from goods g,images i where g.g_id = i.g_id and g.g_id =#{g_id}
+	</select>
+	
+	<select id="selectGoodsByType" resultMap="goodsResultMap" parameterType="String">
+		select * from goods g,images i where g.g_id = i.g_id and g.g_type=#{g_type}
+	</select>
+	
+	<select id="selectGoodsByCondition" resultMap="goodsResultMap" parameterType="String">
+		select * from goods g,images i where g.g_id = i.g_id and (g.g_title or g.g_brand) like #{condition}
 	</select>
 </mapper>

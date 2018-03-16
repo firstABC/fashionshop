@@ -3,6 +3,7 @@ package chen.mingyu.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -11,6 +12,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +23,8 @@ import chen.mingyu.dao.OrderDao;
 import chen.mingyu.domain.Goods;
 import chen.mingyu.domain.Orders;
 
+@Controller
+@RequestMapping("/order")
 public class OrderController {
 	
 	@Resource
@@ -29,8 +34,10 @@ public class OrderController {
 	
 	@RequestMapping("/toOrder")
 	@ResponseBody
+	@Transactional
 	public Map<String,String> toOrder(HttpServletRequest request,HttpSession session){
 		String userId = (String) session.getAttribute("userId");
+		Map map = new HashMap();
 		if(userId!=null){
 			String g_id = request.getParameter("g_id");
 			int or_number = Integer.parseInt(request.getParameter("or_number"));
@@ -39,9 +46,15 @@ public class OrderController {
 			String or_date = sdf.format(new Date());
 			
 			Orders order = new Orders(UUID.randomUUID().toString(),g_id,userId,or_number,or_date,or_price,"A");
-			orderDao.insertOrder(order);
+			int isOk = orderDao.insertOrder(order);
+			if(isOk>0){
+				map.put("message", "success");
+			}else{
+				map.put("message", "faile");
+			}
 		}
-		return null;
+		
+		return map;
 	}
 	
 	@RequestMapping("/selectUserOrder")

@@ -18,6 +18,8 @@ public class Goods {
 	private int g_like;
 	//状态
 	private String g_status;
+	//类型     A服装   B 鞋类
+	private String g_type;
 	//goods of sex
 	private int g_sex;
 	
@@ -26,6 +28,15 @@ public class Goods {
 	
 	
 	
+	
+	
+	
+	public String getG_type() {
+		return g_type;
+	}
+	public void setG_type(String g_type) {
+		this.g_type = g_type;
+	}
 	public int getG_sex() {
 		return g_sex;
 	}

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.1.4.2-min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 </head>
 <body>
 	<div class="banner">
@@ -64,13 +64,15 @@
 				</div>
 
 				<div class="goodSubst">
+				<form action="" id="publish_form"></form>
 					<h1>${goods.g_title}</h1>
 					<p>${goods.g_detail}</p>
+					<input type="text" hidden="hidden" id="g_id" name="g_id" value="${goods.g_id }">
 					<div class="pinpai">品牌：<a href="javascript:;" target="_blank">${goods.g_brand }</a></div>
 					<div class="d_price"><strong>￥${goods.g_price }</strong></div>
 					<div class="d_social clearfix mt20">
 	            	<div class="loveNum"><i class="icon iconfont icon-love"></i><span>${goods.g_like}</span></div>
-	           		<div class="loveNum"><span>立即预定</span></div>
+	           		<div class="loveNum2"><span>立即预定</span></div>
 	            </div>
 				</div>
 			</div>
@@ -221,6 +223,26 @@
 	<script>	
 	var goodsId = $("#gId").val();
   	
+	
+		function toOrder(){
+			var g_id = $("#g_id").val();
+			var option = {
+		    		url:'${pageContext.request.getContextPath()}/order/toOrder?g_id='+1,
+		    		type :"post",
+		    		dataType:'json',
+		    		headers:{"ClientCallMode" : "ajax"}, 
+		    		success : function(data) {
+		    			if(data.message == 'faile'){
+							alert("预定失败！");
+						}
+		            },
+		            error: function(data) {
+		                alert(JSON.stringify(data) + "--上传失败,请刷新后重试");
+		            }
+		         };
+		   	 	$("#publish_form").ajaxSubmit(option);
+		   	 	return false;
+		}
 	    $(document).ready(function () {
 	    	//加载商品评论列表
 	    	showConsultList();
@@ -236,6 +258,12 @@
 	        $('.back-top').click(function () {
 	            $('html,body').animate({scrollTop: '0px'}, 800);
 	        });
+	        // 预定成功
+	        $('.loveNum2').click(function(){
+	        	$(this).addClass('active')
+	        	$(this).children('span').html('预定成功');
+	        	toOrder();
+	        })
 
 
 	    	// 图片上下滚动

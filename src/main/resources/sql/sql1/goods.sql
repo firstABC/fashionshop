@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-03-07 19:15:07
+Date: 2018-03-16 23:38:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,5 +28,10 @@ CREATE TABLE `goods` (
   `g_inventory` int(10) DEFAULT NULL,
   `g_like` int(10) DEFAULT NULL,
   `g_status` varchar(2) DEFAULT NULL,
-  `g_sex` int(2) DEFAULT NULL
+  `g_sex` int(2) DEFAULT NULL,
+  `g_type` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of goods
+-- ----------------------------

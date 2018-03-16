@@ -2,8 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chen.mingyu.dao.MyLikeDao">
+	<resultMap type="MyLike" id="myLikeResultMap">
+		<id property="ml_id" column="ml_id"/>
+		<result property="g_id" column="g_id"/>
+		<result property="userId" column="userId"/>
+	</resultMap>
 
 	<insert id="insertMyLike" parameterType="MyLike">
 		insert into mylike(ml_id,g_id,userId) values(#{ml_id},#{g_id},#{userId})
 	</insert>
+	
+	<select id="selectByUserIdAndGid" parameterType="MyLike" resultMap="myLikeResultMap">
+		select * from mylike where g_id=#{g_id} and userId=#{userId}
+	</select>
 </mapper>

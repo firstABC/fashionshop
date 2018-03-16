@@ -24,6 +24,16 @@ public class MyLike {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public MyLike(String ml_id, String g_id, String userId) {
+		super();
+		this.ml_id = ml_id;
+		this.g_id = g_id;
+		this.userId = userId;
+	}
+	public MyLike() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 }

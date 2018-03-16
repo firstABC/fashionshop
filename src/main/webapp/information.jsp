@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="chen.mingyu.domain.News"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,56 +32,25 @@
 		<div class="lay1200">
 			<div class="zx clearfix">
 				<ul>
+				<%
+				List<News> ltNews =  (List<News>)request.getSession().getAttribute("ltNews");
+				if(ltNews!=null&&ltNews.size()>0){
+					for(News news :ltNews){
+				%>	
 					<li>
 						<a href="javascript:;">
-							<div class="zxImg"><img src="image/information1.jpg" alt=""></div>
+							<div class="zxImg"><img src="${pageContext.request.contextPath}/upload/<%=news.getLtMage().get(0) %>" alt=""></div>
                         	<div class="zxText">
-                        		<span class="title">怎么搭｜ 冬天最值得买的3件大衣</span>
-                        		<span class="author">黝黑小姐</span>
-                        		<span class="date">01/25</span>
+                        		<span class="title"><%=news.getN_title() %></span>
+                        		<span class="author"><%=news.getN_author() %></span>
+                        		<span class="date"><%=news.getN_dateTime() %></span>
                         	</div>
 						</a>
 					</li>
-					<li>
-						<a href="javascript:;">
-							<div class="zxImg"><img src="image/information2.jpg" alt=""></div>
-                        	<div class="zxText">
-                        		<span class="title">怎么搭｜ 冬天最值得买的3件大衣冬天最值得买的3件大衣</span>
-                        		<span class="author">黝黑小姐</span>
-                        		<span class="date">01/25</span>
-                        	</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<div class="zxImg"></div>
-                        	<div class="zxText">
-                        		<span class="title">怎么搭｜ 冬天最值得买的3件大衣</span>
-                        		<span class="author">黝黑小姐</span>
-                        		<span class="date">01/25</span>
-                        	</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<div class="zxImg"><img src="image/information3.jpg" alt=""></div>
-                        	<div class="zxText">
-                        		<span class="title">怎么搭｜ 冬天最值得买的3件大衣</span>
-                        		<span class="author">黝黑小姐</span>
-                        		<span class="date">01/25</span>
-                        	</div>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-							<div class="zxImg"><img src="image/information4.jpg" alt=""></div>
-                        	<div class="zxText">
-                        		<span class="title">怎么搭｜ 冬天最值得买的3件大衣</span>
-                        		<span class="author">黝黑小姐</span>
-                        		<span class="date">01/25</span>
-                        	</div>
-						</a>
-					</li>
+				<%	
+					}
+				}
+				%>
 				</ul>
 			</div>
 		</div>
