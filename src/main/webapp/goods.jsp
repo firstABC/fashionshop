@@ -79,42 +79,10 @@
 
 			<!-- 评论 -->
 			<div class="d_nav_tab">
-			<input type="text" name="goodsId" id="gId" value="test"  hidden="hidden"  class="focus">
 				<div class="d_menu">评论<span>（3）</span></div>
-				<div class="plList">
-					<%-- <ul>
-						<li>
-							<div class="plText">
-								<p>老板很给力，周五晚下的单，今天周日中午就收到宝贝了，物流给力，赞。客服的态度也很好，最重要的是，东西很实用。外观好看方便，看着不错，高大尚。总之，非常非常完美的购物体验！</p>
-								<div class="time"><span>01.23</span></div>
-							</div>
-							<div class="goodsType">颜色分类：白色 42码</div>
-							<div class="nm">月***汐<span>（匿名）</span></div>
-						</li>
-						<li>
-							<div class="plText">
-								<p>此用户没有填写评论！</p>
-								<div class="zj"><span>收货26天后追加：</span>用了，非常好，方便</div>
-								<div class="time"><span>01.09</span></div>
-							</div>
-							<div class="goodsType">颜色分类：黑色 44码</div>
-							<div class="nm">周***驰<span>（匿名）</span></div>
-						</li>
-						<li>
-							<div class="plText">
-								<p>很好很好，还送了实用的小赠品，客服态度非常好。满意！</p>
-								<div class="imgs">
-									<img src="${pageContext.request.contextPath}/image/goods1-1.jpg" alt="">
-									<img src="${pageContext.request.contextPath}/image/goods1-2.jpg" alt="">
-								</div>
-								<div class="time"><span>2017.12.19</span></div>
-							</div>
-							<div class="goodsType">颜色分类：黑色 44码</div>
-							<div class="nm">周***驰<span>（匿名）</span></div>
-						</li>
-					</ul> --%>
+				<div class="plList" id="plList">
+					
 				</div>
-				<a href="javascript:nextPage()" class="morePj">查看更多</a>
 			</div>
 
 			<!-- 猜你喜欢 -->
@@ -219,11 +187,9 @@
 		<!-- 回到顶部 -->
 		<div class="back-top" style="display: none;"><img src="${pageContext.request.contextPath}/image/back-top.png"></div>
 	</div>
-
+	<input type="hidden" id="currentPage" value="1">	
+	<input type="hidden" id="maxPage">
 	<script>	
-	var goodsId = $("#gId").val();
-  	
-	
 		function toOrder(){
 			var g_id = $("#g_id").val();
 			var option = {
@@ -418,9 +384,9 @@
 		        }
 			})
 	    });
-	    var goodsId = $("#gId").val();
 	  	//获取用户评价列表  
 		function showConsultList(){
+			var goodsId = $("#g_id").val();
 			$('.plList').empty();
 			var currentPage=$('#currentPage').val();
 			$.ajax({
@@ -440,24 +406,22 @@
 					$('#plList').append("<ul>");
 					for(var i=0;i<consultVOArr.length;i++){
 						var consultVO=consultVOArr[i];
-						$('#plList').append("<li><div class='plText'><p>"+consultVO.consultMsg+"</p><div class='time'><span>"+consultVO.consultDate+"</span></div></div><div class='goodsType'>"+consultVO.goodsName+"</div></div></li>");
+						$('#plList').append("<li><div class='plText'><p>"+consultVO.consultMsg+"</p><div class='time'><span>"+consultVO.consultDate+"</span></div></div><div class='goodsType'>"+consultVO.goodsName+"</div><div class='nm'>"+consultVO.userName+"</div></li>");
 						if(consultVO.adminName!=null){
 							$('#plList').append("<div class='answer'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='adminName'>"+consultVO.adminName+"</font>: "+consultVO.replyMsg+"<div class='time'>"+consultVO.replyDate+"</div></div>");
 						}
 					}
-					$('.plList').append("</ul>");
-					/* //循环完之后再加上分页 
+					$('#plList').append("</ul>");
+					//循环完之后再加上分页 
 					if(consultVOArr!=null && consultVOArr!=''){
 						$('#plList').append("<div class='pagination'>"+
-								"<a href='javascript:void(0)' onclick='firstPage()'>首页</a>" 
-								+"&nbsp;<a href='javascript:void(0)' onclick='lastPage()'>上一页</a>"
-								+"&nbsp;<a href='javascript:void(0)' onclick='nextPage()'>下一页</a>"
-								+"&nbsp;<a href='javascript:void(0)' onclick='endPage()'>尾页</a>&nbsp;" 
+								"<a href='javascript:void(0)' onclick='nextPage()' class='morePj'>查看更多</a>"
 								+$('#currentPage').val()+"/共"+$('#maxPage').val()+"页"  
 								+"</div>");
+						
 					}else{
 						$('#plList').append("<p class='consultAdvice'>暂无评价~</P>");
-					} */
+					} 
 				}
 			});
 		}
