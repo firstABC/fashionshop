@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
 import chen.mingyu.dao.UserDao;
 import chen.mingyu.domain.ConsultVO;
 import chen.mingyu.domain.Page;
@@ -144,8 +145,6 @@ public class UserController{
 				user.setUserId(userId);
 				User userResult = userDao.getUserInfo(user);
 				session.setAttribute("user", userResult);
-				session.setAttribute("userName", userResult.getUserName());
-				session.setAttribute("userId", userResult.getUserId());
 				return "AdminUserEdit";
 			}else{
 				request.setAttribute("msg", "登录超时!");
@@ -159,24 +158,38 @@ public class UserController{
 		    page.setData(uList);
 		    return page;
 		}
-		/*@RequestMapping(value="/getUserInfoById", method = RequestMethod.GET)
-		public @ResponseBody User getUserInfoById2(@RequestParam("userId")String userId){
-			if(userId != null){
-				User user = new User();
-				user.setUserId(userId);
-				User userResult = userDao.getUserInfo(user);
-				return userResult;
-			}else{
-				return null;
-			}
-		}
-*/
+		
 		@RequestMapping(value="/deleteUser", method = RequestMethod.POST)
 		public @ResponseBody String deleteUserInfoById(@RequestParam("userId")String userId){
 			if(userId != null){
 				User user = new User();
 				user.setUserId(userId);
 				userDao.deleteUser(user);;
+				return "success";
+			}else{
+				return "error";
+			}
+		}
+		@RequestMapping(value="/addUser", method = RequestMethod.POST)
+		public @ResponseBody String addUser(HttpServletRequest request,HttpServletResponse response,User user){
+			if(user != null){
+				User uCons = new User();
+				uCons.setUserName(user.getUserName());
+				uCons.setUserId(user.getUserId());
+				if(userDao.getUserCheck(uCons) >= 1){
+					return "warn";
+				}else{
+					//设置id
+					String userIdStr = UUID.randomUUID().toString();
+					user.setUserId(userIdStr);
+					//默认未禁用
+					user.setIsDelete("0");
+					//设置当前注册时间
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					user.setUserDate(sdf.format(date));
+					userDao.addUser(user);
+				}
 				return "success";
 			}else{
 				return "error";

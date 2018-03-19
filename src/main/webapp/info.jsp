@@ -14,7 +14,7 @@
 <body>
 	<div class="banner">
 		<header>
-			<jsp:include page="header.jsp" flush="true"/>
+			<jsp:include page="header.jsp"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
 	                 <a href="index.jsp">首页</a>  
@@ -26,13 +26,12 @@
 	        </div>
 		</header>
 	</div>
-	<span id="msg" style="display:none">${msg}</span>
 	<div class="main">
 		<div class="lay1200 infoMy">
 			<div class="info clearfix">
 				<img src="image/people.png" alt="个人中心头像" class="peopleImg">
 				<div class="infoText">
-					<input type="text" name="userIdN" value="${userId }" hidden="hidden" class="uId">
+					<input type="text" name="userIdN" value="${userId }" hidden="hidden" id="uId">
 					<p>用&nbsp;户&nbsp;名:<input type="text" name="userNameN" value="${user.userName}" placeholder="用户名" disabled="disabled" class="uName"></p>
 					<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhoneN" value="${user.userPhone}" placeholder="手机号" disabled="disabled" class="uPhone"></p>
 					<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmailN" value="${user.userEmail}" placeholder="邮箱" disabled="disabled" class="uEmail"></p>
@@ -69,7 +68,7 @@
 				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">black head</a></div>
 				      			<div class="showpic_info clearfix">
 					                <div class="priceNum fl"><b>¥89.00</b><s>268.00</s><span>( 3.3 折 )</span></div>
-					                <a href=" " title="" class="plNow">立即评论</a>
+					                <a href="javascript:;" class="plNow">立即评论</a>
 					            </div>
 				      		</div>
 
@@ -118,36 +117,15 @@
 					</div>
 					<!-- 我的评论 -->
 					<div class="myItem none">
-						<div class="plList">
-							<ul>
-								<li>
-									<div class="plText">
-										<p>老板很给力，周五晚下的单，今天周日中午就收到宝贝了，物流给力，赞。客服的态度也很好，最重要的是，东西很实用。外观好看方便，看着不错，高大尚。总之，非常非常完美的购物体验！</p>
-										<div class="time"><span>01.23</span></div>
-									</div>
-									<div class="goodsType">颜色分类：白色 42码</div>
-									<div class="nm">月***汐<span>（匿名）</span></div>
-								</li>
-								<li>
-									<div class="plText">
-										<p>很好很好，还送了实用的小赠品，客服态度非常好。满意！</p>
-										<div class="imgs">
-											<img src="image/goods1-1.jpg" alt="">
-											<img src="image/goods1-2.jpg" alt="">
-										</div>
-										<div class="time"><span>2017.12.19</span></div>
-									</div>
-									<div class="goodsType">颜色分类：黑色 44码</div>
-									<div class="nm">周***驰<span>（匿名）</span></div>
-								</li>
-							</ul>
+						<div class="plList" id="plList">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div> 
-
+	<input type="hidden" id="currentPage" value="1">	
+	<input type="hidden" id="maxPage">
 	<!-- 地址栏 -->
 	<div class="foot_wrap">
 	    <div class="foot lay1200">
@@ -163,21 +141,21 @@
 	        </div>
 	    </div>
 	</div>
+		<!-- 个人信息修改 -->
 		<div class="editBox">
 		<div class="info">
 				<h1>修改个人信息</h1>
 				<div class="infoText">
-					<form action="updateUser" method="post" onSubmit="return checkForm()">
+					<form action="" method="post" id="updateUserForm" onSubmit="return checkForm()">
 							<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden" class="focus">
 							<p>用&nbsp;户&nbsp;名:<input type="text" name="userName" value="${sessionScope.user.userName}" placeholder="用户名" class="focus"></p>
 							<p>手&nbsp;机&nbsp;号:<input type="tel" name="userPhone" value="${sessionScope.user.userPhone}" placeholder="手机号" class="focus" ></p>
 							<p>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:<input type="email" name="userEmail" value="${sessionScope.user.userEmail}" placeholder="邮箱" class="focus"></p>
 							<p>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:<input type="password" name="userPwd" value="${sessionScope.user.userPwd}" placeholder="*******" class="focus" id="pwd"></p>
 							<p>确认密码:<input type="password" value="${sessionScope.user.userPwd}" placeholder="*******" class="focus" id="pwdR">		
-						
 						<div class="sure">
-							<a href="getUserInfoById?userId=${userId}" class="close">取消</a>
-							<a href="javascript:;"><input type="submit" name="" value="确认" placeholder=""></a>
+							<a href="javascript:;" class="close">取消</a>
+							<a href="javascript:updateUser()">确认</a>
 							<span id="errorMsg" style="display:none"></span>
 						</div>
 					</form>
@@ -189,14 +167,103 @@
 			<div class="info">
 				<h1>立即评论</h1>
 				<div class="plTextarea">
-					<textarea name="" placeholder="请输入评论内容"></textarea>
-					<div class="sure2">< a href=" " class="close">取消</ a>< a href="javascript:;"><input type="submit" name="" value="确认" placeholder=""></ a></div>
+				<form action="" method="post">
+					<input type="text" name="userId" id="plUserId" value="${sessionScope.user.userId }" hidden="hidden" class="focus">
+					<input type="text" name="goodsId" id="gId" value="test"  hidden="hidden"  class="focus">
+					<textarea name="consultMsg" id="consultMsg" placeholder="请输入评论内容"></textarea>
+					<div class="sure2">
+						<a href="javascript:;" class="close">取消</a>
+						<a href="javascript:addConsult()">确认</a>
+					</div>
+				</form>
 				</div>
 			</div>
 		</div>
 	<script type="text/javascript">
+	var userId = $("#uId").val();
+	var goodsId = $("#gId").val();
+	function addConsult(){
+		var consultMsg = $("#consultMsg").val();
+		var a = $.ajax({
+			url:'${pageContext.request.getContextPath()}/con/addConsult',
+    		type :'post',
+    		data:{
+    			userId:userId,
+    			goodsId:goodsId,
+    			consultMsg:consultMsg
+    		}, 
+    		success:function(data){
+    			if(data == 'error'){
+    				alert("评论失败！");
+    			}else{
+    				alert("评论成功！");
+    			}
+    		}
+		});
+		
+	}
+	function updateUser(){
+		var params = $('#updateUserForm').serialize();;
+		var a = $.ajax({
+			url:'${pageContext.request.getContextPath()}/updateUser',
+    		type :'post',
+    		data:params, 
+    		success:function(data){
+    			if(data == 'success'){
+    				alert("修改成功！");
+    				window.location.href="${pageContext.request.getContextPath()}/getUserInfoById?userId="+userId;
+    			}else if(data =='warn'){
+    				alert("用户名重复！");
+    			}else{
+    				window.location.href="${pageContext.request.getContextPath()}/login.jsp";
+    			}
+    		}
+		});
+		
+	}
+	//获取用户评价列表  
+	function showConsultList(){
+		$('.plList').empty();
+		var currentPage=$('#currentPage').val();
+		$.ajax({
+			url:'${pageContext.request.getContextPath()}/con/getConsultByUser',
+			async: false,
+			type:'get',
+			data:{
+				userId:userId,
+				currentPage:currentPage
+			},
+			dataType:'json',
+			success:function(data){
+				/* var dataArr=JSON.parse(data); */
+				$('#maxPage').val(data.maxPage);	
+				var consultVOArr = data.data;
+				console.log(consultVOArr);
+				$('#plList').append("<ul>");
+				for(var i=0;i<consultVOArr.length;i++){
+					var consultVO=consultVOArr[i];
+					$('#plList').append("<li><div class='plText'><p>"+consultVO.consultMsg+"</p><div class='time'><span>"+consultVO.consultDate+"</span></div></div><div class='goodsType'>"+consultVO.goodsName+"</div></li>");
+					if(consultVO.adminName!=null){
+						$('#plList').append("<div class='answer'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font class='adminName'>"+consultVO.adminName+"</font>: "+consultVO.replyMsg+"<div class='time'>"+consultVO.replyDate+"</div></div>");
+					}
+				}
+				$('#plList').append("</ul>");
+				//循环完之后再加上分页 
+				if(consultVOArr!=null && consultVOArr!=''){
+					$('#plList').append("<div class='pagination'>"+
+							"<a href='javascript:void(0)' onclick='firstPage()'>首页</a>" 
+							+"&nbsp;<a href='javascript:void(0)' onclick='lastPage()'>上一页</a>"
+							+"&nbsp;<a href='javascript:void(0)' onclick='nextPage()'>下一页</a>"
+							+"&nbsp;<a href='javascript:void(0)' onclick='endPage()'>尾页</a>&nbsp;" 
+							+$('#currentPage').val()+"/共"+$('#maxPage').val()+"页"  
+							+"</div>");
+				}else{
+					$('#plList').append("<p class='consultAdvice'>暂无评价~</P>");
+				}
+			}
+		});
+	}
 		$(function(){
-			var userId = $(".uId").val();
 			$('.myList li').click(function(){
 				if(!$(this).hasClass("active")){
 	              $('.myList li').removeClass("active");
@@ -205,6 +272,9 @@
 				var aa = $(this).index();
 		        $('.myMenu').children('.myItem').hide();
 		        $('.myMenu').children('.myItem').eq(aa).show();
+		        if(aa == 2){
+		        	firstPage();
+		        }
 			})
 
 			// 信息编辑
@@ -214,7 +284,7 @@
 			});
 			$('.sure a').click(function(){
 				$('.editBox').hide();
-				//window.location.href="../fashionshop/getUserInfoById?userId="+userId
+				
 			})
 			
 			// 立即评论
@@ -223,6 +293,7 @@
 			});
 			$('.sure2 a').click(function(){
 				$('.plBox').hide();
+				//window.location.href="${pageContext.request.getContextPath()}/getUserInfoById?userId="+userId;
 			})
 			//错误信息
 			var cont=$("#msg").text();
@@ -231,16 +302,6 @@
 				$('.editBox').show();
 				$('#errorMsg').show();
 			}
-			
-			/* $.ajax({
-				url:"getUserInfoById",
-				type:"get",
-				data:{
-					userId:$('.uId').val()
-				},success:function(data){
-					console.log("data:"+data);
-				}
-			}) */
 		})
 		function checkForm(){
 			if($('#pwdR').val() != $('#pwd').val()){
@@ -250,6 +311,33 @@
 				return false;
 			}
 		}
+			//评论分页功能 
+			//首页
+			function firstPage(){
+				$('#currentPage').val("1");
+				showConsultList();
+			}
+			//上一页
+			function lastPage(){
+				var current=$('#currentPage').val();
+				if(current==1){
+					showConsultList();
+				}else if(current>1){
+					$('#currentPage').val(parseInt(current)-parseInt(1));
+					showConsultList();
+				}
+			}
+			//下一页
+			function nextPage(){
+				var current=$('#currentPage').val();
+				var maxPage=$('#maxPage').val();
+				if(current==maxPage){
+					showConsultList();
+				}else if(current<maxPage){
+					$('#currentPage').val(parseInt(current)+parseInt(1));
+					showConsultList();
+				}
+			}
 	</script>
 	
 </body>

@@ -16,9 +16,6 @@ public class Page {
 	private List data;
 	private int maxPage;
 	
-	//datatables数据名
-	private int iTotalDisplayRecords;   
-    private int iTotalRecords;
 	
 	public int getStartIndex() {
 		return startIndex;
@@ -55,17 +52,5 @@ public class Page {
 	}
 	public void setMaxPage(int maxPage) {
 		this.maxPage = maxPage;
-	}
-	public int getiTotalDisplayRecords() {
-		return iTotalDisplayRecords;
-	}
-	public void setiTotalDisplayRecords(int iTotalDisplayRecords) {
-		this.iTotalDisplayRecords = iTotalDisplayRecords;
-	}
-	public int getiTotalRecords() {
-		return iTotalRecords;
-	}
-	public void setiTotalRecords(int iTotalRecords) {
-		this.iTotalRecords = iTotalRecords;
 	}
 }

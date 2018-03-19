@@ -74,7 +74,7 @@ public class ConsultController{
 			paramsMap.put("goodsId", goodsId);
 			page.setParams(paramsMap);
 			int total=consultDao.getConsultCount(page);
-			int pageSize = 2;
+			int pageSize = 5;
 			int maxPage = 1;
 			if(total%pageSize==0){
 				maxPage=total/pageSize;
@@ -84,6 +84,8 @@ public class ConsultController{
 			if(currentPage<1){
 				currentPage=1;
 			}
+			page.setTotal(total);
+			page.setMaxPage(maxPage);
 			page.setStartIndex((currentPage-1)*pageSize);
 			page.setLength(pageSize);
 			page.setData(consultDao.getConsultList(page));
