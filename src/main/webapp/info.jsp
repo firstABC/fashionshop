@@ -64,11 +64,11 @@
 				      			<div class="picbox">
 				      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt=""></a>
 				      				<a href="javascript:;" class="deShadow" title=""></a>
-				      				<div class="actions">
+				      				<!-- <div class="actions">
 					            		<div class="lefter">
 											<a class="p_iliked" href="javascript:;"></a>
 					                    </div>
-					        		</div>
+					        		</div> -->
 				      			</div>
 				      			<div class="showpic_title">
 				      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=goods.getG_id() %>" target="_blank" title=""><%=goods.getG_title() %></a>
@@ -76,7 +76,7 @@
 				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=goods.getG_brand() %></a></div>
 				      			<div class="showpic_info clearfix">
 					                <div class="priceNum fl"><b>¥<%=goods.getG_price() %></b></div>
-					                <a href="javascript:;" class="plNow">立即评论</a>
+					                <a href="javascript:toShow('<%=goods.getG_id() %>');" class="plNow">立即评论</a>
 					            </div>
 				      		</div>
 						<%
@@ -174,7 +174,7 @@
 				<div class="plTextarea">
 				<form action="" method="post">
 					<input type="text" name="userId" id="plUserId" value="${sessionScope.user.userId }" hidden="hidden" class="focus">
-					<input type="text" name="goodsId" id="gId" value="test"  hidden="hidden"  class="focus">
+					<input type="text" name="goodsId" id="gId" class="focus" hidden="hidden">
 					<textarea name="consultMsg" id="consultMsg" placeholder="请输入评论内容"></textarea>
 					<div class="sure2">
 						<a href="javascript:;" class="close">取消</a>
@@ -186,8 +186,8 @@
 		</div>
 	<script type="text/javascript">
 	var userId = $("#uId").val();
-	var goodsId = $("#gId").val();
 	function addConsult(){
+		var goodsId = $("#gId").val();
 		var consultMsg = $("#consultMsg").val();
 		var a = $.ajax({
 			url:'${pageContext.request.getContextPath()}/con/addConsult',
@@ -295,7 +295,7 @@
 			
 			// 立即评论
 			$('.plNow').click(function(){
-				$('.plBox').show();
+				
 			});
 			$('.sure2 a').click(function(){
 				$('.plBox').hide();
@@ -309,6 +309,12 @@
 				$('#errorMsg').show();
 			}
 		})
+		
+		
+		function toShow(g_id){
+			$("#gId").val(g_id)
+			$('.plBox').show();
+		}
 		function checkForm(){
 			if($('#pwdR').val() != $('#pwd').val()){
 				$('#errorMsg').text("密码两次输入不一致!");
