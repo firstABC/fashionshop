@@ -52,7 +52,7 @@
 	</update>
 	
 	<update id ="editGoods" parameterType="Goods">
-		update goods set g_title =#{g_title},g_detail=#{g_detail},g_price=#{g_price},g_brand=#{g_brand},g_inventory=#{g_inventory},g_like=#{g_like},g_status=#{g_status}g_sex=#{g_sex}
+		update goods set g_title =#{g_title},g_detail=#{g_detail},g_price=#{g_price},g_brand=#{g_brand},g_inventory=#{g_inventory},g_like=#{g_like},g_status=#{g_status},g_sex=#{g_sex},g_type=#{g_type} where g_id=#{g_id}
 	</update>
 	
 	<select id="selectByG_id" resultMap="goodsResultMap" parameterType="String">
@@ -64,6 +64,8 @@
 	</select>
 	
 	<select id="selectGoodsByCondition" resultMap="goodsResultMap" parameterType="String">
-		select * from goods g,images i where g.g_id = i.g_id and (g.g_title or g.g_brand) like #{condition}
+		select * from goods g,images i where g.g_id = i.g_id and g.g_title LIKE concat(concat('%',#{condition}),'%') 
+		union 
+		select * from goods g,images i where g.g_id = i.g_id and g.g_brand LIKE concat(concat('%',#{condition}),'%')
 	</select>
 </mapper>

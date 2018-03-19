@@ -13,8 +13,8 @@
 
 	<insert id="insertOrder" parameterType="Orders">
 		<![CDATA[
-			insert into orders(or_id,g_id,or_number,or_date,or_price,or_status)
-			values(#{or_id},#{g_id},#{or_number},to_date(#{n_dateTime},'yyyy-mm-dd'),#{or_price},#{or_status})
+			insert into orders(or_id,g_id,userId,or_number,or_date,or_price,or_status)
+			values(#{or_id},#{g_id},#{userId},#{or_number},#{or_date},#{or_price},#{or_status})
 		]]>
 	</insert>
 	
@@ -26,26 +26,8 @@
 	
 	<select id="selectOrdersAll" resultMap="OrderResultMap" parameterType="Orders">
 		<![CDATA[
-			select * from orders where 1 = 1
+			select * from orders where userId = #{userId}
 		]]>
-		<!-- <if test="or_id != null and or_id != '' ">
-					and or_id=#{or_id}
-		</if> -->
-		<!-- <isNotNull property="or_id">
-			<![CDATA[
-				and or_id=#{or_id}
-			]]>
-		</isNotNull>
-		<isNotNull property="or_status">
-			<![CDATA[
-				and or_status =#{or_status}
-			]]>
-		</isNotNull>
-		<isNotNull property="or_date">
-			<![CDATA[
-				and or_date >= to_date(#{or_date},'yyyy-mm-dd')
-			]]>
-		</isNotNull> -->
 	</select>
   
    

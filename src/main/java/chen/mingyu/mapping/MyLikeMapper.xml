@@ -15,4 +15,8 @@
 	<select id="selectByUserIdAndGid" parameterType="MyLike" resultMap="myLikeResultMap">
 		select * from mylike where g_id=#{g_id} and userId=#{userId}
 	</select>
+	
+	<select id="selectByUserId" parameterType="String" resultMap="myLikeResultMap">
+		select * from mylike where userId=#{userId}
+	</select>
 </mapper>

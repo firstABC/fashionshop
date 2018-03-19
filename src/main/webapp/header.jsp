@@ -18,7 +18,7 @@
        	<div class="header_m lay1200 clearfix">
                <a href="${pageContext.request.contextPath}/switch/toIdex"><img src="${pageContext.request.contextPath}/image/logo.png" alt="潮品之家" title="潮品之家"></a>
                <div class="topSearch clearfix fl">
-                   <form method="post" action="">
+                   <form method="post" action="${pageContext.request.contextPath}/goods/selectGoodsByCondition">
                    	<input class="fl inputSearch" id="searchList" type="text" name="keyword" autocomplete="off" placeholder="请输入你喜欢的品牌或商品" value="">
                       <input type="submit" class="btnSearch fl" value="">
                    </form>

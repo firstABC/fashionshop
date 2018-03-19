@@ -11,7 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	  <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+	   <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+	<!-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script> -->
 </head>
 <body>
 	<div class="banner">
@@ -19,11 +21,11 @@
 			<jsp:include page="header.jsp" flush="true"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
-	                 <a href="index.jsp">首页</a>
-	                 <a href="information.jsp">潮流资讯</a>
-	                 <a href="javascript:;">新品</a>  
-	                 <a href="javascript:;">服装</a>  
-	                 <a href="javascript:;">鞋类</a>
+	             	 <a href="${pageContext.request.contextPath}/switch/toIdex">首页</a> 
+                	 <a href="${pageContext.request.contextPath}/news/toNewsMangeIndex">潮流资讯</a>
+                	 <a href="${pageContext.request.contextPath}/goods/toNewProduct" >新品</a>  
+	                 <a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>
+	                 <a href="${pageContext.request.contextPath}/goods/toShoProduct">鞋类</a>
 	            </nav>
 	        </div>
 		</header>
@@ -192,22 +194,14 @@
 	<script>	
 		function toOrder(){
 			var g_id = $("#g_id").val();
-			var option = {
-		    		url:'${pageContext.request.getContextPath()}/order/toOrder?g_id='+1,
-		    		type :"post",
-		    		dataType:'json',
-		    		headers:{"ClientCallMode" : "ajax"}, 
-		    		success : function(data) {
-		    			if(data.message == 'faile'){
-							alert("预定失败！");
-						}
-		            },
-		            error: function(data) {
-		                alert(JSON.stringify(data) + "--上传失败,请刷新后重试");
-		            }
-		         };
-		   	 	$("#publish_form").ajaxSubmit(option);
-		   	 	return false;
+			 $.ajax({
+					url:"${pageContext.request.contextPath}/order/toOrder?g_id="+g_id,
+				 	success:function(result){
+				 		if(result.message == 'faile'){
+				 			window.location.href="${pageContext.request.contextPath}/login.jsp";
+						}			
+			    }
+			});
 		}
 	    $(document).ready(function () {
 	    	//加载商品评论列表

@@ -19,6 +19,9 @@ public interface NewsDao {
 	//修改阅读数
 	public int alterNumber(News news);
 	
+	//修改新闻信息
+	public int alterNewsInfo(News news);
+	
 	//查询新闻详情
 	public News selectByN_id(String n_id);
 	

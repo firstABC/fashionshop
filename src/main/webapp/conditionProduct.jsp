@@ -37,15 +37,28 @@
 	</script>
 </head>
 <body>
-	<div class="userId" style="display: none;"><input type="text" id="hiddenuser" name="" value="${userId}" placeholder=""></div>
 	<div class="banner">
 		<header>
-			<jsp:include page="header.jsp" flush="true"/>
+			<div class="headerTop">
+	        	<div class="header_m lay1200 clearfix">
+	                <a href="javascript:;"><img src="${pageContext.request.contextPath}/image/logo.png" alt="潮品之家" title="潮品之家"></a>
+	                <div class="topSearch clearfix fl">
+	                    <form method="post" action="">
+	                    	<input class="fl inputSearch" id="searchList" type="text" name="keyword" autocomplete="off" placeholder="请输入你喜欢的品牌或商品" value="">
+	                       <input type="submit" class="btnSearch fl" value="">
+	                    </form>
+	                </div>
+	                <div class="login">
+                		<a href="register.html">注册</a>                
+	                    <a href="login.html">登录</a>
+            		</div>
+	            </div>
+	        </div>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
 	                 <a href="${pageContext.request.contextPath}/switch/toIdex">首页</a> 
                 	 <a href="${pageContext.request.contextPath}/news/toNewsMangeIndex">潮流资讯</a>
-                	 <a href="${pageContext.request.contextPath}/goods/toNewProduct" class="on">新品</a>  
+                	 <a href="${pageContext.request.contextPath}/goods/toNewProduct" >新品</a>  
 	                 <a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>
 	                 <a href="${pageContext.request.contextPath}/goods/toShoProduct">鞋类</a>
 	            </nav>
@@ -60,9 +73,9 @@
 				<div class="tjGoods">
 					<div class="goods clearfix">
 				<%
-			      	List<Goods> ltGoodsNew = (List<Goods>)request.getSession().getAttribute("ltGoodsNew");
-			      	if(ltGoodsNew!=null&&ltGoodsNew.size()>0){
-			      		for(Goods good:ltGoodsNew){
+			      	List<Goods> ltCon = (List<Goods>)request.getSession().getAttribute("ltCon");
+			      	if(ltCon!=null&&ltCon.size()>0){
+			      		for(Goods good:ltCon){
 			      			List<Images> ltM = good.getLtMage();
 			      			Images images = ltM.get(0);
 			      %>
@@ -131,7 +144,7 @@
 	            $('html,body').animate({scrollTop: '0px'}, 800);
 	        });
 
-	     // 喜欢
+	    	// 喜欢
 	        $('.actions').click(function(){
 	        	if (!$('.userId').children('input').val()) {
 	        		alert('请先登录~');

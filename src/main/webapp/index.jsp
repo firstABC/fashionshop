@@ -26,7 +26,7 @@
 					url:'${pageContext.request.contextPath}/goods/addLike?g_id='+g_id,
 					success:function(result){
 						if(result.message == 'repetition'){
-							//alert("您已收藏");
+							alert("请不要重复收藏");
 							
 						}else{
 							alert("收藏成功！");
@@ -44,11 +44,11 @@
 		<jsp:include page="header.jsp" flush="true"/>
 		<div class="list">
         	<nav class="lay1200 clearfix">
-                 <a href="javascript:;" class="on">首页</a> 
-                 <a href="information.jsp">潮流资讯</a>
-                 <a href="javascript:;">新品</a>  
-                 <a href="javascript:;">服装</a>  
-                 <a href="javascript:;">鞋类</a>
+                 <a href="${pageContext.request.contextPath}/switch/toIdex" class="on">首页</a> 
+                 <a href="${pageContext.request.contextPath}/news/toNewsMangeIndex">潮流资讯</a>
+                 <a href="${pageContext.request.contextPath}/goods/toNewProduct">新品</a>  
+                 <a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>  
+                 <a href="${pageContext.request.contextPath}/goods/toShoProduct"">鞋类</a>
             </nav>
 		</div>
 	</div>
@@ -173,7 +173,7 @@
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
+										<a class="p_ilike" href="javascript:addLike('<%=good.getG_id() %>');"></a>
 				                    </div>
 				        		</div>
 			      			</div>
@@ -212,7 +212,7 @@
 			      				<a href="javascript:;" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
-										<a class="p_ilike" href="javascript:;"></a>
+										<a class="p_ilike" href="javascript:addLike('<%=good.getG_id() %>');"></a>
 				                    </div>
 				        		</div>
 			      			</div>

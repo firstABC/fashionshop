@@ -137,15 +137,18 @@ public class GoodsController {
 	@RequestMapping("/toEdit")
 	@ResponseBody
 	public Map editGoods(HttpServletRequest request,HttpSession session){
+		String g_id = request.getParameter("g_id");
 		String g_title = request.getParameter("g_title");
 		String g_detail = request.getParameter("g_detail");
 		String g_price = request.getParameter("g_price");
 		String g_brand = request.getParameter("g_brand");
-		String g_id = request.getParameter("g_id");
 		int g_inventory = Integer.parseInt(request.getParameter("g_inventory"));
+		int g_like = Integer.parseInt(request.getParameter("g_like"));
 		int g_sex = Integer.parseInt(request.getParameter("g_sex"));
 		String g_status = request.getParameter("g_status");
+		String g_type = request.getParameter("g_type");
 		Goods goods = new Goods(g_id,g_title,g_detail,g_price,g_brand,g_inventory,1,g_status,g_sex);
+		goods.setG_type(g_type);
 		int isOk = goodsDao.editGoods(goods);
 		Map map = new HashMap();
 		if(isOk!=0){
@@ -155,6 +158,14 @@ public class GoodsController {
 		}
 		return map;
 	}
+	//跳转到编辑页
+	@RequestMapping("/forEdit")
+	public String forEdit(HttpServletRequest request,HttpSession session,@RequestParam("g_id")String g_id){
+		Goods goods = goodsDao.selectByG_id(g_id);
+		session.setAttribute("goodsForEdit", goods);
+		return "eidtProduct";
+	}
+	
 	
 	@RequestMapping("/togoodsMange")
 	public String selectGoodsAll(HttpServletRequest request,HttpSession session){
@@ -174,18 +185,38 @@ public class GoodsController {
 		return "/goods";
 	}
 	
+	//新品
 	@RequestMapping("/toNewProduct")
-	public String selectGoodsByType(HttpServletRequest request,HttpSession session){
-		List<Goods> ltGoods = goodsDao.selectGoodsByType("C");
+	public String selectGoodsByStatus(HttpServletRequest request,HttpSession session){
+		List<Goods> ltGoods = goodsDao.selectGoodsByStatus("C");
 		session.setAttribute("ltGoodsNew", ltGoods);
 		return "/newProduct";
 	}
+	//服装
+	@RequestMapping("/toCloProduct")
+	public String selectGoodsByType(HttpServletRequest request,HttpSession session){
+		List<Goods> ltGoods = goodsDao.selectGoodsByType("A");
+		session.setAttribute("ltGoodsClo", ltGoods);
+		return "/clothesProduct";
+	}
+	
+	//鞋子
+	@RequestMapping("/toShoProduct")
+	public String selectGoodsByTypeB(HttpServletRequest request,HttpSession session){
+		List<Goods> ltGoods = goodsDao.selectGoodsByType("B");
+		session.setAttribute("ltGoodsShoes", ltGoods);
+		return "/shoesProduct";
+	}
+	
+	
 	
 	//首页条件查询
+	@RequestMapping("/selectGoodsByCondition")
 	public String selectGoodsByCondition(HttpServletRequest request,HttpSession session){
-		String condition = request.getParameter("condition");
-		goodsDao.selectGoodsByCondition(condition);
-		return "";
+		String condition = request.getParameter("keyword");
+		List<Goods> ltCon = goodsDao.selectGoodsByCondition(condition);
+		session.setAttribute("ltCon", ltCon);
+		return "/conditionProduct";
 	}
 	
 }

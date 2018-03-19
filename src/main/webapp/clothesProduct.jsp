@@ -37,7 +37,6 @@
 	</script>
 </head>
 <body>
-	<div class="userId" style="display: none;"><input type="text" id="hiddenuser" name="" value="${userId}" placeholder=""></div>
 	<div class="banner">
 		<header>
 			<jsp:include page="header.jsp" flush="true"/>
@@ -45,9 +44,9 @@
 	        	<nav class="lay1200 clearfix">
 	                 <a href="${pageContext.request.contextPath}/switch/toIdex">首页</a> 
                 	 <a href="${pageContext.request.contextPath}/news/toNewsMangeIndex">潮流资讯</a>
-                	 <a href="${pageContext.request.contextPath}/goods/toNewProduct" class="on">新品</a>  
-	                 <a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>
-	                 <a href="${pageContext.request.contextPath}/goods/toShoProduct">鞋类</a>
+                	 <a href="${pageContext.request.contextPath}/goods/toNewProduct" >新品</a>  
+	                 <a href="${pageContext.request.contextPath}/goods/toCloProduct" class="on">服装</a>
+	                 <a href="${pageContext.request.contextPath}/goods/toShoProduct"">鞋类</a>
 	            </nav>
 	        </div>
 		</header>
@@ -60,9 +59,9 @@
 				<div class="tjGoods">
 					<div class="goods clearfix">
 				<%
-			      	List<Goods> ltGoodsNew = (List<Goods>)request.getSession().getAttribute("ltGoodsNew");
-			      	if(ltGoodsNew!=null&&ltGoodsNew.size()>0){
-			      		for(Goods good:ltGoodsNew){
+			      	List<Goods> ltGoodsClo = (List<Goods>)request.getSession().getAttribute("ltGoodsClo");
+			      	if(ltGoodsClo!=null&&ltGoodsClo.size()>0){
+			      		for(Goods good:ltGoodsClo){
 			      			List<Images> ltM = good.getLtMage();
 			      			Images images = ltM.get(0);
 			      %>

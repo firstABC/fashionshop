@@ -7,4 +7,5 @@
     <typeAliases>
         <package name="chen.mingyu.domain" />
     </typeAliases>
+ 
 </configuration>

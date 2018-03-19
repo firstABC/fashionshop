@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="chen.mingyu.domain.Goods"%>
+<%@page import="chen.mingyu.domain.Images"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人信息</title>
-	<link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 </head>
 <body>
 	<div class="banner">
@@ -17,11 +20,11 @@
 			<jsp:include page="header.jsp"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
-	                 <a href="index.jsp">首页</a>  
-	                 <a href="information.jsp">潮流资讯</a>
-	                 <a href="javascript:;">新品</a>  
-	                 <a href="javascript:;">服装</a>  
-	                 <a href="javascript:;">鞋类</a>
+		             <a href="${pageContext.request.contextPath}/switch/toIdex" class="on">首页</a> 
+	                 <a href="${pageContext.request.contextPath}/news/toNewsMangeIndex">潮流资讯</a>
+	                 <a href="${pageContext.request.contextPath}/goods/toNewProduct">新品</a>  
+	                 <a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>  
+	                 <a href="${pageContext.request.contextPath}/goods/toShoProduct"">鞋类</a>
 	            </nav>
 	        </div>
 		</header>
@@ -29,7 +32,7 @@
 	<div class="main">
 		<div class="lay1200 infoMy">
 			<div class="info clearfix">
-				<img src="image/people.png" alt="个人中心头像" class="peopleImg">
+				<img src="${pageContext.request.contextPath}/image/people.png" alt="个人中心头像" class="peopleImg">
 				<div class="infoText">
 					<input type="text" name="userIdN" value="${userId }" hidden="hidden" id="uId">
 					<p>用&nbsp;户&nbsp;名:<input type="text" name="userNameN" value="${user.userName}" placeholder="用户名" disabled="disabled" class="uName"></p>
@@ -43,18 +46,23 @@
 			<div class="myOrder">
 				<div class="myList">
 					<ul>
-						<li class="active"><a href="javascript:;">我的预定<span>（2）</span></a></li>
-						<li><a href="javascript:;">我的喜欢<span>（1）</span></a></li>
-						<li><a href="javascript:;">我的评论<span>（2）</span></a></li>
+						<li class="active"><a href="javascript:;">我的预定</a></li>
+						<li><a href="javascript:;">我的喜欢</a></li>
+						<li><a href="javascript:;">我的评论</a></li>
 					</ul>
 				</div>
 				<div class="myMenu">
 					<!-- 我的预定 -->
 					<div class="myItem">
-						<div class="goods clearfix">
+						<div class="goods clearfix" id="myOrder">
+						<%
+						List<Goods> ltgoodsOrder = (List<Goods>)request.getSession().getAttribute("ltgoodsOrder");
+						if(ltgoodsOrder!=null){
+							for(Goods goods : ltgoodsOrder){
+						%>
 				      		<div class="box showpic">
 				      			<div class="picbox">
-				      				<a href="javascript:;" title=""><img src="image/goods11.jpg" alt=""></a>
+				      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt=""></a>
 				      				<a href="javascript:;" class="deShadow" title=""></a>
 				      				<div class="actions">
 					            		<div class="lefter">
@@ -63,41 +71,33 @@
 					        		</div>
 				      			</div>
 				      			<div class="showpic_title">
-				      				<a href="javascript:;" target="_blank" title="">BLACK HEAD黑头 骷髅头铆钉双肩包、旅行包</a>
+				      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=goods.getG_id() %>" target="_blank" title=""><%=goods.getG_title() %></a>
 				      			</div>
-				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">black head</a></div>
+				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=goods.getG_brand() %></a></div>
 				      			<div class="showpic_info clearfix">
-					                <div class="priceNum fl"><b>¥89.00</b><s>268.00</s><span>( 3.3 折 )</span></div>
+					                <div class="priceNum fl"><b>¥<%=goods.getG_price() %></b></div>
 					                <a href="javascript:;" class="plNow">立即评论</a>
 					            </div>
 				      		</div>
-
-				      		<div class="box showpic">
-				      			<div class="picbox">
-				      				<a href="javascript:;" title=""><img src="image/goods22.jpg" alt=""></a>
-				      				<a href="javascript:;" class="deShadow" title=""></a>
-				      				<div class="actions">
-					            		<div class="lefter">
-											<a class="p_iliked" href="javascript:;"></a>
-					                    </div>
-					        		</div>
-				      			</div>
-				      			<div class="showpic_title">
-				      				<a href="javascript:;" target="_blank" title="">Mean Streets x YZ Tattoo 联名设计棒球帽 - 纯黑限定版</a>
-				      			</div>
-				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Mean Streets</a></div>
-				      			<div class="showpic_info clearfix">
-					                <div class="priceNum fl"><b>¥318.00</b><s class="ml5">398.00</s> <span>( 8.0 折 )</span></div>
-					            </div>
-				      		</div>
+						<%
+						
+							}
+						}
+						%>
+				      		
 				      	</div>
 					</div>
 					<!-- 我的喜欢 -->
 					<div class="myItem none">
 						<div class="goods clearfix">
+						<%
+						List<Goods> ltgoodsMylike = (List<Goods>)request.getSession().getAttribute("ltgoodsMylike");
+						if(ltgoodsMylike!=null){
+							for(Goods goods : ltgoodsMylike){
+						%>
 				      		<div class="box showpic">
 				      			<div class="picbox">
-				      				<a href="javascript:;" title=""><img src="image/goods22.jpg" alt=""></a>
+				      				<a href="javascript:;" title=""><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt=""></a>
 				      				<a href="javascript:;" class="deShadow" title=""></a>
 				      				<div class="actions">
 					            		<div class="lefter">
@@ -106,13 +106,18 @@
 					        		</div>
 				      			</div>
 				      			<div class="showpic_title">
-				      				<a href="javascript:;" target="_blank" title="">Mean Streets x YZ Tattoo 联名设计棒球帽 - 纯黑限定版</a>
+				      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=goods.getG_id() %>" target="_blank" title=""><%=goods.getG_title() %></a>
 				      			</div>
-				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank">Mean Streets</a></div>
+				      			<div class="showpic_pinpaiinfo">品牌：<a href="javascript:;" target="_blank"><%=goods.getG_brand() %></a></div>
 				      			<div class="showpic_info clearfix">
-					                <div class="priceNum fl"><b>¥318.00</b><s class="ml5">398.00</s> <span>( 8.0 折 )</span></div>
+					                <div class="priceNum fl"><b>¥<%=goods.getG_price() %></b></div>
 					            </div>
 				      		</div>
+				      		<%
+						
+							}
+						}
+						%>
 				      	</div>
 					</div>
 					<!-- 我的评论 -->
@@ -263,6 +268,7 @@
 			}
 		});
 	}
+	
 		$(function(){
 			$('.myList li').click(function(){
 				if(!$(this).hasClass("active")){

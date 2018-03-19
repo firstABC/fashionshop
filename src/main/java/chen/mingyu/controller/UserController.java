@@ -110,7 +110,7 @@ public class UserController{
 				session.setAttribute("user", userResult);
 				session.setAttribute("userName", userResult.getUserName());
 				session.setAttribute("userId", userResult.getUserId());
-				return "info";
+				return "forward:/switch/selectUserOrderAndLike";
 			}else{
 				request.setAttribute("msg", "登录超时!");
 				return "login";

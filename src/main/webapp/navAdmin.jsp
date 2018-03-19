@@ -26,13 +26,13 @@
                     </div>
                 </li>
                 <li>
-                    <a href="AdminProduct.jsp"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
+                    <a href="${pageContext.request.contextPath}/goods/togoodsMange"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
                 </li>
                 <li>
                     <a href="AdminUser.jsp"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
                 </li>
                 <li>
-                    <a href="AdminInfo.jsp"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
+                    <a href="${pageContext.request.contextPath}/news/toNewsMange"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
                 </li>
 
 			</ul>

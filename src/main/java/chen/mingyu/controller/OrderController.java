@@ -40,8 +40,10 @@ public class OrderController {
 		Map map = new HashMap();
 		if(userId!=null){
 			String g_id = request.getParameter("g_id");
-			int or_number = Integer.parseInt(request.getParameter("or_number"));
-			Double or_price  = Double.parseDouble(request.getParameter("or_price"));
+			//int or_number = Integer.parseInt(request.getParameter("or_number"));
+		//	Double or_price  = Double.parseDouble(request.getParameter("or_price"));
+			int or_number =1;
+			Double or_price  = Double.parseDouble("999.9");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String or_date = sdf.format(new Date());
 			
@@ -49,28 +51,12 @@ public class OrderController {
 			int isOk = orderDao.insertOrder(order);
 			if(isOk>0){
 				map.put("message", "success");
-			}else{
-				map.put("message", "faile");
 			}
+		}else{
+			map.put("message", "faile");
 		}
 		
 		return map;
 	}
 	
-	@RequestMapping("/selectUserOrder")
-	@ResponseBody 
-	public List<Goods> selectOrdersByUserId(HttpServletRequest request,HttpSession session,@RequestParam("userId")String userId){
-		Orders orders = new Orders();
-		orders.setUserId(userId);
-		List<Orders> ltOrders = orderDao.selectOrdersAll(orders);
-		List<Goods> ltgoods = new ArrayList<Goods>();
-		if(ltOrders!=null){
-			for(Orders order : ltOrders){
-				String g_id = order.getG_id();
-				Goods goods = goodsDao.selectByG_id(g_id);
-				ltgoods.add(goods);
-			}
-		}
-		return ltgoods;
-	}
 }

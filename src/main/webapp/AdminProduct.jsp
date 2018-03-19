@@ -81,7 +81,7 @@
 				                <td><%=goods.getG_price() %></td>
 				                <td><%=goods.getG_like() %></td>
 				                <td>预购数量</td>
-				                <td><a href="AdminProduct.jsp">编辑</a></td>
+				                <td><a href="${pageContext.request.contextPath}/goods/forEdit?g_id=<%=goods.getG_id() %>">编辑</a></td>
                         	</tr>
                         <%
                         	}

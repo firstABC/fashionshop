@@ -7,10 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>潮品之家</title>
-	<link rel="stylesheet" type="text/css" href="css/font/iconfont.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 </head>
 <body>
 	<div class="banner">
@@ -18,11 +18,11 @@
 			<jsp:include page="header.jsp" flush="true"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
-	                 <a href="index.jsp">首页</a> 
-	                 <a href="information.jsp" class="on">潮流资讯</a>
-	                 <a href="javascript:;">新品</a>  
-	                 <a href="javascript:;">服装</a>  
-	                 <a href="javascript:;">鞋类</a>
+	                 <a href="${pageContext.request.contextPath}/switch/toIdex" >首页</a> 
+                 	 <a href="${pageContext.request.contextPath}/news/toNewsMangeIndex" class="on">潮流资讯</a>
+                 	 <a href="${pageContext.request.contextPath}/goods/toNewProduct">新品</a>  
+	                 <a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>  
+	                 <a href="${pageContext.request.contextPath}/goods/toShoProduct"">鞋类</a>
 	            </nav>
 	        </div>
 		</header>
@@ -39,7 +39,7 @@
 				%>	
 					<li>
 						<a href="javascript:;">
-							<div class="zxImg"><img src="${pageContext.request.contextPath}/upload/<%=news.getLtMage().get(0) %>" alt=""></div>
+							<div class="zxImg"><img src="${pageContext.request.contextPath}/upload/<%=news.getLtMage().get(0).getPathName() %>" alt=""></div>
                         	<div class="zxText">
                         		<span class="title"><%=news.getN_title() %></span>
                         		<span class="author"><%=news.getN_author() %></span>
@@ -71,7 +71,7 @@
 	        </div>
 	    </div>
 		<!-- 回到顶部 -->
-		<div class="back-top" style="display: none;"><img src="image/back-top.png"></div>
+		<div class="back-top" style="display: none;"><img src="${pageContext.request.contextPath}/image/back-top.png"></div>
 	</div>
 
 </body>

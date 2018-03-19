@@ -42,4 +42,8 @@
 	<update id="alterNumber" parameterType="News">
 		update news set n_number =#{n_number} where n_id = #{n_id}
 	</update>
+	
+	<update id="alterNewsInfo" parameterType="News">
+		update news set n_title=#{n_title},n_detal=#{n_detal},n_author=#{n_author},n_number=#{n_number} where n_id=#{n_id}
+	</update>
 </mapper>

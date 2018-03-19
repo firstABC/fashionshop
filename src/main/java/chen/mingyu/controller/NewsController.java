@@ -98,6 +98,38 @@ public class NewsController {
 			return "/information";
 		}
 	
+	//查询新闻详情 并跳转到编辑页
+	@RequestMapping("/forEdit")
+	public String forEdit(HttpServletRequest request,HttpSession session,@RequestParam("n_id")String n_id){
+		News news = newsDao.selectByN_id(n_id);
+		session.setAttribute("newsEdit", news);
+		return "/editNews";
+	}
+	
+	@RequestMapping("/toEdit")
+	@ResponseBody
+	public Map edit(HttpServletRequest request,HttpSession session){
+		Map map = new HashMap();
+		String n_title = (String)request.getParameter("n_title");
+		String n_detal = (String)request.getParameter("n_detal");
+		int n_number =Integer.parseInt(request.getParameter("n_number"));
+		String n_author= request.getParameter("n_author");
+		String n_id = request.getParameter("n_id");
+		News news = new News();
+		news.setN_title(n_title);
+		news.setN_detal(n_detal);
+		news.setN_number(n_number);
+		news.setN_author(n_author);
+		news.setN_id(n_id);
+		int isOk = newsDao.alterNewsInfo(news);
+		if(isOk>0){
+			map.put("message", "success");
+		}else{
+			map.put("message", "faile");
+		}
+		return map;
+	}
+	
 	@RequestMapping("/deleteNews")
 	@ResponseBody
 	public Map deleteNews(HttpServletRequest request,HttpSession session,@RequestParam("n_id")String n_id){
