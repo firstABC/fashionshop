@@ -71,10 +71,17 @@
 			<div class="information clearfix">
 				<div class="smadd-pic">
 					<p class="oha-chan"><span>潮流资讯</span></p>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(0).getLtMage().get(0).getPathName() %>"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(1).getLtMage().get(0).getPathName() %>"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(2).getLtMage().get(0).getPathName() %>"></a>
-					<a href="infoDemo.jsp" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=ltNews.get(3).getLtMage().get(0).getPathName() %>"></a>
+					<%
+						if(ltNews!=null&&ltNews.size()>0){
+							for(int i=0;i<=3;i++){
+								News news = ltNews.get(i);
+					%>
+					
+					<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=news.getN_id()%>" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=news.getLtMage().get(0).getPathName() %>"></a>
+					<%
+							}
+						}
+					%>
 				</div>
 				<form action="" id="publish_form" name="publish_form"></form>
 				<div class="smadd-hiddiv">
@@ -82,26 +89,19 @@
 		        		<a class="bt-on" href="javascript:;">最新咨询</a>
 		        	</div>
 		        	<ul class="ind-hotul">
+		        	<%
+						if(ltNews!=null&&ltNews.size()>0){
+							for(int i=0;i<=3;i++){
+								News news = ltNews.get(i);
+					%>
 		        		<li>
-		        			<span class="hot-i">1</span>
-		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(0).getN_id()%>"><%=ltNews.get(0).getN_title() %></a>
+		        			<span class="hot-i"><%=i+1 %></span>
+		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=news.getN_id()%>"><%=news.getN_title() %></a>
 		        		</li>
-		        		<li>
-		        			<span class="hot-i">2</span>
-		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(1).getN_id()%>"><%=ltNews.get(1).getN_title() %></a>
-		        		</li>
-		        		<li>
-		        			<span class="hot-i">3</span>
-		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(2).getN_id()%>"><%=ltNews.get(2).getN_title() %></a>
-		        		</li>
-		        		<li>
-		        			<span>4</span>
-		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(3).getN_id()%>"><%=ltNews.get(3).getN_title() %></a>
-		        		</li>
-		        		<li>
-		        			<span>5</span>
-		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=ltNews.get(4).getN_id()%>"><%=ltNews.get(4).getN_title() %></a>
-		        		</li>
+		        	<%
+							}
+						}
+					%>
 		        	</ul>
 				</div>
 			</div>
@@ -134,8 +134,8 @@
 			      %>
 			      		<div class="box showpic">
 			      			<div class="picbox">
-			      				<a href="goods.jsp" title=""><img src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt=""></a>
-			      				<a href="goods.jsp" class="deShadow" title=""></a>
+			      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=good.getG_id() %>" title=""><img src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt=""></a>
+			      				<a href="${pageContext.request.contextPath}/goods/toGInfo?g_id=<%=good.getG_id() %>" class="deShadow" title=""></a>
 			      				<div class="actions">
 				            		<div class="lefter">
 										<a class="p_ilike" href="javascript:addLike('<%=good.getG_id() %>');"></a>
@@ -186,7 +186,7 @@
 				                <div class="fr loveNum"><i class="icon iconfont icon-love"></i><span><%=good.getG_like() %></span></div>
 				            </div>
 			      		</div>
-			      			<%
+			    	<%
 			      		}
 			      	}
 			      	%>

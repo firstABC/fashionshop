@@ -38,7 +38,7 @@
 					for(News news :ltNews){
 				%>	
 					<li>
-						<a href="javascript:;">
+						<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=news.getN_id()%>">
 							<div class="zxImg"><img src="${pageContext.request.contextPath}/upload/<%=news.getLtMage().get(0).getPathName() %>" alt=""></div>
                         	<div class="zxText">
                         		<span class="title"><%=news.getN_title() %></span>

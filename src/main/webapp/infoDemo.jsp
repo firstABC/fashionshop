@@ -16,11 +16,11 @@
 			<jsp:include page="header.jsp" flush="true"/>
 	        <div class="list">
 	        	<nav class="lay1200 clearfix">
-	                 <a href="index.jsp">首页</a> 
-	                 <a href="information.jsp" class="on">潮流资讯</a>
-	                 <a href="javascript:;">新品</a>  
-	                 <a href="javascript:;">服装</a>  
-	                 <a href="javascript:;">鞋类</a>
+	                 <a href="${pageContext.request.contextPath}/switch/toIdex" >首页</a> 
+                 	<a href="${pageContext.request.contextPath}/news/toNewsMangeIndex" class="on">潮流资讯</a>
+                 	<a href="${pageContext.request.contextPath}/goods/toNewProduct">新品</a>  
+                 	<a href="${pageContext.request.contextPath}/goods/toCloProduct">服装</a>  
+                	 <a href="${pageContext.request.contextPath}/goods/toShoProduct"">鞋类</a>
 	            </nav>
 	        </div>
 		</header>

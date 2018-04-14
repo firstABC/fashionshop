@@ -18,7 +18,7 @@
 			<ul class="nav">
 				 <li class="nav-header">
                     <div class="people"> 
-                    	<span><img alt="image" class="img-circle" src="image/profile_small.jpg" /></span>
+                    	<span><img alt="image" class="img-circle" src="${pageContext.request.contextPath}/image/profile_small.jpg" /></span>
                         <a class="dropdown-toggle" href="javascript:;">
                             <span class="clear block name"><strong><span id="admin">${adminName}</span></strong></span>
                         </a>
@@ -29,7 +29,7 @@
                     <a href="${pageContext.request.contextPath}/goods/togoodsMange"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
                 </li>
                 <li>
-                    <a href="AdminUser.jsp"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
+                    <a href="${pageContext.request.contextPath}/AdminUser.jsp"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/news/toNewsMange"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>

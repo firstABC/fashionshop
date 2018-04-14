@@ -42,7 +42,7 @@
 		    <div class="row wrapper-content white-bg">
 		    	<div class="m-b-sm">
 	                <div class="m-b-sm-title">
-		       			<a href="AdminInfoEdit.html" class="btn btn-primary">发布资讯</a>
+		       			<a href="${pageContext.request.contextPath}/AdminInfoEdit.jsp" class="btn btn-primary">发布资讯</a>
 	                </div>
 		        </div>
 

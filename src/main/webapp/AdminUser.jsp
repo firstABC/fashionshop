@@ -42,11 +42,11 @@
 		        </div>
 		    </div>
 		    <div class="row wrapper-content white-bg">
-		    	<div class="m-b-sm">
+		    	<!-- <div class="m-b-sm">
 	                <div class="m-b-sm-title">
 		       			<a href="AdminUserEdit.jsp" class="btn btn-primary">新增潮人</a>
 	                </div>
-		        </div>
+		        </div> -->
 
 		    	<div class="col-lg-12 white-bg">
 		    		<table  id="table" class="table-bordered table-striped table-hover" width="100%" border="0" cellspacing="0" cellpadding="2">

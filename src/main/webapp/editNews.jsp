@@ -41,28 +41,7 @@
 <body>
 
 	<div class="wrapper">
-		<nav class="navbar-default navbar-static-side">
-			<ul class="nav">
-				 <li class="nav-header">
-                    <div class="people"> 
-                    	<span><img alt="image" class="img-circle" src="${pageContext.request.contextPath}/image/profile_small.jpg" /></span>
-                        <a class="dropdown-toggle" href="javascript:;">
-                            <span class="clear block name"><strong>柯志慧</strong></span>
-                        </a>
-                        <a href="loginAdmin.html" class="text-muted text-xs block">退出 <i class="fa fa-sign-out"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <a href="AdminProduct.html"><i class="fa fa-th-large"></i> <span class="nav-label">潮品管理</span></a>
-                </li>
-                <li>
-                    <a href="AdminUser.html"><i class="fa fa-user"></i> <span class="nav-label">潮人管理</span></a>
-                </li>
-                <li class="active">
-                    <a href="AdminInfo.html"><i class="fa fa-comments-o"></i> <span class="nav-label">资讯管理</span></a>
-                </li>
-			</ul>
-		</nav><!-- 左侧导航 -->
+		<jsp:include page="navAdmin.jsp" flush="true"/>
 
 		<div class="page-wrapper gray-bg">
 			<div class="row border-bottom white-bg dashboard-header">
