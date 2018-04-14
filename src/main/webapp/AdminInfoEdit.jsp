@@ -26,7 +26,7 @@
 						alert("发布失败！");
 					}else{
 						alert("发布成功！");
-						window.location.href="${pageContext.request.getContextPath()}/index.jsp";
+						window.location.href="${pageContext.request.getContextPath()}/news/toNewsMange";
 					}
 	            },
 	            error: function(data) {
