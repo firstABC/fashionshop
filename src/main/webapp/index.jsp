@@ -73,8 +73,7 @@
 					<p class="oha-chan"><span>潮流资讯</span></p>
 					<%
 						if(ltNews!=null&&ltNews.size()>0){
-							for(int i=0;i<=3;i++){
-								News news = ltNews.get(i);
+							for(News news:ltNews){
 					%>
 					
 					<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=news.getN_id()%>" target="_blank"><img alt="" src="${pageContext.request.contextPath}/upload/<%=news.getLtMage().get(0).getPathName() %>"></a>
@@ -91,11 +90,12 @@
 		        	<ul class="ind-hotul">
 		        	<%
 						if(ltNews!=null&&ltNews.size()>0){
-							for(int i=0;i<=3;i++){
-								News news = ltNews.get(i);
+							int i = 0;
+							for(News news:ltNews){
+								i++;
 					%>
 		        		<li>
-		        			<span class="hot-i"><%=i+1 %></span>
+		        			<span class="hot-i"><%=i %></span>
 		        			<a href="${pageContext.request.contextPath}/news/newsInfo?n_id=<%=news.getN_id()%>"><%=news.getN_title() %></a>
 		        		</li>
 		        	<%

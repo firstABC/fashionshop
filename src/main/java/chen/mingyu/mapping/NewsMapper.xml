@@ -33,7 +33,7 @@
 	</select>
 	
 	<select id="selectFiveByNum" resultMap="NewsResultMap">
-		select * from news n,images i where n.n_id = i.n_id order by n.n_number desc 
+		select * from news n,images i where n.n_id = i.n_id order by n.n_number desc LIMIT 4
 	</select>
 	
 	<delete id="deleteNews" parameterType="String">
